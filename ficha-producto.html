@@ -1,0 +1,3417 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ficha de producto — captura</title>
+  <style>
+    :root {
+      --ground: #EDF0F5;
+      --surface: #FFFFFF;
+      --surface-2: #F5F7FA;
+      --surface-3: #E9EDF3;
+      --line: #D3DAE4;
+      --line-soft: #E3E8EF;
+      --ink: #151A23;
+      --ink-2: #414B5B;
+      --ink-3: #67717F;
+      --k-cat: #166149;
+      --k-attr: #2C46A0;
+      --k-field: #8A6110;
+      --k-entity: #55637D;
+      --k-drop: #9C3C33;
+      --accent: #2C46A0;
+      --accent-ink: #1E3277;
+      --accent-soft: #E6EBFA;
+      --accent-line: #B6C3E8;
+      --thread: #9C6E11;
+      --thread-ink: #7A5509;
+      --thread-soft: #FAF0D6;
+      --thread-line: #E2C983;
+      --ok: #1C7256;
+      --ok-soft: #E2F1EB;
+      --crit: #A9433A;
+      --crit-soft: #FBE9E7;
+      --on-accent: #FFFFFF;
+      --shadow: 0 1px 2px rgba(21, 26, 35, .06), 0 4px 14px rgba(21, 26, 35, .05);
+      --ui: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+      --display: "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, sans-serif;
+      --mono: "Cascadia Mono", Consolas, "SF Mono", ui-monospace, "Roboto Mono", monospace;
+      --r: 6px;
+    }
+
+    @media (prefers-color-scheme:dark) {
+      :root:not([data-theme="light"]) {
+        --ground: #0D1118;
+        --surface: #161C26;
+        --surface-2: #1C2430;
+        --surface-3: #232C3A;
+        --line: #2C3644;
+        --line-soft: #222B37;
+        --ink: #E7ECF3;
+        --ink-2: #B2BDCC;
+        --ink-3: #8A97AA;
+        --k-cat: #4FBF97;
+        --k-attr: #8BA2F1;
+        --k-field: #E0B252;
+        --k-entity: #9AA9C2;
+        --k-drop: #E88D85;
+        --accent: #8BA2F1;
+        --accent-ink: #B9C7FA;
+        --accent-soft: #1A2440;
+        --accent-line: #39477A;
+        --thread: #D6A63E;
+        --thread-ink: #EBC97A;
+        --thread-soft: #2A2313;
+        --thread-line: #5A4718;
+        --ok: #4FBF97;
+        --ok-soft: #16302A;
+        --crit: #E08078;
+        --crit-soft: #2E1A18;
+        --on-accent: #0D1118;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 20px rgba(0, 0, 0, .28);
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --ground: #0D1118;
+      --surface: #161C26;
+      --surface-2: #1C2430;
+      --surface-3: #232C3A;
+      --line: #2C3644;
+      --line-soft: #222B37;
+      --ink: #E7ECF3;
+      --ink-2: #A5B0C1;
+      --ink-3: #717E91;
+      --accent: #8BA2F1;
+      --accent-ink: #B9C7FA;
+      --accent-soft: #1A2440;
+      --accent-line: #39477A;
+      --thread: #D6A63E;
+      --thread-ink: #EBC97A;
+      --thread-soft: #2A2313;
+      --thread-line: #5A4718;
+      --ok: #4FBF97;
+      --ok-soft: #16302A;
+      --crit: #E08078;
+      --crit-soft: #2E1A18;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 20px rgba(0, 0, 0, .28);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: var(--ui);
+      font-size: 13.5px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--display);
+      margin: 0;
+      text-wrap: balance;
+      letter-spacing: -.011em
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+      color: inherit
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 3px
+    }
+
+    .mono {
+      font-family: var(--mono);
+      font-variant-numeric: tabular-nums
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      color: var(--ink-3);
+    }
+
+    /* ---------- shell ---------- */
+    .bar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 0 18px;
+      height: 56px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      min-width: 0
+    }
+
+    .brand strong {
+      font-family: var(--display);
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: -.02em
+    }
+
+    .brand span {
+      font-size: 11.5px;
+      color: var(--ink-3)
+    }
+
+    .spacer {
+      flex: 1
+    }
+
+    .icon-btn {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      height: 32px;
+      min-width: 32px;
+      padding: 0 9px;
+      cursor: pointer;
+      color: var(--ink-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+    }
+
+    .icon-btn:hover {
+      border-color: var(--accent-line);
+      color: var(--ink)
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr) 330px;
+      align-items: start;
+      gap: 0;
+      min-height: calc(100vh - 56px);
+    }
+
+    .rail {
+      border-right: 1px solid var(--line);
+      background: var(--surface);
+      padding: 16px 14px 40px;
+      position: sticky;
+      top: 56px;
+      max-height: calc(100vh - 56px);
+      overflow-y: auto;
+    }
+
+    .stage {
+      padding: 22px 26px 72px;
+      min-width: 0
+    }
+
+    .inspector {
+      border-left: 1px solid var(--line);
+      background: var(--surface);
+      padding: 16px 16px 40px;
+      position: sticky;
+      top: 56px;
+      max-height: calc(100vh - 56px);
+      overflow-y: auto;
+    }
+
+    @media (max-width:1240px) {
+      main {
+        grid-template-columns: 230px minmax(0, 1fr)
+      }
+
+      .inspector {
+        grid-column: 1 / -1;
+        position: static;
+        max-height: none;
+        border-left: 0;
+        border-top: 1px solid var(--line)
+      }
+    }
+
+    @media (max-width:820px) {
+      main {
+        grid-template-columns: minmax(0, 1fr)
+      }
+
+      .rail {
+        position: static;
+        max-height: none;
+        border-right: 0;
+        border-bottom: 1px solid var(--line)
+      }
+
+      .stage {
+        padding: 18px 16px 60px
+      }
+
+      .bar {
+        gap: 10px;
+        padding: 0 12px
+      }
+
+      .brand span {
+        display: none
+      }
+    }
+
+    /* ---------- rail ---------- */
+    .rail-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px
+    }
+
+    .dept {
+      margin-top: 16px
+    }
+
+    .dept:first-of-type {
+      margin-top: 4px
+    }
+
+    .dept>.eyebrow {
+      display: block;
+      margin-bottom: 7px
+    }
+
+    .cat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3px
+    }
+
+    .cat {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: 1px solid transparent;
+      border-radius: var(--r);
+      padding: 7px 9px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .cat:hover {
+      background: var(--surface-2);
+      border-color: var(--line-soft)
+    }
+
+    .cat[aria-current="true"] {
+      background: var(--accent-soft);
+      border-color: var(--accent-line)
+    }
+
+    .cat[aria-current="true"] .cat-name {
+      color: var(--accent-ink);
+      font-weight: 650
+    }
+
+    .cat-name {
+      font-size: 13px;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .cat-code {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--ink-3);
+      font-variant-numeric: tabular-nums
+    }
+
+    .jump {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      margin-top: 6px
+    }
+
+    .jump a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 9px;
+      border-radius: 4px;
+      text-decoration: none;
+      color: var(--ink-2);
+      font-size: 12.5px;
+      border-left: 2px solid transparent;
+    }
+
+    .jump a:hover {
+      background: var(--surface-2);
+      color: var(--ink)
+    }
+
+    .jump .n {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--ink-3)
+    }
+
+    .jump .miss {
+      color: var(--crit);
+      font-weight: 600
+    }
+
+    /* ---------- stage ---------- */
+    .stage-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap
+    }
+
+    .stage-head h1 {
+      font-size: 23px;
+      font-weight: 660;
+      letter-spacing: -.024em
+    }
+
+    .stage-head p {
+      margin: 5px 0 0;
+      color: var(--ink-2);
+      font-size: 13px;
+      max-width: 62ch
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 2px 8px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .pill.req {
+      background: var(--crit-soft);
+      color: var(--crit);
+      border-color: var(--crit)
+    }
+
+    .pill.ok {
+      background: var(--ok-soft);
+      color: var(--ok);
+      border-color: var(--ok)
+    }
+
+    .pill.mut {
+      background: var(--surface-2);
+      color: var(--ink-2);
+      border-color: var(--line)
+    }
+
+    .pill.acc {
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+      border-color: var(--accent-line)
+    }
+
+    .pill.thr {
+      background: var(--thread-soft);
+      color: var(--thread-ink);
+      border-color: var(--thread-line)
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--shadow)
+    }
+
+    .group {
+      margin-bottom: 14px;
+      scroll-margin-top: 70px
+    }
+
+    .group-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 15px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .group-head h2 {
+      font-size: 13.5px;
+      font-weight: 650
+    }
+
+    .group-head .n {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-3)
+    }
+
+    .group-body {
+      padding: 4px 15px 15px;
+      display: flex;
+      flex-direction: column
+    }
+
+    .field {
+      padding: 13px 0;
+      border-bottom: 1px dashed var(--line-soft)
+    }
+
+    .field:last-child {
+      border-bottom: 0;
+      padding-bottom: 2px
+    }
+
+    .field-head {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+      flex-wrap: wrap
+    }
+
+    .field-head label {
+      font-size: 12.5px;
+      font-weight: 620
+    }
+
+    .field-head .code {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--ink-3)
+    }
+
+    .field-head .star {
+      color: var(--crit);
+      font-weight: 700
+    }
+
+    .field-hint {
+      font-size: 11.5px;
+      color: var(--ink-3);
+      margin: -3px 0 8px
+    }
+
+    .field.dep {
+      border-left: 2px solid var(--accent-line);
+      padding-left: 11px;
+      margin-left: -13px
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px
+    }
+
+    .chip {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      padding: 5px 12px;
+      font-size: 12.5px;
+      cursor: pointer;
+      color: var(--ink-2);
+      white-space: nowrap;
+    }
+
+    .chip:hover {
+      border-color: var(--accent-line);
+      color: var(--ink)
+    }
+
+    .chip[aria-pressed="true"] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--on-accent);
+      font-weight: 600
+    }
+
+    .chip:disabled {
+      opacity: .42;
+      cursor: not-allowed
+    }
+
+    .chip .x {
+      margin-left: 5px;
+      opacity: .7
+    }
+
+    select.input,
+    input.input {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 7px 10px;
+      font-size: 13px;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    select.input:hover,
+    input.input:hover {
+      border-color: var(--accent-line)
+    }
+
+    .num-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .num-wrap input.input {
+      width: 120px
+    }
+
+    .unit {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--ink-3)
+    }
+
+    .switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      cursor: pointer
+    }
+
+    .switch .track {
+      width: 36px;
+      height: 20px;
+      border-radius: 100px;
+      background: var(--surface-3);
+      border: 1px solid var(--line);
+      position: relative;
+      transition: background .15s, border-color .15s;
+    }
+
+    .switch .track::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 100px;
+      background: var(--surface);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+      transition: transform .15s;
+    }
+
+    .switch input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0
+    }
+
+    .switch input:checked+.track {
+      background: var(--accent);
+      border-color: var(--accent)
+    }
+
+    .switch input:checked+.track::after {
+      transform: translateX(16px)
+    }
+
+    .switch input:focus-visible+.track {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px
+    }
+
+    .switch .lbl {
+      font-size: 12.5px;
+      color: var(--ink-2)
+    }
+
+    .combo {
+      position: relative;
+      max-width: 380px
+    }
+
+    .combo-list {
+      position: absolute;
+      z-index: 20;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      max-height: 230px;
+      overflow-y: auto;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding: 4px;
+    }
+
+    .combo-list button {
+      display: flex;
+      width: 100%;
+      text-align: left;
+      gap: 8px;
+      align-items: center;
+      background: none;
+      border: 0;
+      padding: 6px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12.5px;
+    }
+
+    .combo-list button:hover {
+      background: var(--accent-soft)
+    }
+
+    .combo-empty {
+      padding: 8px;
+      font-size: 12px;
+      color: var(--ink-3)
+    }
+
+    .empty {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 44px 32px;
+      border: 1px dashed var(--line);
+      border-radius: var(--r);
+      background: var(--surface);
+      max-width: 70ch;
+    }
+
+    .empty h2 {
+      font-size: 18px;
+      font-weight: 640
+    }
+
+    .empty p {
+      margin: 0;
+      color: var(--ink-2);
+      max-width: 60ch
+    }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(178px, 1fr));
+      gap: 9px
+    }
+
+    .cat-tile {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 12px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-height: 96px;
+    }
+
+    .cat-tile:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow)
+    }
+
+    .cat-tile .t {
+      font-size: 13.5px;
+      font-weight: 640
+    }
+
+    .cat-tile .d {
+      font-size: 11.5px;
+      color: var(--ink-3);
+      margin-top: -4px
+    }
+
+    .cat-tile .legacy {
+      margin-top: auto;
+      font-family: var(--mono);
+      font-size: 9.5px;
+      color: var(--ink-3);
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    .cat-tile .legacy b {
+      color: var(--ink-2);
+      font-weight: 600
+    }
+
+    /* ---------- inspector ---------- */
+    .insp-sec {
+      margin-bottom: 20px
+    }
+
+    .insp-sec>.eyebrow {
+      display: block;
+      margin-bottom: 8px
+    }
+
+    .meter {
+      height: 6px;
+      border-radius: 100px;
+      background: var(--surface-3);
+      overflow: hidden;
+      margin: 8px 0 6px
+    }
+
+    .meter i {
+      display: block;
+      height: 100%;
+      background: var(--accent);
+      transition: width .25s
+    }
+
+    .meter i[data-full="true"] {
+      background: var(--ok)
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      padding: 5px 0;
+      border-bottom: 1px dashed var(--line-soft);
+      font-size: 12.5px
+    }
+
+    .stat-row:last-child {
+      border-bottom: 0
+    }
+
+    .stat-row span {
+      color: var(--ink-2)
+    }
+
+    .stat-row b {
+      font-family: var(--mono);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums
+    }
+
+    /* ---------- utilidades ---------- */
+    .pad {
+      padding: 15px
+    }
+
+    .btn {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 4px 9px;
+      font-size: 11.5px;
+      cursor: pointer;
+      color: var(--ink-2);
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      border-color: var(--accent-line);
+      color: var(--ink)
+    }
+
+    /* de qué tabla sale hoy el campo: es la mitad del argumento de la migración */
+    .src-tag {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      letter-spacing: .01em;
+      color: var(--ink-3);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 1px 5px;
+      white-space: nowrap;
+    }
+
+    .field-head .src-tag {
+      margin-left: auto;
+      cursor: help
+    }
+
+    .rail-head .src-tag {
+      font-size: 9px
+    }
+
+    /* dónde se queda la característica: campo tipo_N, Apariencia o tabla propia */
+    .src-tag.c-tipo {
+      color: var(--accent-ink);
+      border-color: var(--accent-line);
+      background: var(--accent-soft)
+    }
+
+    .src-tag.c-apar {
+      color: var(--thread-ink);
+      border-color: var(--thread-line);
+      background: var(--thread-soft)
+    }
+
+    .src-tag.c-tabla {
+      color: var(--k-cat);
+      border-color: var(--k-cat)
+    }
+
+    .src-tag b {
+      font-weight: 700
+    }
+
+    .leyenda {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 11.5px;
+      color: var(--ink-2);
+    }
+
+    .leyenda .src-tag {
+      margin-right: 4px
+    }
+
+    /* tabla del mapa de campos */
+    .scroll-x {
+      overflow-x: auto
+    }
+
+    .tabla {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px
+    }
+
+    .tabla th {
+      text-align: left;
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--ink-3);
+      font-weight: 500;
+      padding: 0 10px 7px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    .tabla td {
+      padding: 7px 10px;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: middle
+    }
+
+    .tabla tr:last-child td {
+      border-bottom: 0
+    }
+
+    .tabla tbody tr:hover {
+      background: var(--surface-2)
+    }
+
+    .tabla .nm {
+      font-weight: 600
+    }
+
+    .tabla .cd {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--ink-3)
+    }
+
+    .tabla td.c {
+      text-align: center;
+      width: 1%;
+      font-family: var(--mono);
+      font-variant-numeric: tabular-nums
+    }
+
+    .tabla tr.grp td {
+      background: var(--surface-2);
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--ink-3);
+      padding: 6px 10px;
+    }
+
+    .hallazgos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 11px;
+      margin-top: 14px
+    }
+
+    .hallazgos div {
+      border-left: 2px solid var(--thread-line);
+      padding: 2px 0 2px 11px
+    }
+
+    .hallazgos b {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 650;
+      margin-bottom: 3px
+    }
+
+    .hallazgos span {
+      font-size: 11.5px;
+      color: var(--ink-2);
+      line-height: 1.5
+    }
+
+    /* ---------- depuración de campos ---------- */
+    .card.edicion {
+      border-color: var(--thread-line);
+      box-shadow: none
+    }
+
+    .card.edicion>.group-head {
+      background: var(--thread-soft);
+      border-bottom-color: var(--thread-line)
+    }
+
+    .card.edicion>.group-head h2,
+    .card.edicion>.group-head .n {
+      color: var(--thread-ink)
+    }
+
+    .field.extra {
+      border-left: 2px solid var(--thread-line);
+      padding-left: 11px;
+      margin-left: -13px
+    }
+
+    .btn.quitar {
+      margin-left: 8px;
+      color: var(--crit);
+      border-color: var(--crit-soft)
+    }
+
+    .btn.quitar:hover {
+      border-color: var(--crit);
+      background: var(--crit-soft);
+      color: var(--crit)
+    }
+
+    .field-head .src-tag+.btn.quitar {
+      margin-left: 8px
+    }
+
+    .cambios {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 12px
+    }
+
+    .cambios .eyebrow {
+      display: block;
+      margin-bottom: 5px
+    }
+
+    .chip .mas {
+      margin-left: 5px;
+      color: var(--ok);
+      font-weight: 700
+    }
+
+    .alerta {
+      background: var(--crit-soft);
+      border: 1px solid var(--crit);
+      color: var(--ink);
+      border-radius: var(--r);
+      padding: 10px 12px;
+      font-size: 12px;
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+
+    .guardar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap
+    }
+
+    .guardar .btn {
+      padding: 7px 14px;
+      font-size: 12.5px
+    }
+
+    .guardar .btn:disabled {
+      opacity: .5;
+      cursor: not-allowed
+    }
+
+    .guardar .cd {
+      font-size: 11.5px;
+      color: var(--ink-3);
+      max-width: 62ch;
+      line-height: 1.5
+    }
+
+    .alcance {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .ord-group {
+      display: inline-flex;
+      gap: 4px
+    }
+
+    .ord-group .ord {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      color: var(--ink-2);
+      border-radius: var(--r);
+      padding: 5px 12px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .ord-group .ord:hover {
+      border-color: var(--accent-line);
+      color: var(--ink)
+    }
+
+    .ord-group .ord[aria-pressed="true"] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--on-accent);
+      font-weight: 600
+    }
+
+    .alcance .eyebrow {
+      margin-right: -4px
+    }
+
+    .alcance .btn.quitar {
+      margin-left: auto
+    }
+
+    .cambios .cd {
+      display: block;
+      font-size: 11px;
+      color: var(--ink-3);
+      margin-bottom: 5px
+    }
+
+    /* valores de un campo, para darlos de baja */
+    .valores {
+      margin-top: 10px;
+      padding: 9px 11px;
+      border: 1px dashed var(--thread-line);
+      border-radius: var(--r);
+      background: var(--thread-soft);
+    }
+
+    .valores .eyebrow {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--thread-ink)
+    }
+
+    .valores .chip {
+      background: var(--surface);
+      font-size: 11.5px;
+      padding: 3px 9px
+    }
+
+    .valores .chip:hover {
+      border-color: var(--crit);
+      color: var(--crit)
+    }
+
+    .chip.fuera {
+      opacity: .75;
+      text-decoration: line-through;
+      border-style: dashed
+    }
+
+    .chip.fuera:hover {
+      opacity: 1;
+      text-decoration: none;
+      border-color: var(--ok);
+      color: var(--ok)
+    }
+
+    /* selector del campo donde se guarda la característica */
+    .sel-campo {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px
+    }
+
+    .sel-campo select {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 2px 4px;
+      border: 1px solid var(--accent-line);
+      border-radius: 3px;
+      background: var(--surface);
+      color: var(--accent-ink);
+      cursor: pointer;
+    }
+
+    .sel-campo select:hover {
+      border-color: var(--accent)
+    }
+
+    .sel-campo.cambiado select {
+      border-color: var(--thread);
+      color: var(--thread-ink);
+      background: var(--thread-soft);
+      font-weight: 700
+    }
+
+    .sel-campo .btn {
+      padding: 1px 6px;
+      font-size: 11px;
+      line-height: 1.4
+    }
+
+    .src-tag.cambiado {
+      border-color: var(--thread);
+      color: var(--thread-ink);
+      background: var(--thread-soft);
+      font-weight: 700
+    }
+
+    /* campo que el sistema llena solo: se muestra el valor, no un control */
+    .auto-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 9px 12px;
+      max-width: 380px;
+    }
+
+    .auto-box b {
+      font-size: 13.5px;
+      font-weight: 650
+    }
+
+    .auto-box .from {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--ink-3)
+    }
+
+    .pill.auto {
+      background: var(--thread-soft);
+      color: var(--thread-ink);
+      border-color: var(--thread-line)
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      * {
+        transition: none !important;
+        animation: none !important;
+        scroll-behavior: auto !important
+      }
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="bar">
+    <div class="brand">
+      <strong>Ficha de producto</strong>
+      <span>Captura · el formulario se arma según el tipo de prenda</span>
+    </div>
+    <div class="spacer"></div>
+    <button type="button" class="icon-btn" id="themeBtn" aria-label="Cambiar tema">Tema</button>
+  </header>
+
+  <main>
+    <aside class="rail" id="rail"></aside>
+    <section class="stage" id="stage"></section>
+    <aside class="inspector" id="inspector"></aside>
+  </main>
+
+  <script>
+    "use strict";
+
+    const GROUPS = [
+      ["ident", "Identificación"],
+      ["sil", "Silueta y corte"],
+      ["cons", "Construcción"],
+      ["apar", "Apariencia y acabado"],
+      ["mat", "Materiales"],
+      ["med", "Medidas y especificaciones"],
+      ["com", "Comercial y ciclo de vida"]
+    ];
+
+    // v(label, flags) -> valor del catálogo. flags: {off:true} inactivo, {merge:"label"} deprecado y fusionado.
+    function v(l, f) { return Object.assign({ l: l }, f || {}); }
+
+    const ATTRS = {
+      /* --- transversales --- */
+      // Hoy vive en tipo_3, mezclada con 196 campañas promocionales. En la práctica
+      // casi todo lo que se crea es «Producto terminado», así que viene puesto por
+      // defecto: se cambia solo en el caso raro, en vez de preguntarlo siempre.
+      clase: {
+        label: "Clase de producto", g: "com", input: "single", legacy: "tipo_3 (1–3, 107)",
+        src: "tipo_3", def: "Producto terminado",
+        help: "Está en tipo_3, junto a 196 campañas promocionales. Casi siempre se registra como «Producto terminado»: viene preseleccionado y solo se toca si el producto no lo es.",
+        values: [v("Producto terminado"), v("Materia prima"), v("Insumo"), v("Consumible")]
+      },
+
+      // Hoy es tipo_5 y se llena con la fecha de creación. Se conserva ese
+      // comportamiento —el usuario no la escribe— pero guardando temporada y año
+      // explícitos en vez de un timestamp suelto.
+      coleccion: {
+        label: "Colección", g: "com", input: "auto", legacy: "tipo_5",
+        src: "tipo_5", auto: function () { return coleccionAuto(); },
+        help: "Está en tipo_5 y no se pregunta: se asigna automáticamente con la fecha actual de creación del producto.",
+        values: [v("2026-1 · Enero"), v("2026-2 · Julio"), v("2025-2 · Julio"), v("Resort 2026"), v("Permanente / línea básica")]
+      },
+
+      marca: {
+        label: "Marca", g: "ident", input: "text", legacy: "referencias_gru",
+        src: "referencias_gru",
+        help: "La marca se ubica en la tabla referencias_gru. El catálogo de valores sale de ahí; aquí se captura como texto mientras se carga la lista.",
+        placeholder: "Ej. la marca como está en referencias_gru"
+      },
+
+      genero: {
+        label: "Género", g: "ident", input: "single", legacy: "tipo_1 (3 INFANTIL)",
+        src: "referencias_Subgru",
+        help: "El género se ubica en la tabla referencias_Subgru.",
+        values: [v("Femenino"), v("Masculino"), v("Unisex")]
+      },
+
+      linea: {
+        label: "Línea / modelo", g: "ident", input: "single", legacy: "tipo_6",
+        scopeTipo: true,
+        help: "Solo líneas y modelos reales. Los 48 valores de tipo_6 que en realidad eran fit, silueta o talla se movieron a su atributo; aquí no aparecen.",
+        values: [
+          v("237", { lid: 385, tipos: ["TENIS"] }),
+          v("500", { lid: 316, tipos: ["TENIS"] }),
+          v("501", { lid: 300, tipos: ["JEAN"] }),
+          v("505", { lid: 301, tipos: ["JEAN"] }),
+          v("511", { lid: 365, tipos: ["JEAN"] }),
+          v("530", { lid: 392, tipos: ["TENIS"] }),
+          v("574", { lid: 31, tipos: ["TENIS"] }),
+          v("740", { lid: 3103, tipos: ["JEAN"] }),
+          v("ABBY", { lid: 285, tipos: ["BILLETERA"] }),
+          v("ABSOLUTE", { lid: 39, tipos: ["TENIS"] }),
+          v("ADVANTAGE", { lid: 568, tipos: ["TENIS"] }),
+          v("AGATE", { lid: 33, tipos: ["TENIS"] }),
+          v("AIR FORCE ONE", { lid: 20, tipos: ["TENIS"] }),
+          v("AIR MAX", { lid: 22, tipos: ["TENIS"] }),
+          v("ANATOMY", { lid: 3108, tipos: ["TENIS"] }),
+          v("ANGELA", { lid: 3095, tipos: ["RELOJ"] }),
+          v("ANZARUN", { lid: 525, tipos: ["TENIS"] }),
+          v("ASTRA", { lid: 478, tipos: ["TENIS"] }),
+          v("ATHENA", { lid: 383, tipos: ["RELOJ"] }),
+          v("ATHENE LOW", { lid: 671, tipos: ["TENIS"] }),
+          v("ATHOS", { lid: 3097, tipos: ["BOTAS", "TENIS"] }),
+          v("AURA", { lid: 971, tipos: ["RELOJ"] }),
+          v("AURA PRO", { lid: 972, tipos: ["RELOJ"] }),
+          v("AUTENTIC", { lid: 47, tipos: ["TENIS"] }),
+          v("Barcelona", { lid: 931, tipos: ["FALDA", "JEAN", "PANTALON", "SHORT"] }),
+          v("BEBEL", { lid: 738, tipos: ["JEAN"] }),
+          v("BERNES", { lid: 921, tipos: ["JEAN", "PANTALON"] }),
+          v("BLAZE", { lid: 3081, tipos: ["BOTAS"] }),
+          v("BLAZER", { lid: 453, tipos: ["TENIS"] }),
+          v("BOHOCHIC", { lid: 3072, tipos: ["VESTIDO"] }),
+          v("BOSTON", { lid: 774, tipos: ["JEAN", "PANTALON"] }),
+          v("BREAKER", { lid: 136, tipos: ["JEAN"] }),
+          v("BRONSON", { lid: 137, tipos: ["FALDA"] }),
+          v("CA PRO", { lid: 670, tipos: ["TENIS"] }),
+          v("CARINA", { lid: 527, tipos: ["TENIS"] }),
+          v("CHARTER", { lid: 298, tipos: ["RELOJ"] }),
+          v("CHICAGO", { lid: 723, tipos: ["JEAN"] }),
+          v("CLASSIC", { lid: 3093, tipos: ["CAMISETA", "MORRAL", "POLO", "TENIS"] }),
+          v("CLASSIC LEATHER", { lid: 44, tipos: ["TENIS"] }),
+          v("CLUB 85", { lid: 41, tipos: ["TENIS"] }),
+          v("CORTEZ", { lid: 21, tipos: ["TENIS"] }),
+          v("COSMO", { lid: 907, tipos: ["JEAN"] }),
+          v("COUPLE", { lid: 207, tipos: ["JEAN"] }),
+          v("COURT", { lid: 435, tipos: ["TENIS"] }),
+          v("COURT VISION", { lid: 438, tipos: ["TENIS"] }),
+          v("COURTSET", { lid: 35, tipos: ["TENIS"] }),
+          v("CRUSHER", { lid: 255, tipos: ["RELOJ"] }),
+          v("CT2S", { lid: 262, tipos: ["RELOJ"] }),
+          v("CT4", { lid: 264, tipos: ["RELOJ"] }),
+          v("D LITES", { lid: 53, tipos: ["TENIS"] }),
+          v("D LUX", { lid: 581, tipos: ["TENIS"] }),
+          v("DALLAS", { lid: 3074, tipos: ["JEAN"] }),
+          v("DISRUPTOR", { lid: 43, tipos: ["RELOJ"] }),
+          v("DYNAMIGHT", { lid: 584, tipos: ["TENIS"] }),
+          v("elly", { lid: 939, tipos: ["BILLETERA"] }),
+          v("ENERGEN", { lid: 461, tipos: ["TENIS"] }),
+          v("ERA", { lid: 50, tipos: ["TENIS"] }),
+          v("EVERETT 3 HAND", { lid: 270, tipos: ["RELOJ"] }),
+          v("FAMOUS", { lid: 419, tipos: ["JEAN"] }),
+          v("FLEX", { lid: 663, tipos: ["TENIS"] }),
+          v("GA", { lid: 289, tipos: ["RELOJ"] }),
+          v("GABY", { lid: 70, tipos: ["BERMUDA"] }),
+          v("GO RUN", { lid: 594, tipos: ["TENIS"] }),
+          v("GO WALK", { lid: 567, tipos: ["TENIS"] }),
+          v("GRANT", { lid: 152, tipos: ["RELOJ"] }),
+          v("GRANT BLUE", { lid: 6, tipos: ["CORREA"] }),
+          v("HERITAGE", { lid: 808, tipos: ["MORRAL"] }),
+          v("IRON", { lid: 202, tipos: ["BERMUDA", "JEAN", "JOGGER", "PANTALON"] }),
+          v("JEANS WEAR", { lid: 918, tipos: ["JEAN"] }),
+          v("JET", { lid: 796, tipos: ["RELOJ", "TENIS"] }),
+          v("LCS R850", { lid: 685, tipos: ["TENIS"] }),
+          v("LUXURY", { lid: 3071, tipos: ["VESTIDO"] }),
+          v("MACHINE", { lid: 178, tipos: ["RELOJ"] }),
+          v("MARSHAL", { lid: 3084, tipos: ["GAFAS"] }),
+          v("MASTER CHIEF", { lid: 230, tipos: ["RELOJ"] }),
+          v("MAX", { lid: 693, tipos: ["TENIS"] }),
+          v("MEGA CHIEF", { lid: 156, tipos: ["RELOJ"] }),
+          v("MEGAN", { lid: 909, tipos: ["JEAN"] }),
+          v("MIRA", { lid: 933, tipos: ["TENIS"] }),
+          v("MODA", { lid: 1, tipos: ["CAMISETA", "JEAN"] }),
+          v("MODA", { lid: 15, merge: "MODA", tipos: ["CAMISETA", "JEAN"] }),
+          v("MORRISON", { lid: 407, tipos: ["JEAN"] }),
+          v("MULTIFUNCIONAL", { lid: 18, tipos: ["JEAN"] }),
+          v("NANOFLEX", { lid: 460, tipos: ["TENIS"] }),
+          v("NEUTRA", { lid: 187, tipos: ["RELOJ"] }),
+          v("NEUTRA CHRONO", { lid: 162, tipos: ["RELOJ"] }),
+          v("NEW WRAPTRACK", { lid: 751, tipos: ["TENIS"] }),
+          v("NOLITA", { lid: 3034, tipos: ["JEAN"] }),
+          v("OREGON", { lid: 914, tipos: ["JEAN"] }),
+          v("OZELIA", { lid: 661, tipos: ["CAMISETA"] }),
+          v("Paris", { lid: 925, tipos: ["JEAN"] }),
+          v("PHOENIX", { lid: 293, tipos: ["RELOJ"] }),
+          v("Praga", { lid: 926, tipos: ["JEAN", "PANTALON", "SHORT"] }),
+          v("PREMIUM", { lid: 556, tipos: ["CONJUNTO", "ENTERIZO", "FALDA", "PANTALON", "VESTIDO"] }),
+          v("PREMIUM", { lid: 919, merge: "PREMIUM", tipos: ["CONJUNTO", "ENTERIZO", "FALDA", "PANTALON", "VESTIDO"] }),
+          v("PRINCESS", { lid: 58, tipos: ["TENIS"] }),
+          v("RACER", { lid: 548, tipos: ["TENIS"] }),
+          v("RACERONE", { lid: 34, tipos: ["TENIS", "ZAPATOS"] }),
+          v("REVENGE", { lid: 410, tipos: ["JEAN"] }),
+          v("REVOLUTION", { lid: 451, tipos: ["TENIS"] }),
+          v("RIDER", { lid: 406, tipos: ["JEAN", "TENIS"] }),
+          v("RILEY", { lid: 166, tipos: ["RELOJ"] }),
+          v("ROYAL", { lid: 45, tipos: ["TENIS"] }),
+          v("ROYAL", { lid: 466, merge: "ROYAL", tipos: ["TENIS"] }),
+          v("RS", { lid: 551, tipos: ["TENIS"] }),
+          v("RUN", { lid: 443, tipos: ["TENIS"] }),
+          v("RUN 70S", { lid: 674, tipos: ["TENIS"] }),
+          v("RUSTY", { lid: 401, tipos: ["JEAN"] }),
+          v("SAINT", { lid: 481, tipos: ["TENIS"] }),
+          v("SAN DIEGO", { lid: 780, tipos: ["JEAN"] }),
+          v("SCARLETTE", { lid: 181, tipos: ["RELOJ"] }),
+          v("SERENDIPITY", { lid: 509, tipos: ["TENIS"] }),
+          v("SHUFFLE", { lid: 553, tipos: ["TENIS"] }),
+          v("Sidney", { lid: 927, tipos: ["JEAN"] }),
+          v("SK8 HI", { lid: 455, tipos: ["BOTAS"] }),
+          v("SKB", { lid: 37, tipos: ["TENIS"] }),
+          v("SKIN", { lid: 816, tipos: ["JEAN"] }),
+          v("SPACE", { lid: 3104, tipos: ["TENIS"] }),
+          v("ST LOUIS", { lid: 779, tipos: ["JEAN"] }),
+          v("ST. LOUIS", { lid: 782, tipos: ["JEAN"] }),
+          v("STAR", { lid: 923, tipos: ["BERMUDA", "FALDA", "JEAN", "PANTALON", "SHORT", "TENIS"] }),
+          v("STAR", { lid: 1902, merge: "STAR", tipos: ["BERMUDA", "FALDA", "JEAN", "PANTALON", "SHORT", "TENIS"] }),
+          v("STELL", { lid: 203, tipos: ["JEAN", "PANTALON"] }),
+          v("SUPERTEC", { lid: 560, tipos: ["TENIS"] }),
+          v("SWIFT", { lid: 396, tipos: ["TENIS"] }),
+          v("TECH", { lid: 3106, tipos: ["TENIS"] }),
+          v("THIRD GEAR", { lid: 297, tipos: ["RELOJ"] }),
+          v("Tokio", { lid: 929, tipos: ["JEAN"] }),
+          v("TOWNSMAN", { lid: 131, tipos: ["RELOJ"] }),
+          v("TRUCK", { lid: 3107, tipos: ["PANTALON"] }),
+          v("TWISTER", { lid: 206, tipos: ["JEAN", "PANTALON"] }),
+          v("TWISTER", { lid: 2305, merge: "TWISTER", tipos: ["JEAN", "PANTALON"] }),
+          v("TYCHE", { lid: 510, tipos: ["TENIS"] }),
+          v("ULTRARANGE", { lid: 456, tipos: ["TENIS"] }),
+          v("UNO 2", { lid: 651, tipos: ["TENIS"] }),
+          v("VELOCE", { lid: 484, tipos: ["TENIS"] }),
+          v("VIRGINIA", { lid: 778, tipos: ["JEAN"] }),
+          v("VIVA", { lid: 973, tipos: ["RELOJ"] }),
+          v("VIVA PRO", { lid: 974, tipos: ["RELOJ"] }),
+          v("WORK DAY", { lid: 917, tipos: ["FALDA"] }),
+          v("ZOOM", { lid: 445, tipos: ["TENIS"] }),
+          v("(sin descripción · id 318)", { lid: 318, off: 1, tipos: ["BUZO", "CAMISA", "CHAQUETA"] }),
+          v("(sin descripción · id 424)", { lid: 424, off: 1, tipos: ["BUZO", "CAMISA", "CHAQUETA"] }),
+          v("NO APLICA", { lid: 2, off: 1, tipos: ["ACCESORIOS", "BERMUDA", "BLUSA", "BOLSO", "BOTAS", "BOXER", "BUZO", "CAMISA", "CAMISETA", "CANGURO", "CARDIGAN", "CHALECO", "CHAQUETA", "CONJUNTO", "CORREA", "ENTERIZO", "FALDA", "GAFAS", "GORRA", "JEAN", "JOGGER", "MEDIAS", "MORRAL", "PANTALON", "POLO", "RELOJ", "SANDALIAS", "SHORT", "TENIS", "VESTIDO", "ZAPATOS"] })
+        ]
+      },
+
+      patron: {
+        label: "Patrón visual", g: "apar", input: "multi", legacy: "tipo_2",
+        help: "Una prenda puede ser rayada Y bloque de color al tiempo. Antes solo admitía un valor.",
+        values: [v("Unicolor"), v("UNICOLORES", { merge: "Unicolor" }), v("Estampado"), v("Rayas"), v("Cuadros"),
+        v("Pepas"), v("Bloque de color"), v("Degradé"), v("Tie dye"), v("Maxiprint"), v("Miniprint"),
+        v("Espejo"), v("Animal print"), v("Combinado")]
+      },
+
+      acabado: {
+        label: "Acabado y textura", g: "apar", input: "multi", legacy: "tipo_2 (24–26), tipo_1 (92, 102)",
+        values: [v("Brillo"), v("Mate"), v("Texturizado"), v("Plisado"), v("Bordado"), v("Doble faz"),
+        v("Foil"), v("Perforado"), v("Desgastado"), v("Reversible")]
+      },
+
+      material: {
+        label: "Composición principal", g: "mat", input: "multi", legacy: "tipo_1 (160, 170, 164…), tipo_2 (27)",
+        src: "referencias_Subgru3",
+        help: "El material se ubica en la tabla referencias_Subgru3. Además estaba disperso: DRILL y POLIPIEL vivían como si fueran tipos de prenda.",
+        values: [v("Algodón"), v("Índigo / denim"), v("Drill"), v("Lycra / elastano"), v("Satín"), v("Lino"),
+        v("Poliéster"), v("Tejido de punto"), v("Cuero"), v("Polipiel"), v("PVC"), v("Nylon"),
+        v("Impermeable"), v("Acetato"), v("Acero"), v("Resina")]
+      },
+
+      ocasion: {
+        label: "Ocasión de uso", g: "com", input: "multi", legacy: "tipo_1 (119, 161, 230, 245)",
+        values: [v("Diario"), v("Casual"), v("Trabajo"), v("Formal"), v("Fiesta"), v("Deportivo"), v("Resort"), v("Playa")]
+      },
+
+      clima: {
+        label: "Clima", g: "com", input: "single", legacy: "tipo_4 (105–107)",
+        values: [v("Frío"), v("Templado"), v("Caliente")]
+      },
+
+      pack: {
+        label: "Presentación", g: "com", input: "single", legacy: "tipo_4 (120–123)",
+        values: [v("Unidad"), v("Bipack"), v("Tripack"), v("Prenda + accesorio"), v("Set x2 piezas"),
+        v("Probador / tester")]
+      },
+
+      /* --- inferiores --- */
+      silueta_inf: {
+        label: "Silueta", g: "sil", input: "single", legacy: "tipo_1 (149–178), tipo_6 (1008–1014)",
+        values: [v("Skinny"), v("Super skinny"), v("Recta"), v("Bota recta"), v("Slouchy"), v("Relax"),
+        v("Straight"), v("Flare"), v("Acampanada"), v("Palazzo"), v("Balloon"), v("Mom"), v("Baggy"),
+        v("Jogger"), v("Cargo"), v("Culotte"), v("Paperbag"), v("Jorts")]
+      },
+
+      tiro: {
+        label: "Tiro", g: "sil", input: "single", legacy: "tipo_4 (1–4)",
+        values: [v("Ultra bajo"), v("Bajo"), v("Medio"), v("Alto"), v("Super alto")]
+      },
+
+      largo_inf: {
+        label: "Largo", g: "sil", input: "single", legacy: "tipo_1 (90, 91, 103, 9)",
+        values: [v("Largo"), v("Tobillero"), v("Capri"), v("Midi"), v("Corto")]
+      },
+
+      proceso: {
+        label: "Proceso de lavandería", g: "apar", input: "single", legacy: "tipo_2 (5–7)",
+        help: "Solo aplica a índigo/denim. Antes se ofrecía en toda prenda.",
+        showIf: { attr: "material", hasAny: ["Índigo / denim"] },
+        values: [v("Suave"), v("Medio"), v("Fuerte")]
+      },
+
+      bolsillos: {
+        label: "Bolsillos", g: "cons", input: "multi", legacy: "tipo_4 (129, 130)",
+        values: [v("Delanteros de parche"), v("Delanteros ribete"), v("Traseros de parche"), v("Ojal trasero"),
+        v("Cargo laterales"), v("Relojero"), v("Sin bolsillos")]
+      },
+
+      pretina: {
+        label: "Pretina", g: "cons", input: "single", legacy: "tipo_1 (130 REATA), tipo_6 (168)",
+        values: [v("Fija"), v("Elástica"), v("Con cordón"), v("Con reata"), v("Paperbag")]
+      },
+
+      cierre: {
+        label: "Cierre", g: "cons", input: "single",
+        values: [v("Cremallera"), v("Botón"), v("Botonadura corrida"), v("Elástico"), v("Cordón"), v("Sin cierre")]
+      },
+
+      /* --- superiores --- */
+      cuello: {
+        label: "Tipo de cuello", g: "cons", input: "single", legacy: "tipo_1 (71, 83, 84), tipo_4 (93, 114)",
+        help: "Antes competía con la prenda por el mismo campo: «CUELLO V» era un tipo de prenda.",
+        values: [v("Camisero"), v("Cuello V"), v("Redondo"), v("Perilla"), v("Tortuga"), v("Mao"),
+        v("Bardot"), v("Halter"), v("Strapless"), v("Capota"), v("Crew"), v("Sin cuello")]
+      },
+
+      manga: {
+        label: "Tipo de manga", g: "cons", input: "single", legacy: "tipo_4 (11–18, 98)",
+        values: [v("Sin manga / sisa"), v("Tiras"), v("Manga corta"), v("Tres cuartos"), v("Manga larga"),
+        v("Medio hombro"), v("Un solo hombro"), v("Abullonada"), v("Esqueleto")]
+      },
+
+      abotonadura: {
+        label: "Abotonadura", g: "cons", input: "single",
+        values: [v("Completa"), v("Media"), v("Oculta"), v("Sin botones")]
+      },
+
+      fit_sup: {
+        label: "Fit", g: "sil", input: "single", legacy: "tipo_6 (903, 904, 924, 975)",
+        values: [v("Ajustado"), v("Regular"), v("Oversize"), v("Extra oversize"), v("Boxy"), v("Crop")]
+      },
+
+      largo_sup: {
+        label: "Largo de la prenda", g: "sil", input: "single", legacy: "tipo_1 (75, 158)",
+        values: [v("Crop"), v("A la cadera"), v("Largo"), v("Túnica / blusón")]
+      },
+
+      detalles_sup: {
+        label: "Detalles de confección", g: "cons", input: "multi",
+        values: [v("Bolsillo de pecho"), v("Puños"), v("Nudo frontal"), v("Aberturas laterales"),
+        v("Pretina elástica"), v("Hombreras"), v("Capota")]
+      },
+
+      /* --- vestidos y faldas --- */
+      largo_vf: {
+        label: "Largo", g: "sil", input: "single", legacy: "tipo_1 (166, 90, 91)",
+        values: [v("Mini"), v("Midi"), v("Largo"), v("Asimétrico")]
+      },
+
+      silueta_vf: {
+        label: "Silueta", g: "sil", input: "single", legacy: "tipo_1 (225–229, 148, 263)",
+        values: [v("Recta"), v("Tubo"), v("Lápiz"), v("Envolvente"), v("Asimétrica"), v("Plisada"),
+        v("Acampanada"), v("Globo"), v("Abullonada")]
+      },
+
+      abertura: {
+        label: "Abertura", g: "cons", input: "single",
+        values: [v("Sin abertura"), v("Frontal"), v("Lateral"), v("Trasera")]
+      },
+
+      /* --- abrigo --- */
+      tipo_abrigo: {
+        label: "Tipo de chaqueta / buso", g: "sil", input: "single",
+        legacy: "tipo_1 (11–14, 127, 154, 156, 211, 232, 236, 237)",
+        values: [v("Biker"), v("Bomber"), v("Trucker"), v("Parka"), v("Anorak"), v("Blazer"), v("Gabán"),
+        v("Rompevientos"), v("Hoodie"), v("Cardigan"), v("Buso cerrado"), v("Jersey"), v("Chaleco")]
+      },
+
+      forro: { label: "Forrada", g: "cons", input: "bool" },
+
+      /* --- calzado --- */
+      tipo_calzado: {
+        label: "Tipo de calzado", g: "sil", input: "single",
+        legacy: "tipo_1 (51, 60, 107–111, 115, 116, 155, 173, 181, 182)",
+        values: [v("Tenis"), v("Botín"), v("Bota"), v("Sandalia"), v("Baleta"), v("Mocasín"), v("Náutico"),
+        v("Oxford"), v("Zapato de tacón"), v("Zapato cerrado")]
+      },
+
+      altura_cana: {
+        label: "Altura de caña", g: "sil", input: "single", legacy: "tipo_4 (99, 100)",
+        values: [v("Baja"), v("Media"), v("Alta / bota")]
+      },
+
+      tacon: {
+        label: "Tipo de tacón", g: "cons", input: "single", legacy: "tipo_4 (101, 133, 134), tipo_1 (169, 220)",
+        values: [v("Plano"), v("Baleta"), v("Tacón bajo"), v("Tacón alto"), v("Plataforma"), v("Cuña")]
+      },
+
+      altura_tacon: {
+        label: "Altura del tacón", g: "med", input: "number", unit: "cm", step: "0.5",
+        showIf: { attr: "tacon", notIn: ["Plano", "Baleta"] }
+      },
+
+      cierre_calzado: {
+        label: "Sistema de cierre", g: "cons", input: "single",
+        values: [v("Cordones"), v("Velcro"), v("Slip on"), v("Hebilla"), v("Cremallera"), v("Elástico")]
+      },
+
+      /* --- marroquinería --- */
+      tipo_bolso: {
+        label: "Tipo de bolso", g: "sil", input: "single",
+        legacy: "tipo_1 (141–147, 248–256, 262, 264)",
+        values: [v("Tote"), v("Mini tote"), v("Shopper"), v("Bucket"), v("Clutch"), v("Crossbody"),
+        v("Bandolera"), v("Sobre"), v("Cartera"), v("Morral"), v("Baúl"), v("Hobo"), v("Duffle"),
+        v("Canguro / bumbag"), v("Maletín"), v("Tula")]
+      },
+
+      tamano_bolso: {
+        label: "Tamaño", g: "med", input: "single", legacy: "tipo_4 (80–83, 102–104)",
+        values: [v("Mini"), v("Pequeño"), v("Mediano"), v("Grande")]
+      },
+
+      correa_bolso: {
+        label: "Correa", g: "cons", input: "multi", legacy: "tipo_1 (130, 244)",
+        values: [v("Cadena"), v("Reata"), v("Cuero"), v("Ajustable"), v("Desmontable"), v("Auxiliar"), v("Sin correa")]
+      },
+
+      compartimentos: { label: "Compartimentos", g: "med", input: "number", unit: "und", step: "1" },
+
+      /* --- gafas --- */
+      forma_montura: {
+        label: "Forma de montura", g: "sil", input: "single",
+        legacy: "tipo_4 (108–112), tipo_6 (989–995)",
+        values: [v("Aviador"), v("Wayfarer"), v("Redonda"), v("Cuadrada"), v("Rectangular"), v("Hexagonal"),
+        v("Cat eye"), v("Ovalada"), v("Clubmaster"), v("Panthos"), v("Octagonal")]
+      },
+
+      polarizado: { label: "Lente polarizado", g: "med", input: "bool", legacy: "tipo_1 (124)" },
+
+      proteccion_uv: {
+        label: "Protección UV", g: "med", input: "single",
+        values: [v("UV400"), v("UV380"), v("No especifica")]
+      },
+
+      /* --- relojería --- */
+      movimiento: {
+        label: "Movimiento", g: "med", input: "single", legacy: "tipo_4 (136–138), tipo_6 (16–19)",
+        values: [v("Análogo"), v("Digital"), v("Análogo-digital"), v("Automático"), v("Cronógrafo"), v("Multifuncional")]
+      },
+
+      diametro_caja: {
+        label: "Diámetro de caja", g: "med", input: "number", unit: "mm", step: "1",
+        help: "Reemplaza los rangos de texto «GRANDE > 46 / MEDIANO 36-45 MM».", legacy: "tipo_4 (80–83)"
+      },
+
+      material_correa: {
+        label: "Material de la correa", g: "mat", input: "single",
+        values: [v("Cuero"), v("Acero"), v("Malla milanesa"), v("Silicona"), v("Nylon"), v("Resina")]
+      },
+
+      resistencia_agua: {
+        label: "Resistencia al agua", g: "med", input: "single",
+        values: [v("No sumergible"), v("3 ATM"), v("5 ATM"), v("10 ATM")]
+      },
+
+      /* --- belleza --- */
+      tipo_belleza: {
+        label: "Tipo de producto", g: "ident", input: "single",
+        legacy: "tipo_1 (199–210, 222, 266–268)",
+        values: [v("Labial"), v("Iluminador"), v("Rubor"), v("Polvo compacto"), v("Sombras"), v("Brow kit"),
+        v("Serum"), v("Crema desmaquillante"), v("Esmalte"), v("Perfume"), v("Toalla facial")]
+      },
+
+      acabado_belleza: {
+        label: "Acabado", g: "apar", input: "single",
+        values: [v("Mate"), v("Satinado"), v("Brillante"), v("Glitter"), v("Luminoso")]
+      },
+
+      tono: { label: "Tono / referencia de color", g: "ident", input: "text" },
+
+      contenido: { label: "Contenido neto", g: "med", input: "number", unit: "ml", step: "0.1" },
+
+      /* --- ropa interior y medias --- */
+      tipo_ri: {
+        label: "Tipo de prenda interior", g: "sil", input: "single",
+        legacy: "tipo_1 (28, 29, 214, 243, 246), tipo_4 (91, 92, 95)",
+        values: [v("Brief"), v("Boxer corto"), v("Boxer medio"), v("Cachetero"), v("Panty"), v("Hipster"),
+        v("Bralette"), v("Body"), v("Invisible")]
+      },
+
+      soporte: {
+        label: "Soporte", g: "cons", input: "single",
+        values: [v("Con varilla"), v("Sin varilla"), v("Copa removible")]
+      },
+
+      altura_media: {
+        label: "Altura", g: "sil", input: "single", legacy: "tipo_1 (215–219)",
+        values: [v("Invisible"), v("Baleta"), v("Tobillera"), v("Media"), v("Larga")]
+      },
+
+      /* --- vestido de baño --- */
+      tipo_bano: {
+        label: "Tipo", g: "sil", input: "single", legacy: "tipo_1 (89, 188, 198)",
+        values: [v("Bikini"), v("Trikini"), v("Enterizo"), v("Pantaloneta"), v("Salida de baño")]
+      },
+
+      /* --- sombrerería --- */
+      tipo_sombrero: {
+        label: "Tipo", g: "sil", input: "single", legacy: "tipo_1 (36, 100, 137, 194, 195)",
+        values: [v("Gorra"), v("Bucket"), v("Sombrero"), v("Visera"), v("Gorro tejido")]
+      },
+
+      visera: {
+        label: "Visera", g: "cons", input: "single", legacy: "tipo_4 (118, 119)",
+        values: [v("Curva"), v("Plana"), v("Sin visera")]
+      },
+
+      ajuste: {
+        label: "Ajuste", g: "cons", input: "single",
+        values: [v("Snapback"), v("Hebilla"), v("Elástico"), v("Talla única")]
+      },
+
+      /* --- joyería: sin volumen propio en el extracto, vive dentro de Otros accesorios --- */
+      tipo_joya: {
+        label: "Tipo de joya", g: "sil", input: "single",
+        legacy: "tipo_1 (53, 88, 93, 94, 96, 97, 219)",
+        help: "Solo aplica si el accesorio es de joyería. JOYAS dejó de ser categoría por falta de volumen.",
+        showIf: { attr: "tipo_otros", hasAny: ["Joyería"] },
+        values: [v("Anillo"), v("Arete"), v("Cadena"), v("Collar"), v("Pulsera"), v("Tobillera"), v("Set"), v("Diadema")]
+      },
+
+      material_joya: {
+        label: "Material de joyería", g: "mat", input: "single",
+        showIf: { attr: "tipo_otros", hasAny: ["Joyería"] },
+        values: [v("Acero quirúrgico"), v("Baño de oro"), v("Plata"), v("Aleación"), v("Perla"), v("Resina")]
+      },
+
+      tipo_marroq: {
+        label: "Tipo de artículo", g: "sil", input: "single", legacy: "tipo_1 (30, 31, 33, 241)",
+        values: [v("Correa de cuero"), v("Correa variada"), v("Billetera"), v("Tarjetero"), v("Llavero")]
+      },
+
+      // Los valores salen de los tipos de prenda que el extracto manda a esta categoría.
+      tipo_otros: {
+        label: "Tipo de accesorio", g: "sil", input: "single", legacy: "tipo_1 (56, 57, 58, 138, 257, 265)",
+        help: "Reemplaza la etiqueta comodín «ACCESORIOS», que no dice qué es el producto.",
+        values: [v("Bufanda"), v("Pañoleta"), v("Corbata"), v("Guantes"), v("Termo"), v("Llavero"),
+        v("Sombrilla"), v("Tapabocas"), v("Escudo facial"), v("Joyería"), v("Audífonos"), v("Parlante"),
+        v("Artículo electrónico"), v("Antifaz"), v("Toalla"), v("Manos libres")]
+      }
+    };
+
+    function a(code, o) { return Object.assign({ code: code }, o || {}); }
+
+    const CATS = [   // dept, vol y fromTipos se derivan del extracto en derivarTaxonomia()
+      {
+        id: "pantalon", label: "Pantalón",
+        desc: "Drill, jean, tela y satín en una sola categoría",
+        legacy: ["4", "5", "6", "7", "8", "10", "74", "78", "259", "125"],
+        attrs: [a("silueta_inf", { req: 1 }), a("tiro", { req: 1 }), a("largo_inf"), a("pretina"), a("bolsillos", { max: 4 }),
+        a("cierre"), a("proceso"), a("material", { req: 1, max: 3 }), a("patron", { max: 3 }), a("acabado"),
+        a("fit_sup", { off: 1 })]
+      },
+
+      {
+        id: "bermuda", label: "Bermuda / Short",
+        desc: "Incluye pantaloneta y falda-short",
+        legacy: ["41", "46", "47", "54", "73", "85", "134"],
+        attrs: [a("silueta_inf", { req: 1 }), a("tiro", { req: 1 }), a("bolsillos", { max: 4 }), a("pretina"), a("cierre"),
+        a("proceso"), a("material", { req: 1, max: 3 }), a("patron", { max: 3 })]
+      },
+
+      {
+        id: "falda", label: "Falda",
+        desc: "Indigo, drill, tela y falda-pantalón",
+        legacy: ["25", "26", "27", "135", "258"],
+        attrs: [a("silueta_vf", { req: 1 }), a("largo_vf", { req: 1 }), a("tiro"), a("abertura"), a("pretina"), a("cierre"),
+        a("proceso"), a("material", { req: 1, max: 3 }), a("patron", { max: 3 }), a("acabado")]
+      },
+
+      {
+        id: "vestido", label: "Vestido",
+        desc: "Jean, lycra, tela, drill y satín",
+        legacy: ["42", "43", "44", "45", "79", "81", "123"],
+        attrs: [a("silueta_vf", { req: 1 }), a("largo_vf", { req: 1 }), a("cuello", { req: 1 }), a("manga", { req: 1 }),
+        a("abertura"), a("cierre"), a("material", { req: 1, max: 3 }), a("patron", { max: 3 }), a("acabado")]
+      },
+
+      {
+        id: "camisa", label: "Camisa / Blusa",
+        desc: "El caso crítico: cuello + manga + abotonadura",
+        legacy: ["19", "22", "23", "24", "63", "75", "76", "77"],
+        attrs: [a("cuello", { req: 1 }), a("manga", { req: 1 }), a("abotonadura"), a("fit_sup", { req: 1 }), a("largo_sup"),
+        a("detalles_sup", { max: 5 }), a("material", { req: 1, max: 3 }), a("patron", { max: 3 }), a("acabado")]
+      },
+
+      {
+        id: "camiseta", label: "Camiseta / Top",
+        desc: "T-shirt, esqueleto, polo, crop top",
+        legacy: ["16", "17", "18", "20", "50", "140", "158", "179"],
+        attrs: [a("cuello", { req: 1 }), a("manga", { req: 1 }), a("fit_sup", { req: 1 }), a("largo_sup"),
+        a("material", { req: 1, max: 3 }), a("patron", { max: 3 }), a("acabado")]
+      },
+
+      {
+        id: "chaqueta", label: "Chaqueta / Buso",
+        desc: "Abrigo, tejido de punto y outerwear",
+        legacy: ["11", "12", "13", "14", "15", "39", "127", "128", "154", "156", "172", "211", "232", "236", "237"],
+        attrs: [a("tipo_abrigo", { req: 1 }), a("cuello"), a("manga", { req: 1 }), a("fit_sup", { req: 1 }), a("cierre"),
+        a("forro"), a("detalles_sup", { max: 5 }), a("material", { req: 1, max: 3 }), a("patron", { max: 3 }), a("acabado")]
+      },
+
+      {
+        id: "enterizo", label: "Enterizo / Overol",
+        desc: "Categoría nueva: hoy no existe como familia",
+        legacy: ["40", "123", "125", "126"],
+        attrs: [a("silueta_inf", { req: 1 }), a("largo_inf"), a("cuello", { req: 1 }), a("manga", { req: 1 }), a("tiro"),
+        a("cierre"), a("bolsillos", { max: 4 }), a("material", { req: 1, max: 3 }), a("patron", { max: 3 })]
+      },
+
+      // CONJUNTO y SET: una referencia con varias piezas. Se describe la pieza
+      // que manda (cuello, manga, silueta) y la presentación dice cuántas van.
+      {
+        id: "conjunto", label: "Conjunto / Set",
+        desc: "Dos o más piezas que se venden como una sola referencia",
+        legacy: ["62", "139", "223"],
+        attrs: [a("pack", { req: 1 }), a("cuello"), a("manga"), a("fit_sup"), a("silueta_inf"), a("largo_inf"),
+        a("cierre"), a("material", { req: 1, max: 3 }), a("patron", { max: 3 }), a("acabado")]
+      },
+
+      {
+        id: "pijama", label: "Pijama",
+        desc: "Conjunto de descanso",
+        legacy: ["48"],
+        attrs: [a("cuello", { req: 1 }), a("manga", { req: 1 }), a("largo_inf"), a("fit_sup"),
+        a("material", { req: 1, max: 3 }), a("patron", { max: 3 }), a("pack")]
+      },
+
+      {
+        id: "interior", label: "Ropa interior",
+        desc: "Brief, boxer, panty, bralette",
+        legacy: ["28", "29", "187", "214", "243", "246"],
+        attrs: [a("tipo_ri", { req: 1 }), a("soporte"), a("material", { req: 1, max: 3 }), a("patron", { max: 2 }), a("pack")]
+      },
+
+      {
+        id: "bano", label: "Vestido de baño",
+        desc: "Bikini, enterizo y salida de baño",
+        legacy: ["89", "188", "198"],
+        attrs: [a("tipo_bano", { req: 1 }), a("soporte"), a("cuello"), a("material", { req: 1, max: 3 }), a("patron", { max: 3 })]
+      },
+
+      {
+        id: "medias", label: "Medias",
+        desc: "Por altura, no por seis códigos duplicados",
+        legacy: ["49", "98", "186", "215", "216", "218", "219"],
+        attrs: [a("altura_media", { req: 1 }), a("material", { req: 1, max: 2 }), a("patron", { max: 2 }), a("pack")]
+      },
+
+      {
+        id: "calzado", label: "Calzado",
+        desc: "Tenis, botín, sandalia y formal",
+        legacy: ["51", "60", "107", "108", "109", "110", "111", "115", "116", "155", "173", "181", "182", "196", "217", "220"],
+        attrs: [a("tipo_calzado", { req: 1 }), a("altura_cana"), a("tacon", { req: 1 }), a("altura_tacon"),
+        a("cierre_calzado"), a("material", { req: 1, max: 3 }), a("patron", { max: 2 }), a("acabado")]
+      },
+
+      {
+        id: "bolso", label: "Bolso / Marroquinería",
+        desc: "Catorce siluetas que hoy son catorce «tipos de prenda»",
+        legacy: ["32", "35", "131", "132", "133", "141", "142", "143", "144", "145", "146", "147", "185", "221", "248", "249", "250", "251", "252", "253", "254", "255", "256", "262", "264"],
+        attrs: [a("tipo_bolso", { req: 1 }), a("tamano_bolso", { req: 1 }), a("correa_bolso", { max: 4 }), a("compartimentos"),
+        a("cierre"), a("material", { req: 1, max: 3 }), a("patron", { max: 2 }), a("acabado")]
+      },
+
+      {
+        id: "gafas", label: "Gafas",
+        desc: "Forma de montura ≠ tipo de producto",
+        legacy: ["38", "124", "191"],
+        attrs: [a("forma_montura", { req: 1 }), a("polarizado"), a("proteccion_uv"), a("material", { req: 1, max: 2 })]
+      },
+
+      {
+        id: "reloj", label: "Reloj",
+        desc: "Medidas numéricas en vez de rangos escritos",
+        legacy: ["21", "192"],
+        attrs: [a("movimiento", { req: 1 }), a("diametro_caja", { req: 1 }), a("material_correa"), a("resistencia_agua"),
+        a("material", { max: 2 })]
+      },
+
+      {
+        id: "sombrero", label: "Gorra / Sombrero",
+        desc: "Con visera como atributo dependiente",
+        legacy: ["36", "100", "137", "194", "195"],
+        attrs: [a("tipo_sombrero", { req: 1 }), a("visera"), a("ajuste"), a("material", { req: 1, max: 2 }), a("patron", { max: 2 })]
+      },
+
+      {
+        id: "correa", label: "Correa / Billetera",
+        desc: "Marroquinería pequeña",
+        legacy: ["30", "31", "33", "190", "193", "241"],
+        attrs: [a("tipo_marroq", { req: 1 }), a("material", { req: 1, max: 2 }), a("acabado", { max: 3 }), a("pack")]
+      },
+
+      // Absorbe lo que era «Joyería»: el extracto no registra ni una referencia de
+      // joyería desde 2025, así que no se sostiene como categoría propia. Sus ids
+      // legacy y sus atributos (tipo_joya, material_joya) viven aquí.
+      {
+        id: "otros", label: "Otros accesorios",
+        desc: "Bufanda, guantes, termo, audífonos y joyería",
+        legacy: ["53", "56", "57", "58", "61", "88", "93", "94", "96", "97", "117", "121", "138", "184", "238", "239", "257", "265"],
+        attrs: [a("tipo_otros", { req: 1 }), a("tipo_joya"), a("material_joya"),
+        a("material", { req: 1, max: 2 }), a("patron", { max: 2 }), a("acabado", { max: 3 }), a("pack")]
+      },
+
+      {
+        id: "belleza", label: "Belleza",
+        desc: "Maquillaje, perfumería y cuidado",
+        legacy: ["37", "105", "189", "199", "200", "201", "202", "203", "204", "205", "206", "207", "208", "209", "210", "222", "266", "267", "268"],
+        // pack lleva el «Probador / tester»: un probador de perfume es el mismo
+        // producto, cambia la presentación.
+        attrs: [a("tipo_belleza", { req: 1 }), a("tono"), a("acabado_belleza"), a("contenido", { req: 1 }),
+        a("pack")]
+      }
+    ];
+
+    // Atributos que aplican a TODAS las categorías (scope global).
+    const GLOBAL_ATTRS = [a("clase", { req: 1 }), a("coleccion", { req: 1 }), a("marca", { req: 1 }),
+    a("genero", { req: 1 }), a("linea", { req: 1 }), a("ocasion", { max: 3 }), a("clima")];
+
+    /* Dónde vive hoy cada dato en la base actual. Se muestra junto al campo:
+       sin esto la propuesta no se puede cruzar contra las tablas reales. */
+    const SRC_TABLES = [
+      ["Marca", "referencias_gru"],
+      ["Género", "referencias_Subgru"],
+      ["Tipo de prenda", "referencias_Subgru2"],
+      ["Material", "referencias_Subgru3"],
+      ["Clase de producto", "tipo_3"],
+      ["Colección", "tipo_5"]
+    ];
+
+
+
+    /* -------------------------------------------------------------------------
+       A QUÉ CAMPO SE ASIGNA CADA CARACTERÍSTICA
+       Cruce de PlantillaTipos (las «X» de «Asociado a…») con Tipos.xlsx.
+       La asignación es la misma para todos los tipos de prenda.
+       · tipo_1 es SubdivisionTipoPrenda: se reserva para la subdivisión de cada
+         categoría —calzado → Mocasines, accesorio → Joyería, jean → Skinny—.
+         Caben varias en la misma columna porque cada prenda tiene una sola.
+       · Las demás columnas se las queda, entre las que viven ahí, la que piden
+         más fichas.
+       · Todo lo demás va a Apariencia, que admite varias etiquetas (AFamilia
+         es una de ellas). tipo_6 queda libre: la familia se lee de AFamilia.
+       [campo, tipo|apar|tabla, fichas que la piden, vive hoy en, de dónde sale, por qué]
+       ------------------------------------------------------------------------- */
+    const CAMPO = {
+      clase: ["tipo_3", "tipo", 62, "tipo_3", "", "Se queda con tipo_3: es la característica que piden más fichas (62 de 62) entre las que hoy viven en ese campo. Hoy: tipo_3 (37 prendas lo marcan)."],
+      clima: ["tipo_4", "tipo", 62, "tipo_4 + tipo_6", "tipo_6", "Se queda con tipo_4: es la característica que piden más fichas (62 de 62) entre las que hoy viven en ese campo. Hoy: tipo_4 (2 prendas lo marcan), tipo_6 (1 prenda lo marcan). Lo que tiene en tipo_6 se consolida aquí."],
+      coleccion: ["tipo_5", "tipo", 62, "ninguno", "", "tipo_5 es el campo de la colección, y se asigna sola con la fecha de creación."],
+      genero: ["referencias_Subgru", "tabla", 62, "ninguno", "", "Tiene su propia tabla: no ocupa columna de tipo ni etiqueta de Apariencia."],
+      linea: ["AFamilia", "apar", 62, "tipo_1 + tipo_6", "tipo_6", "La familia se guarda en la etiqueta AFamilia de Apariencia, que la tiene más completa que tipo_6."],
+      marca: ["referencias_gru", "tabla", 62, "ninguno", "", "Tiene su propia tabla: no ocupa columna de tipo ni etiqueta de Apariencia."],
+      ocasion: ["Apariencia", "apar", 62, "tipo_6", "tipo_6", "Vive en tipo_6, pero esa columna ya está ocupada por una característica que piden más fichas: pasa a Apariencia."],
+      material: ["referencias_Subgru3", "tabla", 57, "tipo_1 + tipo_2", "tipo_1, tipo_2", "Tiene su propia tabla: no ocupa columna de tipo ni etiqueta de Apariencia. Lo que aparece en tipo_1, tipo_2 es copia y se consolida ahí."],
+      patron: ["tipo_2", "tipo", 52, "tipo_2", "", "Se queda con tipo_2: es la característica que piden más fichas (52 de 62) entre las que hoy viven en ese campo. Hoy: tipo_2 (43 prendas lo marcan)."],
+      acabado: ["Apariencia", "apar", 43, "tipo_1 + tipo_2 + tipo_6", "tipo_1, tipo_2, tipo_6", "La piden 43 fichas, pero tipo_2 ya lo ocupa Patrón visual (52 fichas), y hay prendas que piden las dos. Como la columna guarda un solo valor, esta pasa a Apariencia."],
+      pack: ["Apariencia", "apar", 26, "tipo_1 + tipo_4", "tipo_1, tipo_4", "La piden 26 fichas, pero tipo_4 ya lo ocupa Clima (62 fichas), y hay prendas que piden las dos. Como la columna guarda un solo valor, esta pasa a Apariencia."],
+      cierre: ["Apariencia", "apar", 23, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      cuello: ["Apariencia", "apar", 15, "tipo_1 + tipo_4", "tipo_1, tipo_4", "La piden 15 fichas, pero tipo_4 ya lo ocupa Clima (62 fichas), y hay prendas que piden las dos. Como la columna guarda un solo valor, esta pasa a Apariencia."],
+      manga: ["Apariencia", "apar", 14, "tipo_1 + tipo_4", "tipo_1, tipo_4", "La piden 14 fichas, pero tipo_4 ya lo ocupa Clima (62 fichas), y hay prendas que piden las dos. Como la columna guarda un solo valor, esta pasa a Apariencia."],
+      material_joya: ["Apariencia", "apar", 12, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      tipo_otros: ["tipo_1", "tipo", 12, "ninguno", "", "Es la subdivisión de su categoría, y tipo_1 es justo el campo de la subdivisión del tipo de prenda. La piden 12 fichas. Comparte la columna con otras 13 subdivisiones (calzado, bolso, accesorio…), que ninguna prenda pide al tiempo con esta."],
+      tipo_joya: ["Apariencia", "apar", 12, "tipo_1", "tipo_1", "La piden 12 fichas, pero tipo_1 ya lo ocupa Tipo de accesorio (12 fichas), y hay prendas que piden las dos. Como la columna guarda un solo valor, esta pasa a Apariencia."],
+      fit_sup: ["Apariencia", "apar", 11, "tipo_6", "tipo_6", "Vive en tipo_6, pero esa columna ya está ocupada por una característica que piden más fichas: pasa a Apariencia."],
+      silueta_inf: ["tipo_1", "tipo", 10, "tipo_1 + tipo_4 + tipo_6", "tipo_4, tipo_6", "Es la subdivisión de su categoría, y tipo_1 es justo el campo de la subdivisión del tipo de prenda. La piden 10 fichas. Comparte la columna con otras 13 subdivisiones (calzado, bolso, accesorio…), que ninguna prenda pide al tiempo con esta. Hoy: tipo_1 (4 prendas lo marcan), tipo_4 (5 prendas lo marcan), tipo_6 (7 prendas lo marcan). Lo que tiene en tipo_4, tipo_6 se consolida aquí."],
+      tiro: ["Apariencia", "apar", 10, "tipo_4", "tipo_4", "La piden 10 fichas, pero tipo_4 ya lo ocupa Clima (62 fichas), y hay prendas que piden las dos. Como la columna guarda un solo valor, esta pasa a Apariencia."],
+      bolsillos: ["Apariencia", "apar", 8, "tipo_4", "tipo_4", "La piden 8 fichas, pero tipo_4 ya lo ocupa Clima (62 fichas), y hay prendas que piden las dos. Como la columna guarda un solo valor, esta pasa a Apariencia."],
+      largo_inf: ["Apariencia", "apar", 8, "tipo_1 + tipo_4", "tipo_1, tipo_4", "La piden 8 fichas, pero tipo_4 ya lo ocupa Clima (62 fichas), y hay prendas que piden las dos. Como la columna guarda un solo valor, esta pasa a Apariencia."],
+      pretina: ["Apariencia", "apar", 8, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      proceso: ["Apariencia", "apar", 8, "tipo_2", "tipo_2", "La piden 8 fichas, pero tipo_2 ya lo ocupa Patrón visual (52 fichas), y hay prendas que piden las dos. Como la columna guarda un solo valor, esta pasa a Apariencia."],
+      altura_cana: ["Apariencia", "apar", 6, "tipo_6", "tipo_6", "Vive en tipo_6, pero esa columna ya está ocupada por una característica que piden más fichas: pasa a Apariencia."],
+      altura_tacon: ["Apariencia", "apar", 6, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      compartimentos: ["Apariencia", "apar", 6, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      correa_bolso: ["Apariencia", "apar", 6, "tipo_1", "tipo_1", "Hoy tiene valores en tipo_1, pero no es la subdivisión del tipo de prenda: esa columna se reserva para eso. Pasa a Apariencia."],
+      detalles_sup: ["Apariencia", "apar", 6, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      cierre_calzado: ["Apariencia", "apar", 6, "tipo_6", "tipo_6", "Vive en tipo_6, pero esa columna ya está ocupada por una característica que piden más fichas: pasa a Apariencia."],
+      tamano_bolso: ["Apariencia", "apar", 6, "tipo_4", "tipo_4", "La piden 6 fichas, pero tipo_4 ya lo ocupa Clima (62 fichas), y hay prendas que piden las dos. Como la columna guarda un solo valor, esta pasa a Apariencia."],
+      tipo_bolso: ["tipo_1", "tipo", 6, "tipo_1", "", "Es la subdivisión de su categoría, y tipo_1 es justo el campo de la subdivisión del tipo de prenda. La piden 6 fichas. Comparte la columna con otras 13 subdivisiones (calzado, bolso, accesorio…), que ninguna prenda pide al tiempo con esta. Hoy: tipo_1 (7 prendas lo marcan)."],
+      tipo_calzado: ["tipo_1", "tipo", 6, "tipo_1 + tipo_4", "tipo_4", "Es la subdivisión de su categoría, y tipo_1 es justo el campo de la subdivisión del tipo de prenda. La piden 6 fichas. Comparte la columna con otras 13 subdivisiones (calzado, bolso, accesorio…), que ninguna prenda pide al tiempo con esta. Hoy: tipo_1 (9 prendas lo marcan), tipo_4 (1 prenda lo marcan). Lo que tiene en tipo_4 se consolida aquí."],
+      tacon: ["Apariencia", "apar", 6, "tipo_4", "tipo_4", "La piden 6 fichas, pero tipo_4 ya lo ocupa Clima (62 fichas), y hay prendas que piden las dos. Como la columna guarda un solo valor, esta pasa a Apariencia."],
+      acabado_belleza: ["Apariencia", "apar", 5, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      contenido: ["Apariencia", "apar", 5, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      tipo_belleza: ["tipo_1", "tipo", 5, "ninguno", "", "Es la subdivisión de su categoría, y tipo_1 es justo el campo de la subdivisión del tipo de prenda. La piden 5 fichas. Comparte la columna con otras 13 subdivisiones (calzado, bolso, accesorio…), que ninguna prenda pide al tiempo con esta."],
+      tono: ["Apariencia", "apar", 5, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      forro: ["Apariencia", "apar", 4, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      largo_sup: ["Apariencia", "apar", 4, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      tipo_abrigo: ["tipo_1", "tipo", 4, "ninguno", "", "Es la subdivisión de su categoría, y tipo_1 es justo el campo de la subdivisión del tipo de prenda. La piden 4 fichas. Comparte la columna con otras 13 subdivisiones (calzado, bolso, accesorio…), que ninguna prenda pide al tiempo con esta."],
+      abertura: ["Apariencia", "apar", 3, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      largo_vf: ["Apariencia", "apar", 3, "tipo_4", "tipo_4", "La piden 3 fichas, pero tipo_4 ya lo ocupa Clima (62 fichas), y hay prendas que piden las dos. Como la columna guarda un solo valor, esta pasa a Apariencia."],
+      silueta_vf: ["tipo_1", "tipo", 3, "tipo_1", "", "Es la subdivisión de su categoría, y tipo_1 es justo el campo de la subdivisión del tipo de prenda. La piden 3 fichas. Comparte la columna con otras 13 subdivisiones (calzado, bolso, accesorio…), que ninguna prenda pide al tiempo con esta. Hoy: tipo_1 (1 prenda lo marcan)."],
+      soporte: ["Apariencia", "apar", 3, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      tipo_marroq: ["tipo_1", "tipo", 3, "tipo_1", "", "Es la subdivisión de su categoría, y tipo_1 es justo el campo de la subdivisión del tipo de prenda. La piden 3 fichas. Comparte la columna con otras 13 subdivisiones (calzado, bolso, accesorio…), que ninguna prenda pide al tiempo con esta. Hoy: tipo_1 (2 prendas lo marcan)."],
+      abotonadura: ["Apariencia", "apar", 2, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      ajuste: ["Apariencia", "apar", 2, "tipo_4", "tipo_4", "La piden 2 fichas, pero tipo_4 ya lo ocupa Clima (62 fichas), y hay prendas que piden las dos. Como la columna guarda un solo valor, esta pasa a Apariencia."],
+      tipo_sombrero: ["tipo_1", "tipo", 2, "tipo_1", "", "Es la subdivisión de su categoría, y tipo_1 es justo el campo de la subdivisión del tipo de prenda. La piden 2 fichas. Comparte la columna con otras 13 subdivisiones (calzado, bolso, accesorio…), que ninguna prenda pide al tiempo con esta. Hoy: tipo_1 (2 prendas lo marcan)."],
+      tipo_ri: ["tipo_1", "tipo", 2, "tipo_4", "tipo_4", "Es la subdivisión de su categoría, y tipo_1 es justo el campo de la subdivisión del tipo de prenda. La piden 2 fichas. Comparte la columna con otras 13 subdivisiones (calzado, bolso, accesorio…), que ninguna prenda pide al tiempo con esta. Hoy: tipo_4 (1 prenda lo marcan). Lo que tiene en tipo_4 se consolida aquí."],
+      visera: ["Apariencia", "apar", 2, "tipo_4", "tipo_4", "La piden 2 fichas, pero tipo_4 ya lo ocupa Clima (62 fichas), y hay prendas que piden las dos. Como la columna guarda un solo valor, esta pasa a Apariencia."],
+      altura_media: ["tipo_1", "tipo", 1, "tipo_1", "", "Es la subdivisión de su categoría, y tipo_1 es justo el campo de la subdivisión del tipo de prenda. La piden 1 fichas. Comparte la columna con otras 13 subdivisiones (calzado, bolso, accesorio…), que ninguna prenda pide al tiempo con esta. Hoy: tipo_1 (1 prenda lo marcan)."],
+      diametro_caja: ["Apariencia", "apar", 1, "tipo_4", "tipo_4", "La piden 1 fichas, pero tipo_4 ya lo ocupa Clima (62 fichas), y hay prendas que piden las dos. Como la columna guarda un solo valor, esta pasa a Apariencia."],
+      forma_montura: ["tipo_1", "tipo", 1, "tipo_1 + tipo_4 + tipo_6", "tipo_4, tipo_6", "Es la subdivisión de su categoría, y tipo_1 es justo el campo de la subdivisión del tipo de prenda. La piden 1 fichas. Comparte la columna con otras 13 subdivisiones (calzado, bolso, accesorio…), que ninguna prenda pide al tiempo con esta. Hoy: tipo_1 (1 prenda lo marcan), tipo_4 (3 prendas lo marcan), tipo_6 (1 prenda lo marcan). Lo que tiene en tipo_4, tipo_6 se consolida aquí."],
+      polarizado: ["Apariencia", "apar", 1, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      material_correa: ["Apariencia", "apar", 1, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      movimiento: ["tipo_1", "tipo", 1, "tipo_4", "tipo_4", "Es la subdivisión de su categoría, y tipo_1 es justo el campo de la subdivisión del tipo de prenda. La piden 1 fichas. Comparte la columna con otras 13 subdivisiones (calzado, bolso, accesorio…), que ninguna prenda pide al tiempo con esta. Hoy: tipo_4 (1 prenda lo marcan). Lo que tiene en tipo_4 se consolida aquí."],
+      proteccion_uv: ["Apariencia", "apar", 1, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      resistencia_agua: ["Apariencia", "apar", 1, "ninguno", "", "No existe en ningún campo de tipo: se crea como etiqueta de Apariencia."],
+      tipo_bano: ["tipo_1", "tipo", 1, "ninguno", "", "Es la subdivisión de su categoría, y tipo_1 es justo el campo de la subdivisión del tipo de prenda. La piden 1 fichas. Comparte la columna con otras 13 subdivisiones (calzado, bolso, accesorio…), que ninguna prenda pide al tiempo con esta."]
+    };
+
+    /* El reparto por columna se calcula con ocupacion(), para que refleje los
+       cambios de campo hechos a mano desde la pantalla. */
+
+    // texto del globo de ayuda de la etiqueta
+    function campoTitulo(code) {
+      const c = campoDe(code);
+      if (!c) return "";
+      return "Hoy vive en: " + c[3] + ".\n" + c[5];
+    }
+
+    // la etiqueta que va al lado del nombre del campo: un solo destino
+    function campoTag(code) {
+      const c = campoDe(code);
+      if (!c) return "";
+      return '<span class="src-tag c-' + c[1] + (campoCambiado(code) ? " cambiado" : "") +
+        '" title="' + esc(campoTitulo(code)) + '">' + esc(c[0]) + '</span>';
+    }
+
+    // reparto de los campos que hay en pantalla
+    function repartoCampos(bs) {
+      const r = { tipo: 0, apar: 0, tabla: 0, dup: 0 };
+      bs.forEach(function (b) {
+        const c = campoDe(b.code);
+        if (!c) return;
+        r[c[1]]++;
+        if (c[4]) r.dup++;          // trae valores regados en otros campos
+      });
+      return r;
+    }
+
+    /* -------------------------------------------------------------------------
+       DEPURACIÓN DESDE LA PANTALLA
+       Lo que se quitó o se agregó a mano, en dos alcances:
+         · "__general": aplica a todas las prendas. Puede quitar campos, quitar
+           valores de un campo y dar de baja tipos de prenda completos.
+         · cada tipo de prenda: quita o agrega campos y quita valores solo ahí.
+       Lo escribe servidor.py cuando se pulsa Guardar; con el HTML abierto
+       directamente (file://) la edición funciona pero no se puede guardar.
+       ------------------------------------------------------------------------- */
+    /* === EDICIONES · lo escribe servidor.py, no editar a mano === */
+    const EDICIONES = {
+      "RELOJ": {
+        "agregar": [],
+        "quitar": [
+          "diametro_caja"
+        ],
+        "valores": {}
+      },
+      "__general": {
+        "agregar": [],
+        "campos": {
+          "clima": "Apariencia",
+          "cuello": "tipo_4"
+        },
+        "quitar": [],
+        "tipos": [],
+        "valores": {
+          "ocasion": [
+            "ocasion_7",
+            "ocasion_6"
+          ]
+        }
+      }
+    };
+    /* === fin EDICIONES === */
+
+    /* =========================================================================
+       3. ESTADO
+       ========================================================================= */
+
+    const state = {
+      tipo: null,          // tipo de prenda elegido (lo que ve el usuario)
+      cat: null,           // categoría que le presta el contrato de atributos
+      values: {},          // attrCode -> id | [ids] | bool | number | string
+      comboOpen: null,
+      comboQuery: "",
+      editar: false,       // modo depuración de campos
+      alcance: "prenda",   // "prenda" = solo este tipo · "general" = todas
+      servidor: false,     // ¿se está sirviendo desde servidor.py?
+      sucio: false,        // hay cambios sin guardar
+      aviso: ""            // mensaje de la última acción
+    };
+
+    const GEN = "__general";   // clave del alcance general dentro de EDICIONES
+
+
+    // ids estables para cada valor
+    Object.keys(ATTRS).forEach(function (code) {
+      const at = ATTRS[code];
+      at.code = code;
+      (at.values || []).forEach(function (val, i) { val.id = code + "_" + i; });
+    });
+    // resolver merge -> id destino
+    Object.keys(ATTRS).forEach(function (code) {
+      (ATTRS[code].values || []).forEach(function (val) {
+        if (val.merge) {
+          const t = ATTRS[code].values.find(function (x) { return x.l === val.merge; });
+          val.mergedInto = t ? t.id : null;
+        }
+      });
+    });
+
+    const $ = function (s) { return document.querySelector(s); };
+    const esc = function (s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c];
+      });
+    };
+
+    /* ---------- lógica de esquema ---------- */
+
+    function catById(id) { return CATS.find(function (c) { return c.id === id; }); }
+
+    // bindings efectivos de una categoría = globales + propios (excluye los apagados por admin)
+    function bindings(cat) {
+      if (!cat) return [];
+      const own = cat.attrs.filter(function (b) { return !b.off; });
+      return GLOBAL_ATTRS.filter(function (b) { return !b.off; }).concat(own);
+    }
+
+    /* ---------- depuración: dos alcances, general y por tipo de prenda ---------- */
+
+    function edicionDe(clave) {
+      const e = EDICIONES[clave] || {};
+      return {
+        quitar: e.quitar || [], agregar: e.agregar || [],
+        valores: e.valores || {}, tipos: e.tipos || [], campos: e.campos || {}
+      };
+    }
+
+    function bolsa(clave) {                       // la crea si no existe
+      const e = EDICIONES[clave] || (EDICIONES[clave] = {});
+      e.quitar = e.quitar || [];
+      e.agregar = e.agregar || [];
+      e.valores = e.valores || {};
+      if (clave === GEN) { e.tipos = e.tipos || []; e.campos = e.campos || {}; }
+      return e;
+    }
+
+    function limpiar(clave) {                     // borra la entrada si quedó vacía
+      const e = EDICIONES[clave];
+      if (!e) return;
+      Object.keys(e.valores || {}).forEach(function (c) {
+        if (!e.valores[c].length) delete e.valores[c];
+      });
+      const vacia = !(e.quitar || []).length && !(e.agregar || []).length &&
+        !Object.keys(e.valores || {}).length && !(e.tipos || []).length &&
+        !Object.keys(e.campos || {}).length;
+      if (vacia) delete EDICIONES[clave];
+    }
+
+    /* ---------- reasignar el campo de una característica ----------
+       Va siempre en el alcance general: una característica se guarda en el
+       mismo campo en todas las prendas. */
+
+    const DESTINOS = ["tipo_1", "tipo_2", "tipo_3", "tipo_4", "tipo_5", "tipo_6",
+      "Apariencia", "AFamilia", "referencias_gru", "referencias_Subgru",
+      "referencias_Subgru2", "referencias_Subgru3"];
+
+    function claseDe(destino) {
+      if (destino.indexOf("tipo_") === 0) return "tipo";
+      if (destino.indexOf("referencias") === 0) return "tabla";
+      return "apar";
+    }
+
+    // el campo vigente de una característica: el calculado, salvo que se haya
+    // cambiado a mano desde la pantalla
+    function campoDe(code) {
+      const base = CAMPO[code];
+      if (!base) return null;
+      const ov = edicionDe(GEN).campos[code];
+      if (!ov || ov === base[0]) return base;
+      return [ov, claseDe(ov), base[2], base[3], base[4],
+        "Cambiado a mano desde la pantalla. El cruce lo había asignado a " + base[0] + ": " + base[5]];
+    }
+
+    function campoCambiado(code) {
+      const ov = edicionDe(GEN).campos[code];
+      return !!(ov && CAMPO[code] && ov !== CAMPO[code][0]);
+    }
+
+    function reasignarCampo(code, destino) {
+      const e = bolsa(GEN);
+      if (!destino || (CAMPO[code] && destino === CAMPO[code][0])) delete e.campos[code];
+      else e.campos[code] = destino;
+      limpiar(GEN);
+      state.sucio = true;
+      state.aviso = "";
+    }
+
+    // qué guarda hoy cada columna de tipo, ya con los cambios a mano aplicados
+    function ocupacion() {
+      const m = {};
+      ["tipo_1", "tipo_2", "tipo_3", "tipo_4", "tipo_5", "tipo_6"].forEach(function (f) { m[f] = []; });
+      Object.keys(ATTRS).forEach(function (code) {
+        const c = campoDe(code);
+        if (!c || c[1] !== "tipo") return;
+        (m[c[0]] = m[c[0]] || []).push([code, c[2]]);
+      });
+      return Object.keys(m).map(function (f) {
+        return [f, m[f].sort(function (x, y) { return y[1] - x[1]; })];
+      });
+    }
+
+    function quita(lista, x) {                    // saca x de la lista; ¿estaba?
+      const i = lista.indexOf(x);
+      if (i !== -1) { lista.splice(i, 1); return true; }
+      return false;
+    }
+
+    // los campos de una ficha = los de su categoría, menos lo quitado en general
+    // y en esa prenda, más lo que se le agregó a mano
+    function bindingsTipo(tipoName, cat) {
+      const base = bindings(cat);
+      const gen = edicionDe(GEN);
+      const ed = tipoName ? edicionDe(tipoName) : { quitar: [], agregar: [] };
+      if (!gen.quitar.length && !ed.quitar.length && !ed.agregar.length) return base;
+      const out = base.filter(function (b) {
+        return gen.quitar.indexOf(b.code) === -1 && ed.quitar.indexOf(b.code) === -1;
+      });
+      ed.agregar.forEach(function (code) {
+        if (!ATTRS[code]) return;
+        if (out.some(function (b) { return b.code === code; })) return;
+        out.push(a(code, { extra: 1 }));
+      });
+      return out;
+    }
+
+    /* ---------- valores dados de baja ---------- */
+
+    function valorQuitado(code, valId, tipoName) {
+      const gen = edicionDe(GEN).valores[code] || [];
+      if (gen.indexOf(valId) !== -1) return "general";
+      if (tipoName) {
+        const p = edicionDe(tipoName).valores[code] || [];
+        if (p.indexOf(valId) !== -1) return "prenda";
+      }
+      return null;
+    }
+
+    // valores del catálogo que se dieron de baja para este campo
+    function valoresQuitados(code, tipoName) {
+      const at = ATTRS[code];
+      if (!at || !at.values) return [];
+      return at.values.map(function (v) {
+        const d = valorQuitado(code, v.id, tipoName);
+        return d ? { id: v.id, l: v.l, alcance: d } : null;
+      }).filter(Boolean);
+    }
+
+    // quitar o restaurar un valor, en el alcance activo
+    function editarValor(code, valId, quitarlo) {
+      const clave = state.alcance === "general" ? GEN : state.tipo;
+      if (!clave) return;
+      if (quitarlo) {
+        const e = bolsa(clave);
+        const lista = e.valores[code] || (e.valores[code] = []);
+        if (lista.indexOf(valId) === -1) lista.push(valId);
+        const cur = state.values[code];             // sacarlo de lo ya elegido
+        if (Array.isArray(cur)) {
+          const next = cur.filter(function (x) { return x !== valId; });
+          if (next.length) state.values[code] = next; else delete state.values[code];
+        } else if (cur === valId) delete state.values[code];
+      } else {
+        [GEN, state.tipo].forEach(function (k) {     // restaurar donde esté
+          if (!k || !EDICIONES[k] || !EDICIONES[k].valores) return;
+          quita(EDICIONES[k].valores[code] || [], valId);
+          limpiar(k);
+        });
+      }
+      limpiar(clave);
+      state.sucio = true;
+      state.aviso = "";
+    }
+
+    /* ---------- tipos de prenda dados de baja ---------- */
+
+    function tipoQuitado(t) { return edicionDe(GEN).tipos.indexOf(t) !== -1; }
+    function tiposVivos() { return TIPOS.filter(function (x) { return !tipoQuitado(x.t); }); }
+
+    function editarTipo(t, quitarlo) {
+      const e = bolsa(GEN);
+      if (quitarlo) {
+        if (e.tipos.indexOf(t) === -1) e.tipos.push(t);
+        if (state.tipo === t) { state.tipo = null; state.cat = null; state.values = {}; }
+      } else {
+        quita(e.tipos, t);
+      }
+      limpiar(GEN);
+      state.sucio = true;
+      state.aviso = "";
+    }
+
+    function nCambios(clave) {
+      const ed = edicionDe(clave);
+      return ed.quitar.length + ed.agregar.length + ed.tipos.length + Object.keys(ed.campos).length +
+        Object.keys(ed.valores).reduce(function (s, c) { return s + ed.valores[c].length; }, 0);
+    }
+
+    function totalCambios() {
+      return Object.keys(EDICIONES).reduce(function (s, t) { return s + nCambios(t); }, 0);
+    }
+
+    // quitar / agregar un campo, en el alcance activo
+    function editarCampo(code, quitar) {
+      const clave = state.alcance === "general" ? GEN : state.tipo;
+      if (!clave) return;
+      const e = bolsa(clave);
+      if (quitar) {
+        // si estaba agregado a mano en esta prenda, quitarlo es deshacer eso
+        if (!quita(e.agregar, code)) {
+          if (e.quitar.indexOf(code) === -1) e.quitar.push(code);
+        }
+        delete state.values[code];
+      } else {
+        // restaurar: puede estar quitado en general y/o en la prenda
+        let habia = quita(e.quitar, code);
+        if (clave !== GEN && EDICIONES[GEN]) {
+          habia = quita(EDICIONES[GEN].quitar || [], code) || habia;
+          limpiar(GEN);
+        }
+        if (!habia && e.agregar.indexOf(code) === -1) e.agregar.push(code);
+      }
+      limpiar(clave);
+      state.sucio = true;
+      state.aviso = "";
+    }
+
+    // ¿la ficha quedó con dos campos en la misma columna de tipo?
+    function conflictosDe(bs) {
+      const porCampo = {};
+      bs.forEach(function (b) {
+        const c = campoDe(b.code);
+        if (!c || c[1] !== "tipo") return;
+        (porCampo[c[0]] = porCampo[c[0]] || []).push(ATTRS[b.code].label);
+      });
+      return Object.keys(porCampo).filter(function (f) { return porCampo[f].length > 1; })
+        .map(function (f) { return { campo: f, campos: porCampo[f] }; });
+    }
+
+    // tipoName: nombre del tipo de prenda para acotar los valores con alcance propio
+    // (las líneas de tipo_6 vienen marcadas por prenda en PlantillaTipos).
+    // Pasar null desestima ese filtro y devuelve la unión.
+    function activeValues(code, catId, tipoName) {
+      const at = ATTRS[code];
+      if (!at.values) return [];
+      const t = tipoName === undefined ? state.tipo : tipoName;
+      return at.values.filter(function (val) {
+        if (val.off || val.mergedInto) return false;
+        if (valorQuitado(code, val.id, t)) return false;      // dado de baja a mano
+        if (val.cats && catId && val.cats.indexOf(catId) === -1) return false;
+        if (val.tipos && t && val.tipos.indexOf(t) === -1) return false;
+        return true;
+      });
+    }
+
+    // Cuántas líneas del extracto quedan inservibles para un tipo de prenda:
+    // NO APLICA y las que vienen sin descripción.
+    function lineasInservibles(tipoName) {
+      return (ATTRS.linea.values || []).filter(function (val) {
+        return val.off && val.tipos && val.tipos.indexOf(tipoName) !== -1;
+      });
+    }
+
+    function labelOf(code, id) {
+      const at = ATTRS[code];
+      if (!at.values) return String(id);
+      const found = at.values.find(function (x) { return x.id === id; });
+      return found ? found.l : String(id);
+    }
+
+    function selectedLabels(code) {
+      const raw = state.values[code];
+      if (raw == null) return [];
+      if (Array.isArray(raw)) return raw.map(function (id) { return labelOf(code, id); });
+      return [labelOf(code, raw)];
+    }
+
+    // ¿el atributo se muestra? (reglas de dependencia)
+    function visible(code) {
+      const rule = ATTRS[code].showIf;
+      if (!rule) return true;
+      const labels = selectedLabels(rule.attr);
+      if (rule.hasAny) return rule.hasAny.some(function (l) { return labels.indexOf(l) !== -1; });
+      if (rule.in) return labels.some(function (l) { return rule.in.indexOf(l) !== -1; });
+      if (rule.notIn) return labels.length > 0 && labels.every(function (l) { return rule.notIn.indexOf(l) === -1; });
+      return true;
+    }
+
+    function isMulti(b) { return ATTRS[b.code].input === "multi"; }
+
+    function isFilled(b) {
+      const raw = state.values[b.code];
+      if (Array.isArray(raw)) return raw.length > 0;
+      if (typeof raw === "boolean") return true;
+      return raw !== undefined && raw !== null && raw !== "";
+    }
+
+    function visibleBindings() {
+      return bindingsTipo(state.tipo, catById(state.cat)).filter(function (b) { return visible(b.code); });
+    }
+
+    function requiredStats() {
+      const vis = visibleBindings();
+      const req = vis.filter(function (b) { return b.req; });
+      const done = req.filter(isFilled);
+      return { total: req.length, done: done.length, missing: req.filter(function (b) { return !isFilled(b); }) };
+    }
+
+    function totalAttrsInRegistry() { return Object.keys(ATTRS).length; }
+
+    const NUM = function (n) {
+      return n.toLocaleString("es-CO", { maximumFractionDigits: 0 });
+    };
+
+    /* =========================================================================
+       6.8 VOLUMEN REAL DEL CATÁLOGO
+       Extracto de referencias creadas desde 2025, por tipo de producto.
+       Fila: [tipo de producto, referencias, agrupación del extracto, categoría destino, nota]
+       Los 62 tipos tienen categoría destino: todos arman ficha.
+       ========================================================================= */
+
+    const VOLUMEN = [
+      ["TENIS", 13976, "CALZADO", "calzado", ""],
+      ["CAMISETA", 5336, "ROPA SUPERIOR", "camiseta", ""],
+      ["BLUSA", 4722, "ROPA SUPERIOR", "camisa", ""],
+      ["JEAN", 3466, "ROPA INFERIOR", "pantalon", ""],
+      ["POLO", 3256, "ROPA SUPERIOR", "camiseta", ""],
+      ["PANTALON", 1474, "ROPA INFERIOR", "pantalon", ""],
+      ["CAMISA", 1274, "ROPA SUPERIOR", "camisa", ""],
+      ["BUZO", 1196, "ROPA SUPERIOR", "chaqueta", ""],
+      ["CHAQUETA", 1138, "ROPA SUPERIOR", "chaqueta", ""],
+      ["GORRA", 1120, "CABEZA", "sombrero", ""],
+      ["VESTIDO", 1031, "ROPA COMPLETA / CONJUNTOS", "vestido", ""],
+      ["RELOJ", 891, "ACCESORIOS PERSONALES", "reloj", ""],
+      ["BERMUDA", 776, "ROPA INFERIOR", "bermuda", ""],
+      ["FALDA", 632, "ROPA INFERIOR", "falda", ""],
+      ["BOXER", 546, "ROPA INTERIOR", "interior", ""],
+      ["SHORT", 546, "ROPA INFERIOR", "bermuda", ""],
+      ["GAFAS", 309, "ACCESORIOS PERSONALES", "gafas", ""],
+      ["CONJUNTO", 307, "ROPA COMPLETA / CONJUNTOS", "conjunto",
+        "Dos o más piezas que se venden como una sola referencia."],
+      ["CHALECO", 305, "ROPA SUPERIOR", "chaqueta", ""],
+      ["JOGGER", 305, "ROPA INFERIOR", "pantalon", "Hoy es un tipo de prenda; mañana es el valor «Jogger» del atributo silueta."],
+      ["ENTERIZO", 298, "ROPA COMPLETA / CONJUNTOS", "enterizo", ""],
+      ["BOLSO", 228, "BOLSOS Y MALETINES", "bolso", ""],
+      ["MORRAL", 215, "BOLSOS Y MALETINES", "bolso", ""],
+      ["CORREA", 186, "ACCESORIOS PERSONALES", "correa", ""],
+      ["SANDALIAS", 180, "CALZADO", "calzado", ""],
+      ["TACONES", 173, "CALZADO", "calzado", ""],
+      ["MEDIAS", 162, "ROPA INTERIOR", "medias", ""],
+      ["BOTAS", 110, "CALZADO", "calzado", ""],
+      ["PERFUMES", 87, "BELLEZA Y CUIDADO PERSONAL", "belleza", ""],
+      ["BILLETERA", 77, "BOLSOS Y MALETINES", "correa", ""],
+      ["ACCESORIOS", 66, "ACCESORIOS PERSONALES", "otros",
+        "Etiqueta comodín: no dice qué es el producto. Hay que repartirla a mano al migrar."],
+      ["ZAPATOS", 63, "CALZADO", "calzado", ""],
+      ["CANGURO", 50, "BOLSOS Y MALETINES", "bolso", ""],
+      ["TERMO", 39, "ACCESORIOS PERSONALES", "otros", ""],
+      ["CARDIGAN", 37, "ROPA SUPERIOR", "chaqueta", ""],
+      ["OVEROL", 28, "ROPA COMPLETA / CONJUNTOS", "enterizo", ""],
+      ["PAÑOLETA", 21, "CABEZA", "otros", "El extracto la agrupa en CABEZA; en el modelo cae junto a bufandas y pashminas."],
+      ["BALETAS", 13, "CALZADO", "calzado", ""],
+      ["FALDA PANTALON", 13, "ROPA INFERIOR", "falda", ""],
+      ["ARTICULO ELECTRONICO", 12, "ARTICULOS Y TECNOLOGIA", "otros", ""],
+      ["BOINAS Y SOMBREROS", 11, "CABEZA", "sombrero", ""],
+      ["MALETA", 9, "BOLSOS Y MALETINES", "bolso", ""],
+      ["ROPA INTERIOR", 8, "ROPA INTERIOR", "interior", ""],
+      ["BUFANDAS Y CORBATAS", 7, "BELLEZA Y CUIDADO PERSONAL", "otros",
+        "El extracto lo clasifica en BELLEZA. Es accesorio textil, y además se solapa con CORBATA."],
+      ["MAQUILLAJE", 7, "BELLEZA Y CUIDADO PERSONAL", "belleza", ""],
+      ["SPLASH", 6, "ACCESORIOS PERSONALES", "belleza", "El extracto lo clasifica en ACCESORIOS. Es perfumería."],
+      ["PROBADOR", 5, "BELLEZA Y CUIDADO PERSONAL", "belleza",
+        "Son los probadores de los perfumes: mismo producto de perfumería, en presentación de probador."],
+      ["ESCUDO FACIAL", 4, "BELLEZA Y CUIDADO PERSONAL", "otros", ""],
+      ["TAPABOCA", 4, "ACCESORIOS PERSONALES", "otros", ""],
+      ["PIJAMA", 3, "ROPA COMPLETA / CONJUNTOS", "pijama", ""],
+      ["GUANTES", 2, "ACCESORIOS PERSONALES", "otros", ""],
+      ["LLAVEROS", 2, "ACCESORIOS PERSONALES", "otros", ""],
+      ["PARLANTE", 2, "ARTICULOS Y TECNOLOGIA", "otros", ""],
+      ["CORBATA", 1, "ACCESORIOS PERSONALES", "otros", "Duplicado parcial de «BUFANDAS Y CORBATAS»: dos códigos para lo mismo."],
+      ["CREMA", 1, "BELLEZA Y CUIDADO PERSONAL", "belleza", ""],
+      ["FUNDA PC", 1, "ARTICULOS Y TECNOLOGIA", "bolso", ""],
+      ["PANTALONETA", 1, "ROPA INFERIOR", "bermuda", ""],
+      ["SET", 1, "ROPA COMPLETA / CONJUNTOS", "conjunto", "Comparte los campos de CONJUNTO."],
+      ["SOMBRILLA", 1, "BELLEZA Y CUIDADO PERSONAL", "otros", "El extracto lo clasifica en BELLEZA."],
+      ["TARJETERO", 1, "BOLSOS Y MALETINES", "correa", ""],
+      ["TRAJE DE BAÑO", 1, "ROPA COMPLETA / CONJUNTOS", "bano", ""],
+      ["TULA", 1, "BOLSOS Y MALETINES", "bolso", ""]
+    ];
+
+    const VOL_TOTAL = VOLUMEN.reduce(function (s, r) { return s + r[1]; }, 0);
+
+    /* -------------------------------------------------------------------------
+       La taxonomía la manda el extracto, no al revés.
+       De VOLUMEN se deriva, para cada categoría:
+         · fromTipos — los tipos de prenda reales que la alimentan, con su volumen
+         · vol       — sus referencias creadas desde 2025
+         · dept      — la agrupación del extracto que más volumen le aporta
+       y las categorías se ordenan por uso real. Nada de esto se escribe a mano:
+       si el extracto cambia, la agrupación y el orden cambian con él.
+       ------------------------------------------------------------------------- */
+    (function derivarTaxonomia() {
+      const agg = {};
+      VOLUMEN.forEach(function (r) {
+        if (!r[3]) return;                       // sin categoría destino todavía, no agrupa nada
+        const x = agg[r[3]] || (agg[r[3]] = { n: 0, tipos: [], grupos: {} });
+        x.n += r[1];
+        x.tipos.push({ t: r[0], n: r[1] });
+        x.grupos[r[2]] = (x.grupos[r[2]] || 0) + r[1];
+      });
+      CATS.forEach(function (c) {
+        const x = agg[c.id];
+        c.vol = x ? x.n : 0;
+        c.fromTipos = x ? x.tipos.sort(function (a, b) { return b.n - a.n; }) : [];
+        c.dept = x
+          ? Object.keys(x.grupos).sort(function (a, b) { return x.grupos[b] - x.grupos[a]; })[0]
+          : "SIN RESPALDO EN EL EXTRACTO";
+      });
+      CATS.sort(function (a, b) { return b.vol - a.vol; });
+    })();
+
+    const TIPOS = VOLUMEN.map(function (r) {
+      return { t: r[0], n: r[1], grupo: r[2], cat: r[3], nota: r[4] };
+    }).sort(function (a, b) { return b.n - a.n; });
+
+    /* -------------------------------------------------------------------------
+       Valores que el sistema pone solo, sin preguntarle nada al usuario.
+       ------------------------------------------------------------------------- */
+
+    // La colección sale de la fecha de creación: primer semestre -> Enero,
+    // segundo -> Julio. Es lo que hoy hace tipo_5, pero con temporada y año
+    // explícitos en vez de un timestamp suelto.
+    function coleccionAuto(d) {
+      const f = d || new Date();
+      const sem = f.getMonth() < 6 ? 1 : 2;
+      return f.getFullYear() + "-" + sem + " · " + (sem === 1 ? "Enero" : "Julio");
+    }
+
+    function fechaHoy() {
+      const f = new Date();
+      return String(f.getDate()).padStart(2, "0") + "/" +
+        String(f.getMonth() + 1).padStart(2, "0") + "/" + f.getFullYear();
+    }
+
+    // Rellena los campos automáticos y los que traen un valor por defecto.
+    // Se llama al arrancar, al elegir tipo de prenda y al vaciar el formulario.
+    function applyDefaults() {
+      Object.keys(ATTRS).forEach(function (code) {
+        const at = ATTRS[code];
+        if (at.input === "auto") { state.values[code] = at.auto(); return; }
+        if (at.def && state.values[code] === undefined) {
+          const val = (at.values || []).find(function (x) { return x.l === at.def; });
+          if (val) state.values[code] = val.id;
+        }
+      });
+    }
+
+
+    /* =========================================================================
+       4. RENDER — RIEL
+       ========================================================================= */
+
+    function renderRail() {
+      const rail = $("#rail");
+      const porGrupo = {};
+      tiposVivos().forEach(function (x) { (porGrupo[x.grupo] = porGrupo[x.grupo] || []).push(x); });
+
+      let html = '<div class="rail-head"><span class="eyebrow">Tipo de prenda</span>' +
+        '<span class="src-tag">referencias_Subgru2</span></div>';
+      Object.keys(porGrupo).sort(function (a, b) {
+        return porGrupo[b].reduce(function (s, x) { return s + x.n; }, 0) -
+          porGrupo[a].reduce(function (s, x) { return s + x.n; }, 0);
+      }).forEach(function (g) {
+        html += '<div class="dept"><span class="eyebrow">' + esc(g) + '</span><div class="cat-list">';
+        porGrupo[g].forEach(function (x) {
+          const on = state.tipo === x.t;
+          html += '<button type="button" class="cat" data-tipo="' + esc(x.t) + '" aria-current="' + on + '">' +
+            '<span class="cat-name">' + esc(x.t) + '</span>' +
+            '<span class="cat-code">' + NUM(x.n) + '</span>' +
+            '</button>';
+        });
+        html += '</div></div>';
+      });
+
+      if (state.cat) {
+        const cat = catById(state.cat);
+        const vis = visibleBindings();
+        html += '<div class="dept"><span class="eyebrow">Secciones activas</span><nav class="jump">';
+        GROUPS.forEach(function (g) {
+          const inG = vis.filter(function (b) { return ATTRS[b.code].g === g[0]; });
+          if (!inG.length) return;
+          const miss = inG.filter(function (b) { return b.req && !isFilled(b); }).length;
+          html += '<a href="#g-' + g[0] + '"><span>' + esc(g[1]) + '</span>' +
+            '<span class="n' + (miss ? " miss" : "") + '">' + (miss ? miss + "!" : inG.length) + '</span></a>';
+        });
+        html += '</nav></div>';
+        html += '<div class="dept"><span class="eyebrow">Contrato que usa</span>' +
+          '<p class="field-hint" style="margin:0 0 6px">' + esc(cat.label) + ' — ' + cat.fromTipos.length +
+          ' tipo' + (cat.fromTipos.length === 1 ? "" : "s") + ' de prenda comparten estos campos.</p>' +
+          '<span class="eyebrow">Códigos legacy absorbidos</span>' +
+          '<p class="cat-code" style="line-height:1.6">' + cat.legacy.map(function (n) { return "tipo_1·" + n; }).join("  ") + '</p></div>';
+      }
+      rail.innerHTML = html;
+    }
+
+    function tipoByName(t) {
+      return TIPOS.find(function (x) { return x.t === t; }) || null;
+    }
+
+
+    function fieldControl(b) {
+      const at = ATTRS[b.code];
+      const code = b.code;
+      const raw = state.values[code];
+
+      if (at.input === "bool") {
+        return '<label class="switch"><input type="checkbox" data-bool="' + code + '"' + (raw ? " checked" : "") + '>' +
+          '<span class="track"></span><span class="lbl">' + (raw ? "Sí" : "No") + '</span></label>';
+      }
+
+      if (at.input === "number") {
+        return '<span class="num-wrap"><input class="input" type="number" step="' + (at.step || "1") + '" min="0" ' +
+          'data-num="' + code + '" value="' + (raw == null ? "" : esc(raw)) + '" placeholder="0">' +
+          '<span class="unit">' + esc(at.unit || "") + '</span></span>';
+      }
+
+      // campo automático: el sistema ya lo resolvió, no hay nada que preguntar
+      if (at.input === "auto") {
+        return '<div class="auto-box"><b>' + esc(raw == null ? at.auto() : raw) + '</b>' +
+          '<span class="from">fecha de creación · ' + fechaHoy() + '</span></div>';
+      }
+
+      if (at.input === "text") {
+        return '<input class="input" type="text" data-text="' + code + '" value="' + (raw == null ? "" : esc(raw)) +
+          '" placeholder="' + esc(at.placeholder || "Ej. Rojo cereza 04") + '">';
+      }
+
+      const vals = activeValues(code, state.cat);
+
+      // sin ni un valor utilizable: decirlo, en vez de dejar un hueco mudo
+      if (!vals.length) {
+        const muertas = code === "linea" ? lineasInservibles(state.tipo) : [];
+        return '<p class="field-hint" style="margin:0">' + (muertas.length
+          ? 'El extracto marca ' + muertas.length + ' línea' + (muertas.length === 1 ? "" : "s") +
+          ' para <b>' + esc(state.tipo) + '</b>, y ninguna sirve: ' +
+          esc(muertas.map(function (x) { return x.l; }).join(", ")) +
+          '. Hay que depurarlas con el equipo de producto antes de migrar.'
+          : 'No hay valores activos para este campo en este tipo de prenda.') + '</p>';
+      }
+
+      // listas largas de selección única -> buscador tipo combobox
+      if (vals.length > 12 && at.input === "single") {
+        const open = state.comboOpen === code;
+        let html = '<div class="combo"><input class="input" type="text" data-combo="' + code + '" autocomplete="off" ' +
+          'placeholder="Buscar entre ' + vals.length + ' valores…" value="' +
+          (open ? esc(state.comboQuery) : (raw ? esc(labelOf(code, raw)) : "")) + '">';
+        if (open) {
+          const q = state.comboQuery.toLowerCase();
+          const hits = vals.filter(function (x) { return x.l.toLowerCase().indexOf(q) !== -1; }).slice(0, 40);
+          html += '<div class="combo-list">' + (hits.length
+            ? hits.map(function (x) {
+              return '<button type="button" data-pick="' + code + '" data-val="' + x.id + '">' + esc(x.l) + '</button>';
+            }).join("")
+            : '<div class="combo-empty">Sin coincidencias. El valor se agrega al catálogo del atributo, sin tocar código.</div>') + '</div>';
+        }
+        return html + '</div>';
+      }
+
+      if (at.input === "multi") {
+        const sel = Array.isArray(raw) ? raw : [];
+        const max = b.max || 0;
+        const atTop = max > 0 && sel.length >= max;
+        return '<div class="chips">' + vals.map(function (x) {
+          const on = sel.indexOf(x.id) !== -1;
+          return '<button type="button" class="chip" data-multi="' + code + '" data-val="' + x.id + '" ' +
+            'aria-pressed="' + on + '"' + (!on && atTop ? " disabled" : "") + '>' + esc(x.l) +
+            (on ? '<span class="x">×</span>' : "") + '</button>';
+        }).join("") + '</div>';
+      }
+
+      return '<div class="chips">' + vals.map(function (x) {
+        const on = raw === x.id;
+        return '<button type="button" class="chip" data-single="' + code + '" data-val="' + x.id + '" aria-pressed="' + on + '">' +
+          esc(x.l) + '</button>';
+      }).join("") + '</div>';
+    }
+
+    /* Lo que el Excel de tipos deja ver y el informe no tenía. */
+    const HALLAZGOS = [
+      ["Existe un tipo_7 que nadie había mirado",
+        "84 filas, pero solo 28 valores reales (PROMOCION, ETAPA REMATE, Precio2 Etapa I a V…) y 56 filas " +
+        "que dicen «asterisco». No describe el producto: es etapa de precio, del mismo grupo que las 196 " +
+        "campañas metidas en tipo_3."],
+      ["tipo_5 tiene 6 valores que no son colección",
+        "BPT, OPACO, BRILLANTE, PARTES SUPERIORES, PARTES INFERIORES y PROMOCION. Los otros 100 sí son " +
+        "períodos de compra (2003-0 a 2026-3). OPACO y BRILLANTE son acabado: van a Apariencia."],
+      ["En tipo_3 solo se usa un valor",
+        "De los 200 valores de la lista, el único que alguna hoja marca es PRODUCTO TERMINADO, en 37 de las " +
+        "50. Por eso viene preseleccionado en la ficha."],
+      ["La lista de marcas ya existe",
+        "La hoja Marca trae 203 marcas (SKLEPPER, STUDIO F, OXIGENO, LIQUID…). Es el catálogo de " +
+        "referencias_gru que le falta al campo Marca de esta ficha."],
+      ["La hoja Genero viene vacía",
+        "No hay catálogo de género en la exportación, aunque el campo se guarda en referencias_Subgru."],
+      ["TipoPrenda tiene 215 valores y se usan 62",
+        "Los demás no tienen ni una referencia creada desde 2025."]
+    ];
+
+    // El cruce completo, para verlo sin tener que recorrer prenda por prenda.
+    function mapaDeCampos() {
+      const codes = Object.keys(ATTRS).filter(function (c) { return CAMPO[c]; })
+        .sort(function (a, b) { return CAMPO[b][2] - CAMPO[a][2]; });
+      const cuenta = function (cl) {
+        return codes.filter(function (c) { return campoDe(c)[1] === cl; }).length;
+      };
+      const dup = codes.filter(function (c) { return CAMPO[c][4]; }).length;
+
+      return '<section class="card group"><div class="group-head">' +
+        '<h2>Dónde se guarda cada característica</h2>' +
+        '<span class="n">' + codes.length + ' características</span></div><div class="pad">' +
+
+        '<p style="margin:0 0 12px;color:var(--ink-2);max-width:78ch">La asignación es <b>la misma para ' +
+        'todos los tipos de prenda</b>: una característica siempre se guarda en el mismo campo. Patrón ' +
+        'visual va en <span class="mono">tipo_2</span> lo mismo en chaleco que en camisa.<br>' +
+        '<span class="mono">tipo_1</span> es <i>SubdivisionTipoPrenda</i>, así que se reserva para eso: ' +
+        '<b>la subdivisión de cada categoría</b>. Calzado guarda ahí Mocasines, un accesorio guarda ' +
+        'Joyería, un jean guarda Skinny. Caben <b>las 14 subdivisiones en la misma columna</b> porque ' +
+        'cada prenda tiene una sola.<br>' +
+        'Las demás columnas guardan un valor único, y se las queda —entre las características que hoy ' +
+        'viven ahí— la que piden más fichas; el resto pasa a Apariencia, que sí admite varias etiquetas ' +
+        '—<span class="mono">AFamilia</span> es una de ellas—. El cruce sale de las «X» de ' +
+        '<span class="mono">PlantillaTipos</span> (columna <i>Asociado a…</i>) contra ' +
+        '<span class="mono">Tipos.xlsx</span>.</p>' +
+
+        // qué guarda cada columna: es la decisión de fondo
+        '<div class="scroll-x" style="margin-bottom:14px"><table class="tabla"><thead><tr>' +
+        '<th>Campo</th><th>Qué guarda</th><th class="c">Fichas que<br>la piden</th>' +
+        '</tr></thead><tbody>' +
+        ocupacion().map(function (d) {
+          return '<tr><td><span class="src-tag' + (d[1].length ? ' c-tipo' : '') + '">' + esc(d[0]) + '</span></td>' +
+            (d[1].length
+              ? '<td>' + d[1].map(function (x) {
+                return '<span class="nm">' + esc(ATTRS[x[0]].label) + '</span> ' +
+                  '<span class="cd">' + esc(x[0]) + '</span>' +
+                  (campoCambiado(x[0]) ? ' <span class="pill thr">movido</span>' : "");
+              }).join('<br>') + '</td>' +
+              '<td class="c">' + d[1].map(function (x) { return x[1] || "—"; }).join('<br>') + '</td>'
+              : '<td colspan="2"><span class="cd">Queda libre</span></td>') +
+            '</tr>';
+        }).join("") +
+        '</tbody></table></div>' +
+
+        '<div class="leyenda" style="margin:0 0 14px">' +
+        '<span><span class="src-tag c-tipo">tipo_N</span>ocupa ese campo de tipo · <b>' + cuenta("tipo") + '</b></span>' +
+        '<span><span class="src-tag c-apar">Apariencia</span>etiqueta de Apariencia · <b>' + cuenta("apar") + '</b></span>' +
+        '<span><span class="src-tag c-tabla">referencias_…</span>tabla propia · <b>' + cuenta("tabla") + '</b></span>' +
+        '<span><b>' + dup + '</b> hay que sacarlas de algún campo</span></div>' +
+
+        '<div class="scroll-x"><table class="tabla"><thead><tr>' +
+        '<th>Característica</th><th>Vive hoy en</th><th class="c">Fichas que<br>la piden</th>' +
+        '<th>Se asigna a</th><th>Sale de</th></tr></thead><tbody>' +
+        codes.map(function (c) {
+          const k = campoDe(c), at = ATTRS[c];
+          return '<tr title="' + esc(k[5]) + '">' +
+            '<td><span class="nm">' + esc(at.label) + '</span><br><span class="cd">' + esc(c) + '</span></td>' +
+            '<td><span class="cd">' + esc(k[3]) + '</span></td>' +
+            '<td class="c">' + (k[2] || '<span class="cd">—</span>') + '</td>' +
+            '<td><span class="src-tag c-' + k[1] + (campoCambiado(c) ? " cambiado" : "") + '">' +
+            esc(k[0]) + '</span>' + (campoCambiado(c) ? ' <span class="cd">antes ' + esc(CAMPO[c][0]) +
+              '</span>' : "") + '</td>' +
+            '<td><span class="cd">' + (k[4] ? esc(k[4]) : "—") + '</span></td></tr>';
+        }).join("") +
+        '</tbody></table></div>' +
+
+        '<h3 style="font-size:13.5px;font-weight:650;margin:22px 0 4px">Lo que el Excel deja ver</h3>' +
+        '<div class="hallazgos">' + HALLAZGOS.map(function (h) {
+          return '<div><b>' + esc(h[0]) + '</b><span>' + esc(h[1]) + '</span></div>';
+        }).join("") + '</div>' +
+
+        '<p class="field-hint" style="margin:14px 0 0">Tres cosas que conviene tener presentes. ' +
+        '<b>Cinco fichas se quedan sin subdivisión</b> —CAMISA, BLUSA, CAMISETA, POLO y PIJAMA—: su ' +
+        'subdivisión en <span class="mono">tipo_1</span> era el propio nombre del producto ' +
+        '(«CAMISAS CLASICAS», «BLUSA LYCRA MODA»), que ahora es la categoría; lo que las diferencia es el ' +
+        'cuello y la manga, que son características, no subdivisiones. ' +
+        '<b>El cuello no entró a <span class="mono">tipo_1</span></b> a propósito: su sitio es ' +
+        '<span class="mono">tipo_4</span> y, de haberlo metido, habría desplazado a Tipo de chaqueta / ' +
+        'buso. Y <b>la plantilla trae marcas que no cuadran</b>: la hoja de CAMISA tiene marcado ' +
+        '<span class="mono">RIÑONERA</span> y tipos de calzado en <span class="mono">tipo_1</span>; por eso ' +
+        'los choques se calculan con lo que muestra cada ficha, no con esas marcas.</p>' +
+        '</div></section>';
+    }
+
+    function renderCapture() {
+      const stage = $("#stage");
+
+      if (!state.tipo) {
+        // el selector son los tipos de prenda del extracto, agrupados como vienen en él
+        const porGrupo = {};
+        tiposVivos().forEach(function (x) { (porGrupo[x.grupo] = porGrupo[x.grupo] || []).push(x); });
+        const grupos = Object.keys(porGrupo).sort(function (a, b) {
+          return porGrupo[b].reduce(function (s, x) { return s + x.n; }, 0) -
+            porGrupo[a].reduce(function (s, x) { return s + x.n; }, 0);
+        });
+
+        stage.innerHTML =
+          '<div class="stage-head"><div>' +
+          '<span class="eyebrow">Paso 1 de 2</span>' +
+          '<p>Los <b>' + tiposVivos().length + ' tipos de prenda</b> que se usan en el sistema, con las referencias que se ' +
+          'crearon desde 2025.  ' +
+          '<p class="field-hint" style="margin:6px 0 0">El tipo de prenda se ubica en ' +
+          '<span class="mono">referencias_Subgru2</span>. Del mismo bloque de tablas salen la marca ' +
+          '(<span class="mono">referencias_gru</span>), el género (<span class="mono">referencias_Subgru</span>) ' +
+          'y el material (<span class="mono">referencias_Subgru3</span>).</p>' +
+          '</div></div>' +
+          // los que se dieron de baja: se pueden devolver al catálogo
+          (edicionDe(GEN).tipos.length
+            ? '<section class="card group edicion"><div class="group-head">' +
+            '<h2>Dados de baja del catálogo</h2><span class="n">' + edicionDe(GEN).tipos.length +
+            '</span></div><div class="pad">' +
+            '<p class="field-hint" style="margin:0 0 10px">Ya no aparecen para crear producto. ' +
+            'Haz clic para devolverlos.</p><div class="chips">' +
+            edicionDe(GEN).tipos.map(function (t) {
+              return '<button type="button" class="chip fuera" data-resttipo="' + esc(t) + '">' +
+                esc(t) + '<span class="x">↺</span></button>';
+            }).join("") + '</div></div></section>'
+            : "") +
+          grupos.map(function (g) {
+            return '<section class="card group"><div class="group-head"><h2>' + esc(g) + '</h2>' +
+              '<span class="n">' + porGrupo[g].length + '</span></div><div class="pad">' +
+              '<div class="cat-grid">' + porGrupo[g].map(function (x) {
+                const c = catById(x.cat);
+                const n = nCambios(x.t);
+                return '<button type="button" class="cat-tile" data-tipo="' + esc(x.t) + '">' +
+                  '<span class="t">' + esc(x.t) +
+                  (n ? ' <span class="pill thr">' + n + ' editado' + (n > 1 ? "s" : "") + '</span>' : "") +
+                  '</span>' +
+                  '<span class="d">' + NUM(x.n) + (x.n === 1 ? ' referencia' : ' referencias') + ' desde 2025</span>' +
+                  '<span class="legacy">' + (c
+                    ? '<b>' + bindingsTipo(x.t, c).length + ' campos</b> · contrato de ' + esc(c.label)
+                    : '<b>Sin formulario asignado</b>') + '</span></button>';
+              }).join("") + '</div></div></section>';
+          }).join("") +
+          mapaDeCampos();
+        return;
+      }
+
+      const tipo = tipoByName(state.tipo);
+      const cat = catById(state.cat);
+
+      // red de seguridad: hoy los 62 tipos tienen contrato, pero si se agrega uno
+      // nuevo al extracto y todavía no se le define, la pantalla lo dice.
+      if (!cat) {
+        stage.innerHTML =
+          '<div class="stage-head"><div style="flex:1;min-width:240px">' +
+          '<span class="eyebrow">' + esc(tipo.grupo) + '</span><h1>' + esc(tipo.t) + '</h1>' +
+          '<p>' + NUM(tipo.n) + ' referencias creadas desde 2025.</p></div></div>' +
+          '<section class="card group"><div class="group-head"><h2>Falta definir sus campos</h2>' +
+          '</div><div class="pad"><p style="margin:0;color:var(--ink-2);max-width:74ch">' +
+          'A <span class="mono">' + esc(tipo.t) + '</span> todavía no se le asignó un juego de campos. ' +
+          'Se define una vez y queda disponible para todas sus referencias.</p></div></section>';
+        return;
+      }
+
+      const vis = visibleBindings();
+      const st = requiredStats();
+      const hermanos = cat.fromTipos.filter(function (x) { return x.t !== tipo.t; });
+
+      let html = '<div class="stage-head"><div style="flex:1;min-width:240px">' +
+        '<span class="eyebrow">' + esc(tipo.grupo) + ' · ' + NUM(tipo.n) + ' refs desde 2025</span>' +
+        '<h1>' + esc(tipo.t) + '</h1>' +
+        '<p>Se muestran <b>' + vis.length + '</b> atributos de los ' + totalAttrsInRegistry() +
+        ' del catálogo; el resto no aplica y por eso no existe en pantalla.</p>' +
+        '<p class="field-hint" style="margin:0">Estos campos son el contrato de <b>' + esc(cat.label) + '</b>' +
+        (hermanos.length
+          ? ', el mismo que piden ' + esc(hermanos.map(function (x) { return x.t; }).join(", ")) +
+          '. Por eso son una sola categoría y no ' + (hermanos.length + 1) + ' formularios distintos.'
+          : '. Ningún otro tipo de prenda del extracto pide este juego de campos.') + '</p>' +
+        // cada característica queda en un solo lado: o tipo, o Apariencia
+        '<div class="leyenda"><span><span class="src-tag c-tipo">tipo_N</span>ocupa ese campo de tipo</span>' +
+        '<span><span class="src-tag c-apar">Apariencia</span>se guarda como etiqueta de Apariencia</span>' +
+        '<span><span class="src-tag c-tabla">referencias_…</span>tiene tabla propia</span>' +
+        '<span style="color:var(--ink-3)">El campo es el mismo en todas las prendas. Pasa el mouse por la ' +
+        'etiqueta para ver por qué le tocó ese.</span>' +
+        '</div></div>' +
+        '<div style="display:flex;gap:6px;flex-wrap:wrap">' +
+        (st.missing.length
+          ? '<span class="pill req">' + st.missing.length + ' requerido' + (st.missing.length > 1 ? "s" : "") + ' sin llenar</span>'
+          : '<span class="pill ok">Requeridos completos</span>') +
+        '<span class="pill mut">' + vis.filter(isMulti).length + ' de selección múltiple</span>' +
+        '<button type="button" class="btn' + (state.editar ? " thread" : "") + '" data-editar="1">' +
+        (state.editar ? "Salir de depuración" : "Depurar campos") + '</button>' +
+        '</div></div>';
+
+      if (state.editar) html += barraEdicion(tipo, vis);
+
+      GROUPS.forEach(function (g) {
+        const inG = vis.filter(function (b) { return ATTRS[b.code].g === g[0]; });
+        if (!inG.length) return;
+        html += '<section class="card group" id="g-' + g[0] + '">' +
+          '<div class="group-head"><h2>' + esc(g[1]) + '</h2><span class="n">' + inG.length + '</span></div>' +
+          '<div class="group-body">';
+
+        inG.forEach(function (b) {
+          const at = ATTRS[b.code];
+          const dep = !!at.showIf;
+          const sel = Array.isArray(state.values[b.code]) ? state.values[b.code].length : 0;
+          html += '<div class="field' + (dep ? " dep" : "") + (b.extra ? " extra" : "") + '">' +
+            '<div class="field-head">' +
+            '<label>' + esc(at.label) + (b.req ? ' <span class="star" title="Requerido">*</span>' : "") + '</label>' +
+            '<span class="code">' + esc(b.code) + '</span>' +
+            (b.extra ? '<span class="pill thr">agregado</span>' : "") +
+            (at.input === "auto" ? '<span class="pill auto">automático</span>' : "") +
+            (at.def ? '<span class="pill auto">por defecto</span>' : "") +
+            (isMulti(b) ? '<span class="pill mut">múltiple' + (b.max ? " · máx " + b.max : "") +
+              (sel ? " · " + sel + " sel." : "") + '</span>' : "") +
+            (dep ? '<span class="pill acc">dependiente</span>' : "") +
+            // en qué campo se queda; en depuración se puede cambiar
+            (state.editar ? selectorCampo(b.code) : campoTag(b.code)) +
+            (state.editar ? '<button type="button" class="btn quitar" data-quitar="' + b.code +
+              '" title="Quitar este campo de ' + esc(tipo.t) + '">Quitar</button>' : "") +
+            '</div>' +
+            (at.help ? '<p class="field-hint">' + esc(at.help) + '</p>' : "") +
+            fieldControl(b) +
+            (state.editar ? stripValores(b.code) : "") +
+            '</div>';
+        });
+        html += '</div></section>';
+      });
+
+      if (state.editar) html += panelAgregar(tipo, vis);
+
+      stage.innerHTML = html;
+    }
+
+    /* -------------------------------------------------------------------------
+       Depuración: barra de estado, valores del campo y panel para agregar.
+       ------------------------------------------------------------------------- */
+
+    // en depuración, la etiqueta del campo se vuelve un selector
+    function selectorCampo(code) {
+      const c = campoDe(code);
+      if (!c) return "";
+      const movido = campoCambiado(code);
+      return '<span class="sel-campo' + (movido ? " cambiado" : "") + '">' +
+        '<select data-campo="' + code + '" title="Cambiar el campo donde se guarda esta característica ' +
+        '(aplica a todas las prendas)">' +
+        DESTINOS.map(function (d) {
+          return '<option value="' + d + '"' + (d === c[0] ? " selected" : "") + '>' + esc(d) + '</option>';
+        }).join("") + '</select>' +
+        (movido ? '<button type="button" class="btn" data-restcampo="' + code +
+          '" title="Volver a lo calculado: ' + esc(CAMPO[code][0]) + '">↺</button>' : "") +
+        '</span>';
+    }
+
+    // debajo de cada campo, sus valores con una × para darlos de baja
+    function stripValores(code) {
+      const at = ATTRS[code];
+      if (!at || !at.values) return "";
+      const vivos = activeValues(code, state.cat);
+      const fuera = valoresQuitados(code, state.tipo);
+      if (!vivos.length && !fuera.length) return "";
+      return '<div class="valores"><span class="eyebrow">' + vivos.length + ' valor' +
+        (vivos.length === 1 ? "" : "es") + ' en uso · quita los que no apliquen ' +
+        (state.alcance === "general" ? "en ninguna prenda" : "a " + esc(state.tipo)) + '</span>' +
+        '<div class="chips">' +
+        vivos.map(function (v) {
+          return '<button type="button" class="chip vq" data-quitarval="' + code + '::' + v.id + '" ' +
+            'title="Dar de baja este valor">' + esc(v.l) + '<span class="x">×</span></button>';
+        }).join("") +
+        fuera.map(function (v) {
+          return '<button type="button" class="chip fuera" data-restval="' + code + '::' + v.id + '" ' +
+            'title="Restaurar · dado de baja ' + (v.alcance === "general" ? "en todas las prendas" :
+              "en esta prenda") + '">' + esc(v.l) + '<span class="x">↺</span></button>';
+        }).join("") +
+        '</div></div>';
+    }
+
+    // lista de cambios de un alcance, con clic para deshacer
+    function listaCambios(clave, titulo) {
+      const ed = edicionDe(clave);
+      const nVal = Object.keys(ed.valores).reduce(function (s, c) { return s + ed.valores[c].length; }, 0);
+      const nCam = Object.keys(ed.campos).length;
+      if (!ed.quitar.length && !ed.agregar.length && !nVal && !ed.tipos.length && !nCam) return "";
+      const campo = function (code, quitado) {
+        return '<button type="button" class="chip" data-' + (quitado ? "agregar" : "quitar") + '="' +
+          code + '" title="Deshacer">' + esc(ATTRS[code] ? ATTRS[code].label : code) +
+          '<span class="x">×</span></button>';
+      };
+      return '<div class="cambios"><span class="eyebrow" style="width:100%">' + titulo + '</span>' +
+        (ed.quitar.length ? '<div><span class="cd">Campos quitados</span><div class="chips">' +
+          ed.quitar.map(function (c) { return campo(c, true); }).join("") + '</div></div>' : "") +
+        (ed.agregar.length ? '<div><span class="cd">Campos agregados</span><div class="chips">' +
+          ed.agregar.map(function (c) { return campo(c, false); }).join("") + '</div></div>' : "") +
+        (nVal ? '<div><span class="cd">Valores dados de baja</span><div class="chips">' +
+          Object.keys(ed.valores).map(function (c) {
+            return ed.valores[c].map(function (id) {
+              return '<button type="button" class="chip" data-restval="' + c + '::' + id + '" ' +
+                'title="Restaurar">' + esc(labelOf(c, id)) + ' <span class="cd">· ' +
+                esc(ATTRS[c] ? ATTRS[c].label : c) + '</span><span class="x">×</span></button>';
+            }).join("");
+          }).join("") + '</div></div>' : "") +
+        (ed.tipos.length ? '<div><span class="cd">Tipos de prenda dados de baja</span><div class="chips">' +
+          ed.tipos.map(function (t) {
+            return '<button type="button" class="chip" data-resttipo="' + esc(t) + '" ' +
+              'title="Devolver al catálogo">' + esc(t) + '<span class="x">×</span></button>';
+          }).join("") + '</div></div>' : "") +
+        (nCam ? '<div><span class="cd">Campos reasignados</span><div class="chips">' +
+          Object.keys(ed.campos).map(function (c) {
+            return '<button type="button" class="chip" data-restcampo="' + c + '" title="Volver a lo calculado">' +
+              esc(ATTRS[c] ? ATTRS[c].label : c) + ' <span class="cd">· ' + esc(CAMPO[c][0]) + ' → ' +
+              esc(ed.campos[c]) + '</span><span class="x">×</span></button>';
+          }).join("") + '</div></div>' : "") +
+        '</div>';
+    }
+
+    function barraEdicion(tipo, vis) {
+      const conf = conflictosDe(vis);
+      const total = totalCambios();
+      const alc = function (k, l, d) {
+        return '<button type="button" class="ord" data-alcance="' + k + '" aria-pressed="' +
+          (state.alcance === k) + '" title="' + d + '">' + l + '</button>';
+      };
+
+      return '<section class="card group edicion"><div class="group-head">' +
+        '<h2>Depurando <b>' + esc(tipo.t) + '</b></h2>' +
+        '<span class="n">' + nCambios(tipo.t) + ' en esta prenda · ' + nCambios(GEN) +
+        ' generales · ' + total + ' en total</span></div><div class="pad">' +
+
+        '<div class="alcance"><span class="eyebrow">Lo que quites se aplica a</span>' +
+        '<div class="ord-group">' +
+        alc("prenda", "Solo " + esc(tipo.t), "El cambio afecta únicamente a este tipo de prenda") +
+        alc("general", "Todas las prendas", "El cambio afecta a los 62 tipos de prenda") +
+        '</div>' +
+        '<button type="button" class="btn quitar" data-quitartipo="' + esc(tipo.t) + '" ' +
+        'title="Sacar este tipo de prenda del catálogo">Dar de baja ' + esc(tipo.t) + '</button>' +
+        '</div>' +
+
+        listaCambios(tipo.t, "Cambios de " + esc(tipo.t)) +
+        listaCambios(GEN, "Cambios generales · afectan a todas las prendas") +
+
+        (!nCambios(tipo.t) && !nCambios(GEN)
+          ? '<p class="field-hint" style="margin:0 0 10px">Usa <b>Quitar</b> en cualquier campo, quita ' +
+          'valores sueltos con la × de cada uno, o agrega campos desde la lista del final. Con el ' +
+          'alcance en <b>Todas las prendas</b> el cambio vale para el catálogo entero.</p>'
+          : "") +
+
+        (conf.length
+          ? '<div class="alerta"><b>Ojo: dos campos en la misma columna.</b> ' +
+          conf.map(function (c) {
+            return '<span class="mono">' + esc(c.campo) + '</span> tendría que guardar ' +
+              esc(c.campos.join(" y ")) + ' al tiempo, y solo cabe un valor.';
+          }).join(" ") + ' Uno de los dos tendría que ir a Apariencia.</div>'
+          : "") +
+
+        '<div class="guardar">' +
+        (state.servidor
+          ? '<button type="button" class="btn primary" data-guardar="1"' + (state.sucio ? "" : " disabled") + '>' +
+          (state.sucio ? "Guardar en el archivo" : "Sin cambios por guardar") + '</button>' +
+          (nCambios(tipo.t) ? '<button type="button" class="btn" data-restablecer="' + esc(tipo.t) +
+            '">Restablecer esta prenda</button>' : "") +
+          (nCambios(GEN) ? '<button type="button" class="btn" data-restablecer="' + GEN +
+            '">Restablecer lo general</button>' : "") +
+          '<span class="cd">Se escribe en <span class="mono">ficha-producto.html</span>; queda una copia ' +
+          'intacta en <span class="mono">ficha-producto.original.html</span>.</span>'
+          : '<span class="cd" style="color:var(--crit)"><b>Modo solo lectura.</b> Puedes probar los cambios, ' +
+          'pero para guardarlos en el archivo hay que abrir la ficha desde el servidor: ' +
+          '<span class="mono">python3 servidor.py</span> y entrar a ' +
+          '<span class="mono">http://localhost:8000/ficha-producto.html</span></span>') +
+        (state.aviso ? '<span class="cd" style="color:var(--ok)">' + esc(state.aviso) + '</span>' : "") +
+        '</div></div></section>';
+    }
+
+    function panelAgregar(tipo, vis) {
+      const puestos = {};
+      vis.forEach(function (b) { puestos[b.code] = 1; });
+      const libres = Object.keys(ATTRS).filter(function (c) { return !puestos[c]; });
+      if (!libres.length) return "";
+
+      return '<section class="card group edicion"><div class="group-head">' +
+        '<h2>Agregar campos a ' + esc(tipo.t) + '</h2>' +
+        '<span class="n">' + libres.length + ' disponibles</span></div><div class="pad">' +
+        '<p class="field-hint" style="margin:0 0 10px">Los ' + totalAttrsInRegistry() + ' atributos del ' +
+        'catálogo que hoy no aparecen en esta ficha. Al agregar uno se muestra de inmediato, con la ' +
+        'columna que le corresponde.</p>' +
+        GROUPS.map(function (g) {
+          const inG = libres.filter(function (c) { return ATTRS[c].g === g[0]; });
+          if (!inG.length) return "";
+          return '<div class="dept"><span class="eyebrow">' + esc(g[1]) + '</span><div class="chips">' +
+            inG.map(function (c) {
+              return '<button type="button" class="chip" data-agregar="' + c + '">' +
+                esc(ATTRS[c].label) + ' <span class="mas">+</span></button>';
+            }).join("") + '</div></div>';
+        }).join("") +
+        '</div></section>';
+    }
+
+    /* Guarda las ediciones llamando a servidor.py. */
+    function guardarEdiciones() {
+      state.aviso = "Guardando…";
+      render();
+      fetch("api/guardar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(EDICIONES)
+      }).then(function (r) { return r.json(); }).then(function (d) {
+        if (!d.ok) throw new Error(d.error || "respuesta inesperada");
+        state.sucio = false;
+        state.aviso = "Guardado en ficha-producto.html · " + d.cambios + " cambio" +
+          (d.cambios === 1 ? "" : "s");
+        render();
+      }).catch(function (e) {
+        state.aviso = "No se pudo guardar: " + e.message;
+        render();
+      });
+    }
+
+    /* =========================================================================
+       8. RENDER — INSPECTOR
+       ========================================================================= */
+
+    // Cuántos valores lleva diligenciada la ficha (un valor de selección
+    // múltiple cuenta por cada opción marcada).
+    function valoresCapturados() {
+      let n = 0;
+      visibleBindings().forEach(function (b) {
+        const raw = state.values[b.code];
+        if (raw === undefined || raw === null || raw === "") return;
+        n += Array.isArray(raw) ? raw.length : 1;
+      });
+      return n;
+    }
+
+    function renderInspector() {
+      const insp = $("#inspector");
+
+      if (!state.cat) {
+        insp.innerHTML = '<div class="insp-sec"><span class="eyebrow">Registro</span>' +
+          '<p class="field-hint" style="margin:0">' + (state.tipo
+            ? 'Este tipo de producto todavía no tiene formulario asignado.'
+            : 'Elige un tipo de producto para ver los campos que hay que llenar.') + '</p></div>' +
+          '<div class="insp-sec"><span class="eyebrow">Catálogo actual</span>' +
+          '<div class="stat-row"><span>Tipos de prenda</span><b>' + tiposVivos().length + '</b></div>' +
+          '<div class="stat-row"><span>Contratos distintos</span><b>' + CATS.length + '</b></div>' +
+          '<div class="stat-row"><span>Atributos definidos</span><b>' + totalAttrsInRegistry() + '</b></div>' +
+          '<div class="stat-row"><span>Grupos de campos</span><b>' + GROUPS.length + '</b></div></div>' +
+          '<div class="insp-sec"><span class="eyebrow">De dónde sale cada campo hoy</span>' +
+          SRC_TABLES.map(function (r) {
+            return '<div class="stat-row"><span>' + esc(r[0]) + '</span><b>' + esc(r[1]) + '</b></div>';
+          }).join("") + '</div>';
+        return;
+      }
+
+      const st = requiredStats();
+      const vis = visibleBindings();
+      const pct = st.total ? Math.round(st.done / st.total * 100) : 100;
+      const hidden = totalAttrsInRegistry() - vis.length;
+
+      insp.innerHTML =
+        '<div class="insp-sec"><span class="eyebrow">Completitud de requeridos</span>' +
+        '<div class="meter"><i style="width:' + pct + '%" data-full="' + (pct === 100) + '"></i></div>' +
+        '<div class="stat-row"><span>' + st.done + ' de ' + st.total + ' campos obligatorios</span><b>' + pct + '%</b></div>' +
+        (st.missing.length
+          ? '<p class="field-hint" style="margin:8px 0 0">Falta: ' +
+          st.missing.map(function (b) { return esc(ATTRS[b.code].label); }).join(", ") + '.</p>'
+          : '<p class="field-hint" style="margin:8px 0 0">Listo para guardar.</p>') +
+        '</div>' +
+        '<div class="insp-sec"><span class="eyebrow">Lo que ve el usuario</span>' +
+        '<div class="stat-row"><span>Atributos en pantalla</span><b>' + vis.length + '</b></div>' +
+        '<div class="stat-row"><span>Ocultos por no aplicar</span><b>' + hidden + '</b></div>' +
+        '<div class="stat-row"><span>De selección múltiple</span><b>' + vis.filter(isMulti).length + '</b></div>' +
+        '<div class="stat-row"><span>Valores capturados</span><b>' + valoresCapturados() + '</b></div>' +
+        '</div>' +
+        '<div class="insp-sec"><span class="eyebrow">Lo que el sistema llenó solo</span>' +
+        '<div class="stat-row"><span>Colección (tipo_5)</span><b>' + esc(coleccionAuto()) + '</b></div>' +
+        '<div class="stat-row"><span>Clase de producto (tipo_3)</span><b>' + esc(ATTRS.clase.def) + '</b></div>' +
+        '<p class="field-hint" style="margin:8px 0 0">Dos campos menos que preguntar. La clase se puede cambiar; ' +
+        'la colección la fija la fecha de creación.</p></div>' +
+        (function () {
+          const r = repartoCampos(vis);
+          return '<div class="insp-sec"><span class="eyebrow">Dónde queda cada campo de esta ficha</span>' +
+            '<div class="stat-row"><span>Ocupan un campo de tipo</span><b>' + r.tipo + '</b></div>' +
+            '<div class="stat-row"><span>Se guardan en Apariencia</span><b>' + r.apar + '</b></div>' +
+            '<div class="stat-row"><span>Tienen tabla propia</span><b>' + r.tabla + '</b></div>' +
+            '<div class="stat-row"><span>Hay que sacarlas de algún campo</span><b>' + r.dup + '</b></div>' +
+            '<p class="field-hint" style="margin:8px 0 0">El campo de cada característica es el mismo en ' +
+            'todas las prendas. Dentro de una ficha, una columna de tipo nunca se repite: si dos ' +
+            'características chocan, la que menos se usa pasa a Apariencia.</p></div>';
+        })() +
+        '<div class="insp-sec">' +
+        '<button type="button" class="btn" data-reset="1">Vaciar formulario</button>' +
+        '</div>';
+    }
+
+
+    /* =========================================================================
+       9. RENDER RAÍZ + EVENTOS
+       ========================================================================= */
+
+    function render() {
+      renderRail();
+      renderCapture();
+      renderInspector();
+    }
+
+    // limpia valores de atributos que dejaron de ser visibles
+    function pruneHidden() {
+      Object.keys(ATTRS).forEach(function (code) {
+        if (ATTRS[code].showIf && !visible(code)) delete state.values[code];
+      });
+    }
+
+    document.addEventListener("click", function (ev) {
+      const t = ev.target.closest("button");
+      // un clic fuera del desplegable lo cierra, pero no se traga la acción del botón
+      if (!ev.target.closest(".combo") && state.comboOpen) {
+        state.comboOpen = null; state.comboQuery = "";
+        if (!t) { render(); return; }
+      }
+      if (!t) return;
+      const d = t.dataset;
+
+      // el usuario elige un tipo de prenda; la categoría solo presta el contrato
+      if (d.tipo) {
+        const x = tipoByName(d.tipo);
+        state.tipo = x ? x.t : null;
+        state.cat = x ? x.cat : null;
+        state.values = {};
+        applyDefaults();
+        render();
+        return;
+      }
+
+      if (d.single) {
+        state.values[d.single] = state.values[d.single] === d.val ? undefined : d.val;
+        if (state.values[d.single] === undefined) delete state.values[d.single];
+        pruneHidden(); render(); return;
+      }
+
+      if (d.multi) {
+        const cur = Array.isArray(state.values[d.multi]) ? state.values[d.multi].slice() : [];
+        const i = cur.indexOf(d.val);
+        if (i === -1) cur.push(d.val); else cur.splice(i, 1);
+        if (cur.length) state.values[d.multi] = cur; else delete state.values[d.multi];
+        pruneHidden(); render(); return;
+      }
+
+      if (d.pick) {
+        state.values[d.pick] = d.val;
+        state.comboOpen = null; state.comboQuery = "";
+        pruneHidden(); render(); return;
+      }
+
+      if (d.reset) { state.values = {}; applyDefaults(); render(); return; }
+
+      /* --- depuración de campos, valores y tipos de prenda --- */
+      if (d.editar) { state.editar = !state.editar; state.aviso = ""; render(); return; }
+      if (d.alcance) { state.alcance = d.alcance; render(); return; }
+      if (d.quitar) { editarCampo(d.quitar, true); pruneHidden(); render(); return; }
+      if (d.agregar) { editarCampo(d.agregar, false); render(); return; }
+      if (d.quitarval || d.restval) {
+        const p = (d.quitarval || d.restval).split("::");
+        editarValor(p[0], p[1], !!d.quitarval);
+        pruneHidden(); render(); return;
+      }
+      if (d.quitartipo) { editarTipo(d.quitartipo, true); render(); return; }
+      if (d.resttipo) { editarTipo(d.resttipo, false); render(); return; }
+      if (d.restcampo) { reasignarCampo(d.restcampo, null); render(); return; }
+      if (d.restablecer) {
+        delete EDICIONES[d.restablecer];
+        state.sucio = true; state.aviso = "";
+        pruneHidden(); render(); return;
+      }
+      if (d.guardar) { guardarEdiciones(); return; }
+    });
+
+    document.addEventListener("change", function (ev) {
+      const d = ev.target.dataset;
+      if (d.bool) { state.values[d.bool] = ev.target.checked; pruneHidden(); render(); return; }
+      if (d.campo) { reasignarCampo(d.campo, ev.target.value); render(); return; }
+    });
+
+    document.addEventListener("input", function (ev) {
+      const el = ev.target, d = el.dataset;
+
+      if (d.num) {
+        if (el.value === "") delete state.values[d.num]; else state.values[d.num] = el.value;
+        renderInspector(); renderRail(); return;
+      }
+      if (d.text) {
+        if (el.value === "") delete state.values[d.text]; else state.values[d.text] = el.value;
+        renderInspector(); renderRail(); return;
+      }
+      if (d.combo) {
+        state.comboOpen = d.combo; state.comboQuery = el.value;
+        const pos = el.selectionStart;
+        render();
+        const again = document.querySelector('[data-combo="' + d.combo + '"]');
+        if (again) { again.focus(); try { again.setSelectionRange(pos, pos); } catch (e) { } }
+        return;
+      }
+    });
+
+    document.addEventListener("focusin", function (ev) {
+      const d = ev.target.dataset;
+      if (d && d.combo && state.comboOpen !== d.combo) {
+        state.comboOpen = d.combo; state.comboQuery = "";
+        render();
+        const again = document.querySelector('[data-combo="' + d.combo + '"]');
+        if (again) again.focus();
+      }
+    });
+
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key === "Escape" && state.comboOpen) { state.comboOpen = null; state.comboQuery = ""; render(); }
+    });
+
+    $("#themeBtn").addEventListener("click", function () {
+      const root = document.documentElement;
+      const now = root.getAttribute("data-theme");
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const current = now || (prefersDark ? "dark" : "light");
+      root.setAttribute("data-theme", current === "dark" ? "light" : "dark");
+      render();
+    });
+
+    applyDefaults();
+    render();
+
+    // ¿está servido por servidor.py? Si sí, se puede guardar en el archivo.
+    if (typeof fetch === "function") {
+      fetch("api/ping").then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+        if (d && d.ok) { state.servidor = true; render(); }
+      }).catch(function () { /* abierto como archivo: modo solo lectura */ });
+    }
+
+    // avisar si se cierra con cambios sin guardar
+    window.addEventListener("beforeunload", function (ev) {
+      if (state.sucio && state.servidor) { ev.preventDefault(); ev.returnValue = ""; }
+    });
+  </script>
+
+</body>
+
+</html>
