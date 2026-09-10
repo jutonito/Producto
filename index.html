@@ -1265,6 +1265,120 @@
     html {
       scroll-behavior: smooth
     }
+
+    /* ---------- muestras de color ---------- */
+    .colores {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));
+      gap: 7px;
+      max-width: 700px
+    }
+
+    .color {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 6px 9px;
+      cursor: pointer;
+      text-align: left;
+      min-width: 0;
+    }
+
+    .color:hover {
+      border-color: var(--accent-line)
+    }
+
+    .color[aria-pressed="true"] {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      box-shadow: inset 0 0 0 1px var(--accent)
+    }
+
+    .color.sug {
+      border-style: dashed
+    }
+
+    .color .mancha {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      flex: none;
+      box-shadow: inset 0 0 0 1px rgba(128, 128, 128, .45)
+    }
+
+    .color .ctxt {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      line-height: 1.25
+    }
+
+    .color .cn {
+      font-size: 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .color .cid {
+      font-size: 9.5px;
+      color: var(--ink-3);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap
+    }
+
+    .color .cid.nueva {
+      color: var(--thread-ink);
+      font-family: var(--mono);
+      font-weight: 700
+    }
+
+    /* ---------- buscador de tipo de prenda ---------- */
+    .buscar {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin: 8px 0 10px
+    }
+
+    .buscar input {
+      flex: 1;
+      min-width: 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 6px 9px;
+      font-size: 12.5px;
+      color: inherit;
+    }
+
+    .buscar input:hover {
+      border-color: var(--accent-line)
+    }
+
+    .buscar input::placeholder {
+      color: var(--ink-3)
+    }
+
+    .buscar .btn {
+      padding: 4px 8px;
+      font-size: 13px;
+      line-height: 1.2
+    }
+
+    .stage .buscar {
+      max-width: 420px;
+      margin: 12px 0 0
+    }
+
+    .sin-hit {
+      color: var(--ink-3);
+      font-size: 12px;
+      padding: 6px 2px
+    }
   </style>
 </head>
 
@@ -1324,10 +1438,210 @@
       },
 
       marca: {
-        label: "Marca", g: "ident", input: "text", legacy: "referencias_gru",
+        label: "Marca", g: "ident", input: "single", legacy: "referencias_gru",
         src: "referencias_gru",
-        help: "La marca se ubica en la tabla referencias_gru. El catálogo de valores sale de ahí; aquí se captura como texto mientras se carga la lista.",
-        placeholder: "Ej. la marca como está en referencias_gru"
+        help: "Las 199 marcas de la tabla referencias_gru. En calzado, la lista de Línea / modelo depende de la marca que elijas aquí.",
+        values: [
+        v("SKLEPPER"),
+        v("STUDIO F"),
+        v("OXIGENO"),
+        v("LIQUID"),
+        v("ROSS"),
+        v("RAM"),
+        v("POSTER"),
+        v("BIG STAR"),
+        v("STF"),
+        v("GENERICO"),
+        v("J. CREW"),
+        v("MUESTRA"),
+        v("BAXTER SPRINGS"),
+        v("GROGGY"),
+        v("GAS"),
+        v("REFORT"),
+        v("SALOON"),
+        v("PARACHUTE"),
+        v("YOKO"),
+        v("GIORGIO CAPRIANI"),
+        v("ENERGY"),
+        v("OXXO"),
+        v("DEXTER"),
+        v("USED"),
+        v("PEPE"),
+        v("VSWEAR"),
+        v("PUMA"),
+        v("SOCIEDAD SECRETA"),
+        v("ABERCROMBIE"),
+        v("LION"),
+        v("QUEST"),
+        v("THE BLUE"),
+        v("BIG JOHN"),
+        v("SJ STUDIO"),
+        v("PRAGA"),
+        v("PUTT"),
+        v("TH"),
+        v("UNPLUGEED"),
+        v("MUAA"),
+        v("MISS ME"),
+        v("PORTE"),
+        v("EVISU"),
+        v("ECLECTA"),
+        v("TRIPLE XXX"),
+        v("XTREME"),
+        v("SKECHERS"),
+        v("REEBOK"),
+        v("FILA"),
+        v("LOTTO"),
+        v("ECKO"),
+        v("TOP-R"),
+        v("VANS"),
+        v("ARMANI"),
+        v("GUESS"),
+        v("CONVERSE"),
+        v("GIRBAUD"),
+        v("LEVIS"),
+        v("NO PROJECT"),
+        v("PF FLAYERS"),
+        v("KUXT JEANS"),
+        v("JEEP WATCHES"),
+        v("ODM WATCHES"),
+        v("VELOCE"),
+        v("ODDS & EVENS"),
+        v("GLOW"),
+        v("CONSUMO"),
+        v("INSUMOS"),
+        v("MATERIA PRIMA"),
+        v("TRABAJOS O SERVICIOS"),
+        v("PAPELERIA"),
+        v("CONSUMO INTERNO"),
+        v("ACTIVOS"),
+        v("PROMOCION STIRPE"),
+        v("UNSER"),
+        v("CHEVIGNON"),
+        v("AMERICANINO"),
+        v("DEREK"),
+        v("UNICO"),
+        v("DIESEL"),
+        v("LACOSTE"),
+        v("EDC BY ESPRIT"),
+        v("ADIDAS"),
+        v("COLOR SIETE"),
+        v("ROSE PISTOL"),
+        v("TIGER"),
+        v("RIFLE"),
+        v("ESPRIT"),
+        v("FOSSIL"),
+        v("MICHAEL KORS"),
+        v("CARRERA"),
+        v("RAY BAN"),
+        v("NEW BALANCE"),
+        v("G-STAR"),
+        v("NIKE"),
+        v("CALVIN KLEIN"),
+        v("SPERRY TOP SIDER"),
+        v("GYROC CLUB"),
+        v("RUE"),
+        v("LE COQ"),
+        v("TOY NAILPOLISH"),
+        v("TOMMY"),
+        v("VOGUE"),
+        v("QUIKSILVER"),
+        v("SUPERDRY"),
+        v("ROXY"),
+        v("RADII"),
+        v("Q7"),
+        v("POLO"),
+        v("OAKLEY"),
+        v("TIMBERLAND"),
+        v("HUGO BOSS"),
+        v("BVLGARI"),
+        v("SEEGLER"),
+        v("CELIO"),
+        v("STANCE"),
+        v("SKULLCANDY"),
+        v("INVICTA"),
+        v("ARNETTE"),
+        v("PAGANI"),
+        v("CRUYFF"),
+        v("FLOATS"),
+        v("GOLA"),
+        v("EPIC"),
+        v("RELICS"),
+        v("TYPER"),
+        v("X2"),
+        v("BEHIND"),
+        v("CLOVER"),
+        v("SCOUT"),
+        v("ALPINESTARS"),
+        v("KENNETH COLE"),
+        v("U82"),
+        v("JACK and JONES"),
+        v("GOORIN"),
+        v("NEW ERA"),
+        v("G-SHOCK"),
+        v("ASICS"),
+        v("CUBITT"),
+        v("VERSACE"),
+        v("MBLEM"),
+        v("RS"),
+        v("DEREK LOVELY"),
+        v("CREW"),
+        v("TYPER JR"),
+        v("CASIO"),
+        v("SWATCH"),
+        v("HURLEY"),
+        v("TIMEX"),
+        v("NAUTICA"),
+        v("POLAROID"),
+        v("REPLAY"),
+        v("47"),
+        v("PEPE JEANS"),
+        v("ON RUNNING"),
+        v("MULCO"),
+        v("TISSOT"),
+        v("CLEMONT"),
+        v("MONASTERY"),
+        v("STEVE MADDEN"),
+        v("BLACKOUD"),
+        v("MUNDUS"),
+        v("JANSPORT"),
+        v("CURREN"),
+        v("ARMANI EXCHANGE"),
+        v("JOHN HATTER"),
+        v("KING APPAREL"),
+        v("TIME FORCE"),
+        v("LATTAFA"),
+        v("MAISON ALHAMBRA"),
+        v("ARMAF"),
+        v("BLOW UP"),
+        v("ART DIST"),
+        v("PSYCHO BUNNY"),
+        v("VICTOR"),
+        v("VEJA"),
+        v("REMANENCE"),
+        v("SCALPERS"),
+        v("PILATOS"),
+        v("SPRAYGROUND"),
+        v("WEEDGREEN"),
+        v("BITEMPORT"),
+        v("Ariana Grande"),
+        v("HOFF"),
+        v("HOKA"),
+        v("FESTINA"),
+        v("ADIDAS ORIGINALS"),
+        v("VOET"),
+        v("FERRARI"),
+        v("AURUM 79"),
+        v("RASASI"),
+        v("AFNAN"),
+        v("SWISS ARABIAN"),
+        v("FRENCH AVENUE"),
+        v("ATHOOR"),
+        v("RAYHAAN"),
+        v("EMPER"),
+        v("TITAN"),
+        v("MAHAYA"),
+        v("HAMIDI")
+        ]
       },
 
       genero: {
@@ -1340,7 +1654,7 @@
       linea: {
         label: "Línea / modelo", g: "ident", input: "single", legacy: "tipo_6",
         scopeTipo: true,
-        help: "Solo líneas y modelos reales. Los 48 valores de tipo_6 que en realidad eran fit, silueta o talla se movieron a su atributo; aquí no aparecen.",
+        help: "Se guardaba en tipo_6, pero se empezó a crear en tipo_6 y en AFamilia a la vez: hoy la familia vive en los dos, y AFamilia es la que está más completa. Aquí solo hay líneas y modelos reales; los 48 valores de tipo_6 que en realidad eran fit, silueta o talla se movieron a su atributo.",
         values: [
           v("237", { lid: 385, tipos: ["TENIS"] }),
           v("500", { lid: 316, tipos: ["TENIS"] }),
@@ -1485,7 +1799,563 @@
           v("ZOOM", { lid: 445, tipos: ["TENIS"] }),
           v("(sin descripción · id 318)", { lid: 318, off: 1, tipos: ["BUZO", "CAMISA", "CHAQUETA"] }),
           v("(sin descripción · id 424)", { lid: 424, off: 1, tipos: ["BUZO", "CAMISA", "CHAQUETA"] }),
+          /* --- familias de calzado (familias_marcas_calzado_con_marca.csv).
+             Solo salen si la marca elegida es la suya: mk. --- */
+          v("ADIPISTA", { mk: "ADIDAS", fid: 1605, cz: 1 }),
+          v("ADVANTAGE", { mk: "ADIDAS", fid: 487, cz: 1 }),
+          v("ADVANTAGE 2.0", { mk: "ADIDAS", fid: 1415, cz: 1 }),
+          v("ADVANTAGE BASE 2.0", { mk: "ADIDAS", fid: 490, cz: 1 }),
+          v("ALPHAEDGE", { mk: "ADIDAS", fid: 500, cz: 1 }),
+          v("ALPHARESPONSE", { mk: "ADIDAS", fid: 502, cz: 1 }),
+          v("ASPYRE", { mk: "ADIDAS", fid: 495, cz: 1 }),
+          v("BARREDA", { mk: "ADIDAS", fid: 496, cz: 1 }),
+          v("BARREDA DECODE", { mk: "ADIDAS", fid: 1410, cz: 1 }),
+          v("BARREDA DECODE AUDI", { mk: "ADIDAS", fid: 1863, cz: 1 }),
+          v("BARREDA DECODE MER", { mk: "ADIDAS", fid: 1957, cz: 1 }),
+          v("BARREDA LO", { mk: "ADIDAS", fid: 1692, cz: 1 }),
+          v("BARREDA SHOES", { mk: "ADIDAS", fid: 1407, cz: 1 }),
+          v("BRAVADA", { mk: "ADIDAS", fid: 825, cz: 1 }),
+          v("BRAVADA 2.0 PLATFOR", { mk: "ADIDAS", fid: 1414, cz: 1 }),
+          v("BREAK START", { mk: "ADIDAS", fid: 493, cz: 1 }),
+          v("BREAK START 2000", { mk: "ADIDAS", fid: 1690, cz: 1 }),
+          v("BREAKNET", { mk: "ADIDAS", fid: 1175, cz: 1 }),
+          v("BREAKNET 2.0", { mk: "ADIDAS", fid: 478, cz: 1 }),
+          v("BREAKNET 3.0", { mk: "ADIDAS", fid: 1929, cz: 1 }),
+          v("BREAKNET SLEEK", { mk: "ADIDAS", fid: 1413, cz: 1 }),
+          v("CAMPUS 005 ORIGINALS", { mk: "ADIDAS", fid: 1600, cz: 1 }),
+          v("CAMPUS 005 W ORIGINALS", { mk: "ADIDAS", fid: 1597, cz: 1 }),
+          v("CLOUDFOAM", { mk: "ADIDAS", fid: 2020, cz: 1 }),
+          v("CLOUDFOAM FEX-RA", { mk: "ADIDAS", fid: 2021, cz: 1 }),
+          v("CLOUDFOAM FLEX RAPIDFIT", { mk: "ADIDAS", fid: 2022, cz: 1 }),
+          v("CLOUDFOAM MOVE", { mk: "ADIDAS", fid: 498, cz: 1 }),
+          v("COURT 24", { mk: "ADIDAS", fid: 491, cz: 1 }),
+          v("COURT 24 FTWBLA", { mk: "ADIDAS", fid: 1408, cz: 1 }),
+          v("COURT 3.0", { mk: "ADIDAS", fid: 486, cz: 1 }),
+          v("COURT BASE 2 0", { mk: "ADIDAS", fid: 421, cz: 1 }),
+          v("COURT BOLD", { mk: "ADIDAS", fid: 505, cz: 1 }),
+          v("COURTBLOCK", { mk: "ADIDAS", fid: 503, cz: 1 }),
+          v("COURTBLOCK BOLD", { mk: "ADIDAS", fid: 1412, cz: 1 }),
+          v("COURTSET", { mk: "ADIDAS", fid: 530, cz: 1 }),
+          v("COURTSET 2 OPTICAL", { mk: "ADIDAS", fid: 1428, cz: 1 }),
+          v("CRAZYCHAOS 2000", { mk: "ADIDAS", fid: 492, cz: 1 }),
+          v("FLEX ADVANTAGE", { mk: "ADIDAS", fid: 1134, cz: 1 }),
+          v("GAZELLE INDOOR ORIGINALS", { mk: "ADIDAS", fid: 1602, cz: 1 }),
+          v("GAZELLE ORIGINALS", { mk: "ADIDAS", fid: 1599, cz: 1 }),
+          v("GRAND COURT 2.0", { mk: "ADIDAS", fid: 1391, cz: 1 }),
+          v("GRAND COURT 3.0", { mk: "ADIDAS", fid: 1452, cz: 1 }),
+          v("GRAND COURT ALPHA", { mk: "ADIDAS", fid: 499, cz: 1 }),
+          v("GRAND COURT ALPHA 00S", { mk: "ADIDAS", fid: 1536, cz: 1 }),
+          v("GRAND COURT BASE 2.", { mk: "ADIDAS", fid: 1537, cz: 1 }),
+          v("GRAND COURT BASE 2.0", { mk: "ADIDAS", fid: 504, cz: 1 }),
+          v("GRAND COURT LO", { mk: "ADIDAS", fid: 1899, cz: 1 }),
+          v("GRAND COURT PLATFORM", { mk: "ADIDAS", fid: 506, cz: 1 }),
+          v("HOOPS 3 0", { mk: "ADIDAS", fid: 423, cz: 1 }),
+          v("LITE RACER 4.0", { mk: "ADIDAS", fid: 507, cz: 1 }),
+          v("PARK ST", { mk: "ADIDAS", fid: 501, cz: 1 }),
+          v("PARK ST 2.0", { mk: "ADIDAS", fid: 1691, cz: 1 }),
+          v("RUN 70S", { mk: "ADIDAS", fid: 485, cz: 1 }),
+          v("RUN 70S 2.0", { mk: "ADIDAS", fid: 1455, cz: 1 }),
+          v("RUN 72", { mk: "ADIDAS", fid: 489, cz: 1 }),
+          v("RUN 84", { mk: "ADIDAS", fid: 497, cz: 1 }),
+          v("RUNNING RUNFALCON 5 TR", { mk: "ADIDAS", fid: 1930, cz: 1 }),
+          v("SAMBA OG ORIGINALS", { mk: "ADIDAS", fid: 1596, cz: 1 }),
+          v("SAMBAE", { mk: "ADIDAS", fid: 2024, cz: 1 }),
+          v("URBAN COURT", { mk: "ADIDAS", fid: 488, cz: 1 }),
+          v("VL COURT", { mk: "ADIDAS", fid: 1174, cz: 1 }),
+          v("VL COURT 3.0", { mk: "ADIDAS", fid: 795, cz: 1 }),
+          v("VL COURT AUDI", { mk: "ADIDAS", fid: 1956, cz: 1 }),
+          v("VL COURT BASE", { mk: "ADIDAS", fid: 1409, cz: 1 }),
+          v("VL COURT BOLD", { mk: "ADIDAS", fid: 1411, cz: 1 }),
+          v("VL COURT MER", { mk: "ADIDAS", fid: 1958, cz: 1 }),
+          v("EX89", { mk: "ASICS", fid: 514, cz: 1 }),
+          v("GEL - NYC 2.0", { mk: "ASICS", fid: 1820, cz: 1 }),
+          v("GEL NYC", { mk: "ASICS", fid: 513, cz: 1 }),
+          v("GEL-1130", { mk: "ASICS", fid: 520, cz: 1 }),
+          v("GEL-CUMULUS", { mk: "ASICS", fid: 1674, cz: 1 }),
+          v("GEL-LYTE V", { mk: "ASICS", fid: 508, cz: 1 }),
+          v("GT-1000 13", { mk: "ASICS", fid: 510, cz: 1 }),
+          v("GT-2000 13", { mk: "ASICS", fid: 515, cz: 1 }),
+          v("JAPAN S", { mk: "ASICS", fid: 516, cz: 1 }),
+          v("NOVABLAST 4", { mk: "ASICS", fid: 509, cz: 1 }),
+          v("NOVABLAST 4TR", { mk: "ASICS", fid: 511, cz: 1 }),
+          v("NOVABLAST 5", { mk: "ASICS", fid: 519, cz: 1 }),
+          v("NOVABLAST 5TR", { mk: "ASICS", fid: 518, cz: 1 }),
+          v("PATRIOT 13", { mk: "ASICS", fid: 517, cz: 1 }),
+          v("TIGER RUNNER", { mk: "ASICS", fid: 512, cz: 1 }),
+          v("ASTRA", { mk: "LE COQ", fid: 526, cz: 1, de: "Le Coq Sportif" }),
+          v("ASTRA NEON", { mk: "LE COQ", fid: 2013, cz: 1, de: "Le Coq Sportif" }),
+          v("ASTRA OPTICAL", { mk: "LE COQ", fid: 2012, cz: 1, de: "Le Coq Sportif" }),
+          v("ASTRAL MEN", { mk: "LE COQ", fid: 1540, cz: 1, de: "Le Coq Sportif" }),
+          v("ASTRAL WOMEN", { mk: "LE COQ", fid: 1543, cz: 1, de: "Le Coq Sportif" }),
+          v("ASTRA_2", { mk: "LE COQ", fid: 1214, cz: 1, de: "Le Coq Sportif" }),
+          v("CLICK", { mk: "LE COQ", fid: 734, cz: 1, de: "Le Coq Sportif" }),
+          v("COURTCLASSIC", { mk: "LE COQ", fid: 531, cz: 1, de: "Le Coq Sportif" }),
+          v("DYNACTIF", { mk: "LE COQ", fid: 527, cz: 1, de: "Le Coq Sportif" }),
+          v("INTENSE", { mk: "LE COQ", fid: 732, cz: 1, de: "Le Coq Sportif" }),
+          v("LCS", { mk: "LE COQ", fid: 529, cz: 1, de: "Le Coq Sportif" }),
+          v("LCS DERBY 1 OPTICAL", { mk: "LE COQ", fid: 1430, cz: 1, de: "Le Coq Sportif" }),
+          v("LCS DERBY CLASSIC OPTICAL", { mk: "LE COQ", fid: 1429, cz: 1, de: "Le Coq Sportif" }),
+          v("LCS SLIDER", { mk: "LE COQ", fid: 2015, cz: 1, de: "Le Coq Sportif" }),
+          v("MANTA", { mk: "LE COQ", fid: 522, cz: 1, de: "Le Coq Sportif" }),
+          v("PLATINIUM", { mk: "LE COQ", fid: 525, cz: 1, de: "Le Coq Sportif" }),
+          v("RACERONE", { mk: "LE COQ", fid: 523, cz: 1, de: "Le Coq Sportif" }),
+          v("RACERONE 2 OPTICAL", { mk: "LE COQ", fid: 1427, cz: 1, de: "Le Coq Sportif" }),
+          v("RACERONE_2 W", { mk: "LE COQ", fid: 1394, cz: 1, de: "Le Coq Sportif" }),
+          v("RAINBOW", { mk: "LE COQ", fid: 737, cz: 1, de: "Le Coq Sportif" }),
+          v("TECNO", { mk: "LE COQ", fid: 733, cz: 1, de: "Le Coq Sportif" }),
+          v("VELOCE", { mk: "LE COQ", fid: 521, cz: 1, de: "Le Coq Sportif" }),
+          v("ZENIT", { mk: "LE COQ", fid: 736, cz: 1, de: "Le Coq Sportif" }),
+          v("1906", { mk: "NEW BALANCE", fid: 1991, cz: 1 }),
+          v("1990", { mk: "NEW BALANCE", fid: 1397, cz: 1 }),
+          v("237", { mk: "NEW BALANCE", fid: 416, cz: 1 }),
+          v("327", { mk: "NEW BALANCE", fid: 415, cz: 1 }),
+          v("480", { mk: "NEW BALANCE", fid: 420, cz: 1 }),
+          v("530", { mk: "NEW BALANCE", fid: 419, cz: 1 }),
+          v("550", { mk: "NEW BALANCE", fid: 412, cz: 1 }),
+          v("574", { mk: "NEW BALANCE", fid: 413, cz: 1 }),
+          v("725", { mk: "NEW BALANCE", fid: 414, cz: 1 }),
+          v("80", { mk: "NEW BALANCE", fid: 417, cz: 1 }),
+          v("9060", { mk: "NEW BALANCE", fid: 418, cz: 1 }),
+          v("AIR FLIGHT HUARACHE", { mk: "NIKE", fid: 430, cz: 1 }),
+          v("AIR FORCE 1", { mk: "NIKE", fid: 459, cz: 1 }),
+          v("AIR FORCE 1 07", { mk: "NIKE", fid: 1436, cz: 1 }),
+          v("AIR FORCE 1 07 ESSENTIAL", { mk: "NIKE", fid: 1444, cz: 1 }),
+          v("AIR FORCE 1 07 LV8", { mk: "NIKE", fid: 1433, cz: 1 }),
+          v("AIR FORCE 1 07 NEXT NATURE", { mk: "NIKE", fid: 1446, cz: 1 }),
+          v("AIR FORCE 1.07", { mk: "NIKE", fid: 424, cz: 1 }),
+          v("AIR FORCE LV8", { mk: "NIKE", fid: 452, cz: 1 }),
+          v("AIR FORCE ONE", { mk: "NIKE", fid: 432, cz: 1 }),
+          v("AIR HEIGHTS", { mk: "NIKE", fid: 475, cz: 1 }),
+          v("AIR JORDAN 1", { mk: "NIKE", fid: 435, cz: 1, de: "Jordan" }),
+          v("AIR JORDAN 1 LOW", { mk: "NIKE", fid: 1524, cz: 1, de: "Jordan" }),
+          v("AIR JORDAN 4", { mk: "NIKE", fid: 465, cz: 1, de: "Jordan" }),
+          v("AIR JORDAN 4 RM", { mk: "NIKE", fid: 1527, cz: 1, de: "Jordan" }),
+          v("AIR JORDAN 4RM", { mk: "NIKE", fid: 472, cz: 1, de: "Jordan" }),
+          v("AIR JORDAN ELEVATE", { mk: "NIKE", fid: 471, cz: 1, de: "Jordan" }),
+          v("AIR JORDAN LOW", { mk: "NIKE", fid: 453, cz: 1, de: "Jordan" }),
+          v("AIR JORDAN MID", { mk: "NIKE", fid: 436, cz: 1, de: "Jordan" }),
+          v("AIR MAX", { mk: "NIKE", fid: 429, cz: 1 }),
+          v("AIR MAX 1", { mk: "NIKE", fid: 440, cz: 1 }),
+          v("AIR MAX 90", { mk: "NIKE", fid: 439, cz: 1 }),
+          v("AIR MAX 97", { mk: "NIKE", fid: 437, cz: 1 }),
+          v("AIR MAX BOLT", { mk: "NIKE", fid: 730, cz: 1 }),
+          v("AIR MAX CORRELATE", { mk: "NIKE", fid: 463, cz: 1 }),
+          v("AIR MAX EXCCE", { mk: "NIKE", fid: 451, cz: 1 }),
+          v("AIR MAX EXCEE", { mk: "NIKE", fid: 454, cz: 1 }),
+          v("AIR MAX FIRE", { mk: "NIKE", fid: 1931, cz: 1 }),
+          v("AIR MAX FURYOSA", { mk: "NIKE", fid: 469, cz: 1 }),
+          v("AIR MAX INTRLK", { mk: "NIKE", fid: 476, cz: 1 }),
+          v("AIR MAX INTRLK LITE", { mk: "NIKE", fid: 1443, cz: 1 }),
+          v("AIR MAX NAUSIS", { mk: "NIKE", fid: 449, cz: 1 }),
+          v("AIR MAX NAUXIS", { mk: "NIKE", fid: 457, cz: 1 }),
+          v("AIR MAX PORTAL", { mk: "NIKE", fid: 477, cz: 1 }),
+          v("AIR MAX SYSTM", { mk: "NIKE", fid: 438, cz: 1 }),
+          v("AIR MAX VERSE", { mk: "NIKE", fid: 464, cz: 1 }),
+          v("AIR PEGASUS 2005", { mk: "NIKE", fid: 455, cz: 1 }),
+          v("AIR ZOOM PEGASUS 42", { mk: "NIKE", fid: 1968, cz: 1 }),
+          v("BIG LOW", { mk: "NIKE", fid: 461, cz: 1 }),
+          v("BLAZER LOW", { mk: "NIKE", fid: 426, cz: 1 }),
+          v("CORTEZ", { mk: "NIKE", fid: 441, cz: 1 }),
+          v("COURT LITE", { mk: "NIKE", fid: 470, cz: 1 }),
+          v("COURT ROYALE", { mk: "NIKE", fid: 467, cz: 1 }),
+          v("COURT VISION", { mk: "NIKE", fid: 425, cz: 1 }),
+          v("COURT VISION ALTA", { mk: "NIKE", fid: 1447, cz: 1 }),
+          v("COURT VISION LO", { mk: "NIKE", fid: 1525, cz: 1 }),
+          v("COURT VISION LO NN", { mk: "NIKE", fid: 1523, cz: 1 }),
+          v("DEFYALLDAY", { mk: "NIKE", fid: 447, cz: 1 }),
+          v("DOWNSHIFTER", { mk: "NIKE", fid: 428, cz: 1 }),
+          v("DOWNSHIFTER 13", { mk: "NIKE", fid: 1439, cz: 1 }),
+          v("DOWNSHIFTER 14", { mk: "NIKE", fid: 1882, cz: 1 }),
+          v("DUNK LOW", { mk: "NIKE", fid: 466, cz: 1 }),
+          v("DUNK LOW RETRO", { mk: "NIKE", fid: 442, cz: 1 }),
+          v("DUNK LOW RETRO SE", { mk: "NIKE", fid: 1437, cz: 1 }),
+          v("DUNK LOW RETRO SE 2", { mk: "NIKE", fid: 1435, cz: 1 }),
+          v("EXPERIENCE RIN", { mk: "NIKE", fid: 448, cz: 1 }),
+          v("FULL FORCE", { mk: "NIKE", fid: 427, cz: 1 }),
+          v("FULL FORCE LO", { mk: "NIKE", fid: 1526, cz: 1 }),
+          v("GAMMA", { mk: "NIKE", fid: 468, cz: 1 }),
+          v("GAMMA FORCE", { mk: "NIKE", fid: 1441, cz: 1 }),
+          v("GRANDSTAND II", { mk: "NIKE", fid: 456, cz: 1 }),
+          v("JORDAN FLIGHT COURT", { mk: "NIKE", fid: 1645, cz: 1, de: "Jordan" }),
+          v("KILLSHOT 2", { mk: "NIKE", fid: 445, cz: 1 }),
+          v("KILLSHOT 2 LEATHER", { mk: "NIKE", fid: 1434, cz: 1 }),
+          v("M2K TEKNO", { mk: "NIKE", fid: 474, cz: 1 }),
+          v("P-6000", { mk: "NIKE", fid: 433, cz: 1 }),
+          v("P-6000 GLD", { mk: "NIKE", fid: 1529, cz: 1 }),
+          v("RENEW RIDE", { mk: "NIKE", fid: 446, cz: 1 }),
+          v("RUN SWIFT", { mk: "NIKE", fid: 443, cz: 1 }),
+          v("SB FC CLASSIC", { mk: "NIKE", fid: 460, cz: 1 }),
+          v("SB MALOR", { mk: "NIKE", fid: 458, cz: 1 }),
+          v("V2K RUN", { mk: "NIKE", fid: 473, cz: 1 }),
+          v("VAPOR", { mk: "NIKE", fid: 551, cz: 1 }),
+          v("VOMERO 5", { mk: "NIKE", fid: 735, cz: 1 }),
+          v("W AF1 SHADOW", { mk: "NIKE", fid: 431, cz: 1 }),
+          v("W CORTEZ LTR", { mk: "NIKE", fid: 1449, cz: 1 }),
+          v("W CORTEZ TXT", { mk: "NIKE", fid: 1646, cz: 1 }),
+          v("W COURT VISION ALTA", { mk: "NIKE", fid: 1442, cz: 1 }),
+          v("W DUNK", { mk: "NIKE", fid: 1404, cz: 1 }),
+          v("W DUNK LOW NC", { mk: "NIKE", fid: 1533, cz: 1 }),
+          v("W P-6000", { mk: "NIKE", fid: 1177, cz: 1 }),
+          v("W V2K", { mk: "NIKE", fid: 1178, cz: 1 }),
+          v("W V2K RUN", { mk: "NIKE", fid: 1450, cz: 1 }),
+          v("W ZOOM VOMERO 5", { mk: "NIKE", fid: 1451, cz: 1 }),
+          v("WCOURT VISION LO NN", { mk: "NIKE", fid: 1445, cz: 1 }),
+          v("WMNS AIR MAX BOLT", { mk: "NIKE", fid: 1448, cz: 1 }),
+          v("CLOUD 4", { mk: "ON RUNNING", fid: 1938, cz: 1 }),
+          v("CLOUD 5", { mk: "ON RUNNING", fid: 536, cz: 1 }),
+          v("CLOUD 6", { mk: "ON RUNNING", fid: 684, cz: 1 }),
+          v("CLOUD 6 PUSH", { mk: "ON RUNNING", fid: 1823, cz: 1 }),
+          v("CLOUD 6 VERSA", { mk: "ON RUNNING", fid: 1821, cz: 1 }),
+          v("CLOUD COAST", { mk: "ON RUNNING", fid: 541, cz: 1 }),
+          v("CLOUD PUSH", { mk: "ON RUNNING", fid: 682, cz: 1 }),
+          v("CLOUD X4 ECLIPSE", { mk: "ON RUNNING", fid: 1936, cz: 1 }),
+          v("CLOUDFLOW", { mk: "ON RUNNING", fid: 532, cz: 1 }),
+          v("CLOUDFLYER 4", { mk: "ON RUNNING", fid: 538, cz: 1 }),
+          v("CLOUDGO", { mk: "ON RUNNING", fid: 534, cz: 1 }),
+          v("CLOUDHORIZON", { mk: "ON RUNNING", fid: 1642, cz: 1 }),
+          v("CLOUDMONSTER", { mk: "ON RUNNING", fid: 543, cz: 1 }),
+          v("CLOUDNOVA", { mk: "ON RUNNING", fid: 829, cz: 1 }),
+          v("CLOUDNOVA 2", { mk: "ON RUNNING", fid: 1643, cz: 1 }),
+          v("CLOUDNOVA FLUX", { mk: "ON RUNNING", fid: 542, cz: 1 }),
+          v("CLOUDNOVA FORM", { mk: "ON RUNNING", fid: 539, cz: 1 }),
+          v("CLOUDRIFT", { mk: "ON RUNNING", fid: 540, cz: 1 }),
+          v("CLOUDRUNNER 2", { mk: "ON RUNNING", fid: 545, cz: 1 }),
+          v("CLOUDRUNNER 3", { mk: "ON RUNNING", fid: 1937, cz: 1 }),
+          v("CLOUDSURFER", { mk: "ON RUNNING", fid: 1213, cz: 1 }),
+          v("CLOUDSURFER 2", { mk: "ON RUNNING", fid: 1644, cz: 1 }),
+          v("CLOUDSWIFT", { mk: "ON RUNNING", fid: 1963, cz: 1 }),
+          v("CLOUDSWIFT 3", { mk: "ON RUNNING", fid: 535, cz: 1 }),
+          v("CLOUDSWIFT 4", { mk: "ON RUNNING", fid: 828, cz: 1 }),
+          v("CLOUDTILT", { mk: "ON RUNNING", fid: 681, cz: 1 }),
+          v("CLOUDULTRA", { mk: "ON RUNNING", fid: 544, cz: 1 }),
+          v("CLOUDULTRA 2", { mk: "ON RUNNING", fid: 537, cz: 1 }),
+          v("CLOUDVISTA", { mk: "ON RUNNING", fid: 533, cz: 1 }),
+          v("CLOUDVISTA 2", { mk: "ON RUNNING", fid: 1962, cz: 1 }),
+          v("CLOUDVISTA 2 WATERPROOF", { mk: "ON RUNNING", fid: 1702, cz: 1 }),
+          v("PLUSHFOAM-CLOUDRID", { mk: "ON RUNNING", fid: 1974, cz: 1 }),
+          v("THE ROGER CLUBHOUSE", { mk: "ON RUNNING", fid: 683, cz: 1 }),
+          v("AMF1 RS SURGE", { mk: "PUMA", fid: 1905, cz: 1 }),
+          v("AMG RS-X TORQUE", { mk: "PUMA", fid: 1585, cz: 1 }),
+          v("ANZARUN", { mk: "PUMA", fid: 634, cz: 1 }),
+          v("ASTRA LEATHER SUEDE", { mk: "PUMA", fid: 2016, cz: 1 }),
+          v("BASKET CLASSIC", { mk: "PUMA", fid: 619, cz: 1 }),
+          v("BASKET CLASSIC XXI", { mk: "PUMA", fid: 1492, cz: 1 }),
+          v("BLKTOP RIDER", { mk: "PUMA", fid: 1582, cz: 1 }),
+          v("BMW", { mk: "PUMA", fid: 622, cz: 1 }),
+          v("BMW MMS DRIFT CAR 11", { mk: "PUMA", fid: 1465, cz: 1 }),
+          v("BMW MMS RBD BREAK LOW", { mk: "PUMA", fid: 1507, cz: 1 }),
+          v("BMW MMS REPLICATCH", { mk: "PUMA", fid: 1697, cz: 1 }),
+          v("BMW MMS RS SURGE", { mk: "PUMA", fid: 1698, cz: 1 }),
+          v("CA MATCH", { mk: "PUMA", fid: 637, cz: 1 }),
+          v("CA MATCH COURT WNS", { mk: "PUMA", fid: 1519, cz: 1 }),
+          v("CA MATCH PREMIUN", { mk: "PUMA", fid: 1493, cz: 1 }),
+          v("CA MATCH WNS", { mk: "PUMA", fid: 1515, cz: 1 }),
+          v("CA PRO", { mk: "PUMA", fid: 631, cz: 1 }),
+          v("CA PRO CLASSIC", { mk: "PUMA", fid: 1583, cz: 1 }),
+          v("CA PRO CLASSIC II", { mk: "PUMA", fid: 1472, cz: 1 }),
+          v("CA PRO MID", { mk: "PUMA", fid: 1589, cz: 1 }),
+          v("CA PRO SUEDE FS", { mk: "PUMA", fid: 1587, cz: 1 }),
+          v("CALI", { mk: "PUMA", fid: 657, cz: 1 }),
+          v("CALI COURT LUXE WNS", { mk: "PUMA", fid: 1520, cz: 1 }),
+          v("CAVEN", { mk: "PUMA", fid: 625, cz: 1 }),
+          v("CAVEN 2.0 LUX", { mk: "PUMA", fid: 1470, cz: 1 }),
+          v("CAVEN 2.0 LUX WNS", { mk: "PUMA", fid: 1483, cz: 1 }),
+          v("CAVEN III", { mk: "PUMA", fid: 1907, cz: 1 }),
+          v("COMFORT RIDE EASYON", { mk: "PUMA", fid: 1797, cz: 1 }),
+          v("COURT LALLY", { mk: "PUMA", fid: 662, cz: 1 }),
+          v("COURT LALLY METALLIC WHISPER", { mk: "PUMA", fid: 1804, cz: 1 }),
+          v("COURT LALLY SKYE", { mk: "PUMA", fid: 1516, cz: 1 }),
+          v("COURT LALLY SKYE WNS", { mk: "PUMA", fid: 1484, cz: 1 }),
+          v("EASY", { mk: "PUMA", fid: 636, cz: 1 }),
+          v("EASY RIDER", { mk: "PUMA", fid: 915, cz: 1 }),
+          v("EASY RIDER MIX", { mk: "PUMA", fid: 1457, cz: 1 }),
+          v("ERS WORLD", { mk: "PUMA", fid: 778, cz: 1 }),
+          v("F1 CAVEN 2.0", { mk: "PUMA", fid: 1471, cz: 1 }),
+          v("FERRARI", { mk: "PUMA", fid: 626, cz: 1 }),
+          v("FERRARI CAVEN III", { mk: "PUMA", fid: 1947, cz: 1 }),
+          v("FERRARI DRIFT CAR 11", { mk: "PUMA", fid: 1476, cz: 1 }),
+          v("FERRARI PALERMO", { mk: "PUMA", fid: 1500, cz: 1 }),
+          v("FERRARI RS SURGE", { mk: "PUMA", fid: 1802, cz: 1 }),
+          v("FERRARI TRINITY", { mk: "PUMA", fid: 1590, cz: 1 }),
+          v("FUTURE RIDER", { mk: "PUMA", fid: 663, cz: 1 }),
+          v("FUTURE RIDER SOFT WNS", { mk: "PUMA", fid: 1517, cz: 1 }),
+          v("INDOOR", { mk: "PUMA", fid: 638, cz: 1 }),
+          v("K-MODA", { mk: "PUMA", fid: 1612, cz: 1 }),
+          v("K-MODA SD WNS", { mk: "PUMA", fid: 1701, cz: 1 }),
+          v("MAPF1", { mk: "PUMA", fid: 630, cz: 1 }),
+          v("MCLAREN CAVEN III", { mk: "PUMA", fid: 1948, cz: 1 }),
+          v("MORPHIC", { mk: "PUMA", fid: 660, cz: 1 }),
+          v("MORPHIC ASTRO ESCAPE WNS", { mk: "PUMA", fid: 1513, cz: 1 }),
+          v("MORPHIC ATHLETIC WNS", { mk: "PUMA", fid: 1512, cz: 1 }),
+          v("NEW GALA SUEDE SNEAKERS", { mk: "PUMA", fid: 606, cz: 1 }),
+          v("PALERMO", { mk: "PUMA", fid: 624, cz: 1 }),
+          v("PALERMO LA MODA", { mk: "PUMA", fid: 1486, cz: 1 }),
+          v("PALERMO LTH", { mk: "PUMA", fid: 1456, cz: 1 }),
+          v("PALERMO LTH WNS", { mk: "PUMA", fid: 1514, cz: 1 }),
+          v("PALERMO MODA TONGUE WNS", { mk: "PUMA", fid: 1481, cz: 1 }),
+          v("PALERMO PREMIUN", { mk: "PUMA", fid: 1458, cz: 1 }),
+          v("PALERMO WNS", { mk: "PUMA", fid: 1518, cz: 1 }),
+          v("PARK LIFESTYLE", { mk: "PUMA", fid: 643, cz: 1 }),
+          v("PARK LIFESTYLE EASY SD", { mk: "PUMA", fid: 1464, cz: 1 }),
+          v("PARK LIFESTYLE SK8", { mk: "PUMA", fid: 1473, cz: 1 }),
+          v("PWR HYBRID TR", { mk: "PUMA", fid: 1466, cz: 1 }),
+          v("RBD BREAK LOW", { mk: "PUMA", fid: 1468, cz: 1 }),
+          v("RBD GAME", { mk: "PUMA", fid: 632, cz: 1 }),
+          v("RBD GAME LOW", { mk: "PUMA", fid: 1499, cz: 1 }),
+          v("REBOUND", { mk: "PUMA", fid: 649, cz: 1 }),
+          v("REBOUND FEMME LOW SD WNS", { mk: "PUMA", fid: 1490, cz: 1 }),
+          v("REBOUND FEMME LOW WNS", { mk: "PUMA", fid: 1482, cz: 1 }),
+          v("REBOUND RETRO", { mk: "PUMA", fid: 1503, cz: 1 }),
+          v("REBOUND V6 LOW", { mk: "PUMA", fid: 1467, cz: 1 }),
+          v("RICKIE CLASSIC", { mk: "PUMA", fid: 665, cz: 1 }),
+          v("RICKIE CLASSIC WNS", { mk: "PUMA", fid: 1469, cz: 1 }),
+          v("RIDER", { mk: "PUMA", fid: 628, cz: 1 }),
+          v("RIDER ELITE", { mk: "PUMA", fid: 1461, cz: 1 }),
+          v("RIDER ULTR", { mk: "PUMA", fid: 799, cz: 1 }),
+          v("ROMA", { mk: "PUMA", fid: 623, cz: 1 }),
+          v("ROMA BASIC", { mk: "PUMA", fid: 1588, cz: 1 }),
+          v("RS SURGE ELEVATED", { mk: "PUMA", fid: 1803, cz: 1 }),
+          v("RS SURGE HAIRY SUEDE", { mk: "PUMA", fid: 1696, cz: 1 }),
+          v("RS-X 3D", { mk: "PUMA", fid: 1578, cz: 1 }),
+          v("SEOUL", { mk: "PUMA", fid: 627, cz: 1 }),
+          v("SL 72 RS ORIGINALS", { mk: "PUMA", fid: 1603, cz: 1 }),
+          v("SLIPSTREAM BBALL MIX", { mk: "PUMA", fid: 1591, cz: 1 }),
+          v("SLIPSTREAM CLUB 48", { mk: "PUMA", fid: 1593, cz: 1 }),
+          v("SLIPSTREAM LTH", { mk: "PUMA", fid: 1592, cz: 1 }),
+          v("SPEEDCAT", { mk: "PUMA", fid: 1202, cz: 1 }),
+          v("SPEEDCAT BALLET", { mk: "PUMA", fid: 2001, cz: 1 }),
+          v("SPEEDCAT FADED CHROME", { mk: "PUMA", fid: 1610, cz: 1 }),
+          v("SPEEDCAT LUX", { mk: "PUMA", fid: 1611, cz: 1 }),
+          v("SPEEDCAT OG", { mk: "PUMA", fid: 1463, cz: 1 }),
+          v("SPEEDCAT OG WNS", { mk: "PUMA", fid: 1480, cz: 1 }),
+          v("ST RUNNER", { mk: "PUMA", fid: 629, cz: 1 }),
+          v("SUEDE", { mk: "PUMA", fid: 635, cz: 1 }),
+          v("SUEDE BLACK PANTHER", { mk: "PUMA", fid: 2033, cz: 1 }),
+          v("SUEDE CLASSIC XXI", { mk: "PUMA", fid: 1586, cz: 1 }),
+          v("SUEDE EAGLE", { mk: "PUMA", fid: 2035, cz: 1 }),
+          v("SUEDE RUTHLESS", { mk: "PUMA", fid: 2034, cz: 1 }),
+          v("SUEDE XL", { mk: "PUMA", fid: 1613, cz: 1 }),
+          v("SUEDE XL FAT LACES", { mk: "PUMA", fid: 1857, cz: 1 }),
+          v("THE SUEDE BAT", { mk: "PUMA", fid: 861, cz: 1 }),
+          v("THE SUEDE PITBULL", { mk: "PUMA", fid: 862, cz: 1 }),
+          v("THE SUEDE SCORPION", { mk: "PUMA", fid: 921, cz: 1 }),
+          v("THE SUEDE SKULL", { mk: "PUMA", fid: 903, cz: 1 }),
+          v("THE SUEDE SPIDER", { mk: "PUMA", fid: 918, cz: 1 }),
+          v("THE SUEDE ST.BERNARD", { mk: "PUMA", fid: 866, cz: 1 }),
+          v("TRANSPORT", { mk: "PUMA", fid: 1594, cz: 1 }),
+          v("V5 RNR SUEDE", { mk: "PUMA", fid: 1798, cz: 1 }),
+          v("VELOPHASIS ALWAYS", { mk: "PUMA", fid: 621, cz: 1 }),
+          v("VIKKY", { mk: "PUMA", fid: 656, cz: 1 }),
+          v("VIKKY STAR OG WNS", { mk: "PUMA", fid: 1700, cz: 1 }),
+          v("VIKKY STAR WNS", { mk: "PUMA", fid: 1699, cz: 1 }),
+          v("CLASSIC LEATHER", { mk: "REEBOK", fid: 766, cz: 1 }),
+          v("CLUB C", { mk: "REEBOK", fid: 793, cz: 1 }),
+          v("CLUB C 85", { mk: "REEBOK", fid: 765, cz: 1 }),
+          v("CLUB C GROUNDS", { mk: "REEBOK", fid: 776, cz: 1 }),
+          v("CLUB C REVENGE", { mk: "REEBOK", fid: 781, cz: 1 }),
+          v("CLUB II", { mk: "REEBOK", fid: 620, cz: 1 }),
+          v("CLUB II ERA", { mk: "REEBOK", fid: 1474, cz: 1 }),
+          v("CLUB II ERA WNS", { mk: "REEBOK", fid: 1489, cz: 1 }),
+          v("CLUB II SL", { mk: "REEBOK", fid: 1494, cz: 1 }),
+          v("ENERGEN LUX", { mk: "REEBOK", fid: 789, cz: 1 }),
+          v("ENERGEN TECH", { mk: "REEBOK", fid: 788, cz: 1 }),
+          v("FLEXAGON ENERGY", { mk: "REEBOK", fid: 786, cz: 1 }),
+          v("GLIDE", { mk: "REEBOK", fid: 782, cz: 1 }),
+          v("GLIDE - STEP VORTEX - AVALIN", { mk: "REEBOK", fid: 1896, cz: 1 }),
+          v("GLIDE RIPPLE", { mk: "REEBOK", fid: 784, cz: 1 }),
+          v("GLIDE STEP GRAFITY", { mk: "REEBOK", fid: 603, cz: 1 }),
+          v("NANOFLEX TR", { mk: "REEBOK", fid: 787, cz: 1 }),
+          v("PHASE COURT", { mk: "REEBOK", fid: 785, cz: 1 }),
+          v("PRINCESS WHITE", { mk: "REEBOK", fid: 780, cz: 1 }),
+          v("ULTRA FLASH", { mk: "REEBOK", fid: 783, cz: 1 }),
+          v("ARC WAVES", { mk: "SKECHERS", fid: 827, cz: 1 }),
+          v("ARC WAVES 2.0 CLASS FORM", { mk: "SKECHERS", fid: 1417, cz: 1 }),
+          v("ARCH FIT", { mk: "SKECHERS", fid: 721, cz: 1 }),
+          v("ARCH FIT 2.0-LAZRIC", { mk: "SKECHERS", fid: 1422, cz: 1 }),
+          v("BOBS", { mk: "SKECHERS", fid: 1116, cz: 1 }),
+          v("BOBS ARC", { mk: "SKECHERS", fid: 826, cz: 1 }),
+          v("BOBS ARCH COMFORT B SWEET-A N", { mk: "SKECHERS", fid: 1628, cz: 1 }),
+          v("BOBS B FLEX", { mk: "SKECHERS", fid: 1142, cz: 1 }),
+          v("BOBS B FLEX HI", { mk: "SKECHERS", fid: 1418, cz: 1 }),
+          v("BOBS CHAOS", { mk: "SKECHERS", fid: 728, cz: 1 }),
+          v("BOBS FLEX", { mk: "SKECHERS", fid: 725, cz: 1 }),
+          v("BOBS INFINITY", { mk: "SKECHERS", fid: 714, cz: 1 }),
+          v("BOBS MODA FLEX MELLOW DAWN", { mk: "SKECHERS", fid: 1629, cz: 1 }),
+          v("BOBS SKILLIZ - TOOVITAL", { mk: "SKECHERS", fid: 1939, cz: 1 }),
+          v("BOBS SKILLZ - TOO", { mk: "SKECHERS", fid: 1897, cz: 1 }),
+          v("BOBS SPARROW", { mk: "SKECHERS", fid: 590, cz: 1 }),
+          v("BOBS SPORT", { mk: "SKECHERS", fid: 1127, cz: 1 }),
+          v("BOBS SPORT B", { mk: "SKECHERS", fid: 1141, cz: 1 }),
+          v("BOBS SQUAD", { mk: "SKECHERS", fid: 562, cz: 1 }),
+          v("BOBS VISION AIR-LAYERED VIEW", { mk: "SKECHERS", fid: 1416, cz: 1 }),
+          v("BOUNDER RSE", { mk: "SKECHERS", fid: 556, cz: 1 }),
+          v("D LUXWALKER3.0-TRUEMOTIO", { mk: "SKECHERS", fid: 2045, cz: 1 }),
+          v("DLITES", { mk: "SKECHERS", fid: 593, cz: 1 }),
+          v("DURABUCK LACE UP", { mk: "SKECHERS", fid: 577, cz: 1 }),
+          v("DURALEATHER METALLIC HEEL", { mk: "SKECHERS", fid: 579, cz: 1 }),
+          v("DYNAMIGHT", { mk: "SKECHERS", fid: 1138, cz: 1 }),
+          v("DYNAMIGHT 2.0", { mk: "SKECHERS", fid: 1140, cz: 1 }),
+          v("EDGERIDE", { mk: "SKECHERS", fid: 1171, cz: 1 }),
+          v("EDGERIDE - ERLSON", { mk: "SKECHERS", fid: 1624, cz: 1 }),
+          v("EDGERIDE CONFETTI", { mk: "SKECHERS", fid: 597, cz: 1 }),
+          v("EDGERIDE EXODIS", { mk: "SKECHERS", fid: 693, cz: 1 }),
+          v("EDGERIDE POWER", { mk: "SKECHERS", fid: 729, cz: 1 }),
+          v("EDGERIDE SILVER ECLIPSE", { mk: "SKECHERS", fid: 594, cz: 1 }),
+          v("EGO AURAIR", { mk: "SKECHERS", fid: 575, cz: 1 }),
+          v("GEL - NUNOBIKI", { mk: "SKECHERS", fid: 1881, cz: 1 }),
+          v("GLIDE-STEP ALTUS", { mk: "SKECHERS", fid: 550, cz: 1 }),
+          v("GLIDE-STEP FLEX", { mk: "SKECHERS", fid: 713, cz: 1 }),
+          v("GLIDE-STEP PRO-TRUE MOTION", { mk: "SKECHERS", fid: 2017, cz: 1 }),
+          v("GO RUN", { mk: "SKECHERS", fid: 724, cz: 1 }),
+          v("GO RUN ARCH FIT 2.0 ZENITH", { mk: "SKECHERS", fid: 1670, cz: 1 }),
+          v("GO RUN CONSISTENT", { mk: "SKECHERS", fid: 557, cz: 1 }),
+          v("GO RUN CONSISTENT 2.0", { mk: "SKECHERS", fid: 1652, cz: 1 }),
+          v("GO RUN CONSISTENT 2.0 - LOCKH", { mk: "SKECHERS", fid: 1631, cz: 1 }),
+          v("GO RUN CONSISTENT 2.0 - MAPLETON", { mk: "SKECHERS", fid: 1817, cz: 1 }),
+          v("GO RUN CONSISTENT 2.0-AYRAH", { mk: "SKECHERS", fid: 2025, cz: 1 }),
+          v("GO RUN ELEVATE", { mk: "SKECHERS", fid: 561, cz: 1 }),
+          v("GO RUN GLIDE-STEP ARCH FIT", { mk: "SKECHERS", fid: 1988, cz: 1 }),
+          v("GO RUN NOW", { mk: "SKECHERS", fid: 687, cz: 1 }),
+          v("GO RUN NOW - ACHELLIA", { mk: "SKECHERS", fid: 1616, cz: 1 }),
+          v("GO RUN NOW - STARFUSE", { mk: "SKECHERS", fid: 565, cz: 1 }),
+          v("GO RUN NOW MARION", { mk: "SKECHERS", fid: 566, cz: 1 }),
+          v("GO RUN NOW PRISMA", { mk: "SKECHERS", fid: 686, cz: 1 }),
+          v("GO RUN NOW REGENT", { mk: "SKECHERS", fid: 1619, cz: 1 }),
+          v("GO RUN PERSISTENCE", { mk: "SKECHERS", fid: 604, cz: 1 }),
+          v("GO RUN SUPERSONIC", { mk: "SKECHERS", fid: 591, cz: 1 }),
+          v("GO RUN TRAIL ALTITUDE", { mk: "SKECHERS", fid: 559, cz: 1 }),
+          v("GO WALK", { mk: "SKECHERS", fid: 1136, cz: 1 }),
+          v("GO WALK AIR", { mk: "SKECHERS", fid: 582, cz: 1 }),
+          v("GO WALK ARCH FIT N-JOY", { mk: "SKECHERS", fid: 1649, cz: 1 }),
+          v("GO WALK FLEX", { mk: "SKECHERS", fid: 560, cz: 1 }),
+          v("GO WALK FLEX - FARRAH", { mk: "SKECHERS", fid: 1615, cz: 1 }),
+          v("GO WALK GLIDE-STEP 2.0", { mk: "SKECHERS", fid: 1618, cz: 1 }),
+          v("GO WALK JOY", { mk: "SKECHERS", fid: 1815, cz: 1 }),
+          v("GO WALK JOY-RINA", { mk: "SKECHERS", fid: 1816, cz: 1 }),
+          v("GO WALK MAX", { mk: "SKECHERS", fid: 1135, cz: 1 }),
+          v("GO WALK MAX - MADDOXX", { mk: "SKECHERS", fid: 2048, cz: 1 }),
+          v("GO WALK MAX CUSHIONING ARCH F", { mk: "SKECHERS", fid: 1953, cz: 1 }),
+          v("GO WALK MAX CUSHIONING FLEX-P", { mk: "SKECHERS", fid: 1895, cz: 1 }),
+          v("GO WALK MAX CUSHIONING HYPER BURST", { mk: "SKECHERS", fid: 1658, cz: 1 }),
+          v("GO WALK MAX WALKER", { mk: "SKECHERS", fid: 592, cz: 1 }),
+          v("GO WALK NOW", { mk: "SKECHERS", fid: 688, cz: 1 }),
+          v("GORUNELEVATE2.0", { mk: "SKECHERS", fid: 690, cz: 1 }),
+          v("GOWAL KARCHFITN-JOY-JUNI", { mk: "SKECHERS", fid: 2046, cz: 1 }),
+          v("GOWALK", { mk: "SKECHERS", fid: 572, cz: 1 }),
+          v("GOWALKSTABILITY 2.0", { mk: "SKECHERS", fid: 1669, cz: 1 }),
+          v("HILAND - QUITE", { mk: "SKECHERS", fid: 600, cz: 1 }),
+          v("HOTSHOT", { mk: "SKECHERS", fid: 1124, cz: 1 }),
+          v("HOTSHOT KICKOFF", { mk: "SKECHERS", fid: 601, cz: 1 }),
+          v("KOOPA TIEBREAK LOW", { mk: "SKECHERS", fid: 574, cz: 1 }),
+          v("MAX CUSHIONING", { mk: "SKECHERS", fid: 1125, cz: 1 }),
+          v("MAX CUSHIONING ARCH FIT", { mk: "SKECHERS", fid: 570, cz: 1 }),
+          v("MAX CUSHIONING ELITE", { mk: "SKECHERS", fid: 581, cz: 1 }),
+          v("MAX CUSHIONING ELITE 3", { mk: "SKECHERS", fid: 1989, cz: 1 }),
+          v("MAX CUSHIONING ENDEAVOUR", { mk: "SKECHERS", fid: 569, cz: 1 }),
+          v("MAX CUSHIONING ENDEAVOUR - ARDENA", { mk: "SKECHERS", fid: 1818, cz: 1 }),
+          v("MAX CUSHIONING GLIDE", { mk: "SKECHERS", fid: 567, cz: 1 }),
+          v("MAX CUSHIONING GLIDE-STEP", { mk: "SKECHERS", fid: 1651, cz: 1 }),
+          v("MAX CUSHIONING PREMIER", { mk: "SKECHERS", fid: 711, cz: 1 }),
+          v("MAX CUSHIONING PROPULSION", { mk: "SKECHERS", fid: 568, cz: 1 }),
+          v("MAX CUSHIONING SUSPENSION", { mk: "SKECHERS", fid: 587, cz: 1 }),
+          v("MEN S UNO", { mk: "SKECHERS", fid: 715, cz: 1 }),
+          v("MILLION AIR HIGHER LIFTED", { mk: "SKECHERS", fid: 586, cz: 1 }),
+          v("SHUFFLE DOWNTOWN", { mk: "SKECHERS", fid: 1462, cz: 1 }),
+          v("SHUFFLE DOWNTOWN OG", { mk: "SKECHERS", fid: 1510, cz: 1 }),
+          v("SHUFFLE DOWNTOWN SD", { mk: "SKECHERS", fid: 1946, cz: 1 }),
+          v("SKECH - LITE PRO 2.0 BERRIX", { mk: "SKECHERS", fid: 1627, cz: 1 }),
+          v("SKECH CAGE", { mk: "SKECHERS", fid: 1955, cz: 1 }),
+          v("SKECH CLOUDE", { mk: "SKECHERS", fid: 599, cz: 1 }),
+          v("SKECH-AIR", { mk: "SKECHERS", fid: 709, cz: 1 }),
+          v("SKECH-AIR DYNAMIGHT", { mk: "SKECHERS", fid: 598, cz: 1 }),
+          v("SKECH-LITE PRO", { mk: "SKECHERS", fid: 552, cz: 1 }),
+          v("SKECHCLOUD-GENTLE RADIANCE", { mk: "SKECHERS", fid: 1973, cz: 1 }),
+          v("SLIP-INS AERO SPARK", { mk: "SKECHERS", fid: 1814, cz: 1 }),
+          v("SLIP-INS ENGINEERED MESH BUNGEE", { mk: "SKECHERS", fid: 1951, cz: 1 }),
+          v("STAND ON AIR", { mk: "SKECHERS", fid: 576, cz: 1 }),
+          v("STREET BILLION 2-SIDE LINES", { mk: "SKECHERS", fid: 1819, cz: 1 }),
+          v("SUMMITS", { mk: "SKECHERS", fid: 1144, cz: 1 }),
+          v("SUMMITS - LEYTER", { mk: "SKECHERS", fid: 1626, cz: 1 }),
+          v("TRES AIR UNO - REVOLUTION", { mk: "SKECHERS", fid: 578, cz: 1 }),
+          v("TRES AIR UNO AH AMAZING", { mk: "SKECHERS", fid: 585, cz: 1 }),
+          v("TRES AIR UNO ZUMA", { mk: "SKECHERS", fid: 588, cz: 1 }),
+          v("TRES-AIR", { mk: "SKECHERS", fid: 548, cz: 1 }),
+          v("UNO", { mk: "SKECHERS", fid: 546, cz: 1 }),
+          v("UNO - ALDER", { mk: "SKECHERS", fid: 571, cz: 1 }),
+          v("UNO - GOLDEN AIR", { mk: "SKECHERS", fid: 1632, cz: 1 }),
+          v("UNO - STAND ON AIR", { mk: "SKECHERS", fid: 1621, cz: 1 }),
+          v("UNO 2", { mk: "SKECHERS", fid: 1146, cz: 1 }),
+          v("UNO COURT", { mk: "SKECHERS", fid: 1117, cz: 1 }),
+          v("UNO EVOLVE-INFINITE", { mk: "SKECHERS", fid: 547, cz: 1 }),
+          v("UNO FLEX", { mk: "SKECHERS", fid: 1864, cz: 1 }),
+          v("UNO GLIDE-STEP", { mk: "SKECHERS", fid: 1975, cz: 1 }),
+          v("UNO ICON", { mk: "SKECHERS", fid: 1187, cz: 1 }),
+          v("UNO ICON-IDOLIZER", { mk: "SKECHERS", fid: 1420, cz: 1 }),
+          v("UNO LITE", { mk: "SKECHERS", fid: 1184, cz: 1 }),
+          v("UNO LITE - SHIMMER ALONG", { mk: "SKECHERS", fid: 1617, cz: 1 }),
+          v("UNO RYZE - SCALE UP", { mk: "SKECHERS", fid: 1633, cz: 1 }),
+          v("UNO SHIMMER AWAY", { mk: "SKECHERS", fid: 685, cz: 1 }),
+          v("UNO-LOVE", { mk: "SKECHERS", fid: 1131, cz: 1 }),
+          v("UNO-RETRO", { mk: "SKECHERS", fid: 554, cz: 1 }),
+          v("UNO-STAND", { mk: "SKECHERS", fid: 712, cz: 1 }),
+          v("UNO-SUITED", { mk: "SKECHERS", fid: 553, cz: 1 }),
+          v("UNOS SUITED", { mk: "SKECHERS", fid: 1164, cz: 1 }),
+          v("WEDGE-HI STEPS", { mk: "SKECHERS", fid: 584, cz: 1 }),
+          v("CAMDENN COOL IT DOWN", { mk: "STEVE MADDEN", fid: 602, cz: 1 }),
+          v("FORD SNEAKERS", { mk: "STEVE MADDEN", fid: 611, cz: 1 }),
+          v("GYSTOL", { mk: "STEVE MADDEN", fid: 609, cz: 1 }),
+          v("HARRY SNEAKERS", { mk: "STEVE MADDEN", fid: 614, cz: 1 }),
+          v("HENRY SNEAKERS", { mk: "STEVE MADDEN", fid: 605, cz: 1 }),
+          v("JPSTKANE", { mk: "STEVE MADDEN", fid: 610, cz: 1 }),
+          v("MILES SNEAKERS", { mk: "STEVE MADDEN", fid: 612, cz: 1 }),
+          v("NEW GALA SNEAKERS", { mk: "STEVE MADDEN", fid: 613, cz: 1 }),
+          v("NUBRYAN SNEAKERS", { mk: "STEVE MADDEN", fid: 607, cz: 1 }),
+          v("OREGON", { mk: "STEVE MADDEN", fid: 1656, cz: 1 }),
+          v("OREGON SNEAKERS", { mk: "STEVE MADDEN", fid: 615, cz: 1 }),
+          v("SCNUPRAX SNEAKERS", { mk: "STEVE MADDEN", fid: 608, cz: 1 }),
+          v("CAMPO LEATHER", { mk: "VEJA", fid: 616, cz: 1 }),
+          v("V-10PRIME LEATHER", { mk: "VEJA", fid: 617, cz: 1 }),
           v("NO APLICA", { lid: 2, off: 1, tipos: ["ACCESORIOS", "BERMUDA", "BLUSA", "BOLSO", "BOTAS", "BOXER", "BUZO", "CAMISA", "CAMISETA", "CANGURO", "CARDIGAN", "CHALECO", "CHAQUETA", "CONJUNTO", "CORREA", "ENTERIZO", "FALDA", "GAFAS", "GORRA", "JEAN", "JOGGER", "MEDIAS", "MORRAL", "PANTALON", "POLO", "RELOJ", "SANDALIAS", "SHORT", "TENIS", "VESTIDO", "ZAPATOS"] })
+        ]
+      },
+
+      /* --- color: los valores salen de colores_simplificados.csv.
+         Los que ya existen traen su id de referencias_cla; los otros van
+         marcados como sugerencia para crearlos. --- */
+      color: {
+        label: "Color", g: "apar", input: "color", legacy: "referencias_cla",
+        src: "referencias_cla",
+        help: "El color se almacena en la tabla referencias_cla. 26 de los 29 de esta paleta ya existen ah\u00ed y se muestran con su id; los 3 restantes son una sugerencia y habr\u00eda que crearlos.",
+        values: [
+        v("Blanco", { hex: "#FFFFFF", fam: "Neutro", cat: "Neutro", ton: "Base", cid: 17, cla: "BL" }),
+        v("Negro", { hex: "#000000", fam: "Neutro", cat: "Neutro", ton: "Base", cid: 63, cla: "NG" }),
+        v("Gris", { hex: "#808080", fam: "Neutro", cat: "Neutro", ton: "Base", cid: 43, cla: "GR" }),
+        v("Gris Claro", { hex: "#D3D3D3", fam: "Neutro", cat: "Neutro", ton: "Claro", cid: 38, cla: "GC" }),
+        v("Gris Oscuro", { hex: "#3F3F3F", fam: "Neutro", cat: "Neutro", ton: "Oscuro", cid: 42, cla: "GO" }),
+        v("Cafe", { hex: "#6F4E37", fam: "Cafe", cat: "Neutro", ton: "Base", cid: 23, cla: "CF" }),
+        v("Cafe Claro", { hex: "#C4A484", fam: "Cafe", cat: "Neutro", ton: "Claro", cid: 112, cla: "CC" }),
+        v("Cafe Oscuro", { hex: "#3B2412", fam: "Cafe", cat: "Neutro", ton: "Oscuro", sug: 1 }),
+        v("Rojo", { hex: "#E30613", fam: "Rojo", cat: "Primario", ton: "Base", cid: 75, cla: "RJ" }),
+        v("Rojo Claro", { hex: "#FF6B6B", fam: "Rojo", cat: "Primario", ton: "Claro", sug: 1 }),
+        v("Rojo Oscuro", { hex: "#8B0000", fam: "Rojo", cat: "Primario", ton: "Oscuro", cid: 99, cla: "RO" }),
+        v("Amarillo", { hex: "#FFD400", fam: "Amarillo", cat: "Primario", ton: "Base", cid: 7, cla: "AM" }),
+        v("Amarillo Claro", { hex: "#FFF176", fam: "Amarillo", cat: "Primario", ton: "Claro", cid: 138, cla: "AL" }),
+        v("Amarillo Oscuro", { hex: "#C9A200", fam: "Amarillo", cat: "Primario", ton: "Oscuro", cid: 110, cla: "AS" }),
+        v("Azul", { hex: "#0057B7", fam: "Azul", cat: "Primario", ton: "Base", cid: 14, cla: "AZ" }),
+        v("Azul Claro", { hex: "#87CEEB", fam: "Azul", cat: "Primario", ton: "Claro", cid: 4, cla: "AC", nota: "mapeado desde AZULES CLAROS" }),
+        v("Azul Oscuro", { hex: "#002366", fam: "Azul", cat: "Primario", ton: "Oscuro", cid: 9, cla: "AO" }),
+        v("Naranja", { hex: "#FF7F00", fam: "Naranja", cat: "Secundario", ton: "Base", cid: 65, cla: "NJ" }),
+        v("Naranja Claro", { hex: "#FFB347", fam: "Naranja", cat: "Secundario", ton: "Claro", sug: 1 }),
+        v("Naranja Oscuro", { hex: "#CC5500", fam: "Naranja", cat: "Secundario", ton: "Oscuro", cid: 100, cla: "NO" }),
+        v("Verde", { hex: "#228B22", fam: "Verde", cat: "Secundario", ton: "Base", cid: 93, cla: "VD", nota: "mapeado desde VERDES" }),
+        v("Verde Claro", { hex: "#90EE90", fam: "Verde", cat: "Secundario", ton: "Claro", cid: 92, cla: "VC" }),
+        v("Verde Oscuro", { hex: "#006400", fam: "Verde", cat: "Secundario", ton: "Oscuro", cid: 95, cla: "VO" }),
+        v("Morado", { hex: "#6A0DAD", fam: "Morado", cat: "Secundario", ton: "Base", cid: 60, cla: "MR", nota: "mapeado desde MORADOS" }),
+        v("Morado Claro", { hex: "#C8A2C8", fam: "Morado", cat: "Secundario", ton: "Claro", cid: 53, cla: "MC" }),
+        v("Morado Oscuro", { hex: "#3B0764", fam: "Morado", cat: "Secundario", ton: "Oscuro", cid: 59, cla: "MO" }),
+        v("Rosado", { hex: "#F28DAD", fam: "Rosado", cat: "Tinte (Rojo+Blanco)", ton: "Base", cid: 79, cla: "RS" }),
+        v("Rosado Claro", { hex: "#FADCE9", fam: "Rosado", cat: "Tinte (Rojo+Blanco)", ton: "Claro", cid: 74, cla: "RC" }),
+        v("Rosado Oscuro", { hex: "#C2185B", fam: "Rosado", cat: "Tinte (Rojo+Blanco)", ton: "Oscuro", cid: 122, cla: "RR" })
         ]
       },
 
@@ -1979,11 +2849,13 @@
 
     // Atributos que aplican a TODAS las categorías (scope global).
     const GLOBAL_ATTRS = [a("clase", { req: 1 }), a("coleccion", { req: 1 }), a("marca", { req: 1 }),
+    a("color", { req: 1 }),
     a("genero", { req: 1 }), a("linea", { req: 1 }), a("ocasion", { max: 3 }), a("clima")];
 
     /* Dónde vive hoy cada dato en la base actual. Se muestra junto al campo:
        sin esto la propuesta no se puede cruzar contra las tablas reales. */
     const SRC_TABLES = [
+      ["Color", "referencias_cla"],
       ["Marca", "referencias_gru"],
       ["Género", "referencias_Subgru"],
       ["Tipo de prenda", "referencias_Subgru2"],
@@ -2004,15 +2876,19 @@
        · Las demás columnas se las queda, entre las que viven ahí, la que piden
          más fichas.
        · Todo lo demás va a Apariencia, que admite varias etiquetas (AFamilia
-         es una de ellas). tipo_6 queda libre: la familia se lee de AFamilia.
+         es una de ellas).
+       · Línea / modelo es el caso aparte: se guardaba en tipo_6 y se empezó a
+         crear también en AFamilia, así que hoy se escribe en los dos. Por eso
+         su campo se lee «tipo_6 + AFamilia».
        [campo, tipo|apar|tabla, fichas que la piden, vive hoy en, de dónde sale, por qué]
        ------------------------------------------------------------------------- */
     const CAMPO = {
+      color: ["referencias_cla", "tabla", 62, "ninguno", "", "Tiene su propia tabla: el color se almacena en referencias_cla, con su propio id por color. No ocupa columna de tipo ni etiqueta de Apariencia."],
       clase: ["tipo_3", "tipo", 62, "tipo_3", "", "Se queda con tipo_3: es la característica que piden más fichas (62 de 62) entre las que hoy viven en ese campo. Hoy: tipo_3 (37 prendas lo marcan)."],
       clima: ["tipo_4", "tipo", 62, "tipo_4 + tipo_6", "tipo_6", "Se queda con tipo_4: es la característica que piden más fichas (62 de 62) entre las que hoy viven en ese campo. Hoy: tipo_4 (2 prendas lo marcan), tipo_6 (1 prenda lo marcan). Lo que tiene en tipo_6 se consolida aquí."],
       coleccion: ["tipo_5", "tipo", 62, "ninguno", "", "tipo_5 es el campo de la colección, y se asigna sola con la fecha de creación."],
       genero: ["referencias_Subgru", "tabla", 62, "ninguno", "", "Tiene su propia tabla: no ocupa columna de tipo ni etiqueta de Apariencia."],
-      linea: ["AFamilia", "apar", 62, "tipo_1 + tipo_6", "tipo_6", "La familia se guarda en la etiqueta AFamilia de Apariencia, que la tiene más completa que tipo_6."],
+      linea: ["tipo_6 + AFamilia", "apar", 62, "tipo_6 + AFamilia", "", "Originalmente la familia se guardaba solo en tipo_6. En algún momento se empezó a crear en los dos lados: hoy se escribe en tipo_6 y también en la etiqueta AFamilia de Apariencia, que es la que quedó más completa. Por eso el detalle dice tipo_6 y AFamilia, no uno de los dos."],
       marca: ["referencias_gru", "tabla", 62, "ninguno", "", "Tiene su propia tabla: no ocupa columna de tipo ni etiqueta de Apariencia."],
       ocasion: ["Apariencia", "apar", 62, "tipo_6", "tipo_6", "Vive en tipo_6, pero esa columna ya está ocupada por una característica que piden más fichas: pasa a Apariencia."],
       material: ["referencias_Subgru3", "tabla", 57, "tipo_1 + tipo_2", "tipo_1, tipo_2", "Tiene su propia tabla: no ocupa columna de tipo ni etiqueta de Apariencia. Lo que aparece en tipo_1, tipo_2 es copia y se consolida ahí."],
@@ -2147,6 +3023,7 @@
       values: {},          // attrCode -> id | [ids] | bool | number | string
       comboOpen: null,
       comboQuery: "",
+      buscarTipo: "",      // filtro del buscador de tipo de prenda
       editar: false,       // modo depuración de campos
       alcance: "prenda",   // "prenda" = solo este tipo · "general" = todas
       servidor: false,     // ¿se está sirviendo desde servidor.py?
@@ -2227,7 +3104,8 @@
        mismo campo en todas las prendas. */
 
     const DESTINOS = ["tipo_1", "tipo_2", "tipo_3", "tipo_4", "tipo_5", "tipo_6",
-      "Apariencia", "AFamilia", "referencias_gru", "referencias_Subgru",
+      "Apariencia", "AFamilia", "tipo_6 + AFamilia", "referencias_cla", "referencias_gru",
+      "referencias_Subgru",
       "referencias_Subgru2", "referencias_Subgru3"];
 
     function claseDe(destino) {
@@ -2418,8 +3296,14 @@
       const at = ATTRS[code];
       if (!at.values) return [];
       const t = tipoName === undefined ? state.tipo : tipoName;
+      // en calzado la línea la manda la marca: si la elegida tiene familias, son esas
+      if (code === "linea") {
+        const fams = familiasDe(t);
+        if (fams.length) return fams;
+      }
       return at.values.filter(function (val) {
         if (val.off || val.mergedInto) return false;
+        if (val.mk) return false;                             // familia de otra marca
         if (valorQuitado(code, val.id, t)) return false;      // dado de baja a mano
         if (val.cats && catId && val.cats.indexOf(catId) === -1) return false;
         if (val.tipos && t && val.tipos.indexOf(t) === -1) return false;
@@ -2630,6 +3514,58 @@
     }
 
 
+
+    /* ---------- buscador de tipo de prenda ---------- */
+
+    // sin tildes y en minúscula, para que «PANTALON» encuentre «pantalón»
+    function llano(s) {
+      return String(s).toLowerCase()
+        .replace(/[áàä]/g, "a").replace(/[éèë]/g, "e").replace(/[íìï]/g, "i")
+        .replace(/[óòö]/g, "o").replace(/[úùü]/g, "u").replace(/ñ/g, "n");
+    }
+
+    // los tipos de prenda que pasan el filtro del buscador
+    function tiposFiltrados() {
+      const q = llano((state.buscarTipo || "").trim());
+      const vivos = tiposVivos();
+      if (!q) return vivos;
+      return vivos.filter(function (x) {
+        return llano(x.t).indexOf(q) !== -1 || llano(x.grupo).indexOf(q) !== -1 ||
+          llano((catById(x.cat) || {}).label || "").indexOf(q) !== -1;
+      });
+    }
+
+    function cajaBuscar(id, placeholder) {
+      const q = state.buscarTipo || "";
+      return '<div class="buscar"><input type="search" data-buscartipo="' + id + '" value="' + esc(q) +
+        '" autocomplete="off" placeholder="' + esc(placeholder) + '" aria-label="Buscar tipo de prenda">' +
+        (q ? '<button type="button" class="btn" data-limpiarbusca="1" title="Limpiar">×</button>' : "") +
+        '</div>';
+    }
+
+
+    /* ---------- familias de calzado que dependen de la marca ---------- */
+
+    const TIPOS_CALZADO = ["TENIS", "SANDALIAS", "TACONES", "BOTAS", "ZAPATOS", "BALETAS"];
+
+    function esCalzado(tipoName) { return TIPOS_CALZADO.indexOf(tipoName) !== -1; }
+
+    function marcaElegida() {
+      const raw = state.values.marca;
+      return raw ? labelOf("marca", raw) : null;
+    }
+
+    // familias del catálogo que le corresponden a la marca elegida en esta prenda
+    function familiasDe(tipoName) {
+      const m = marcaElegida();
+      if (!m) return [];
+      return (ATTRS.linea.values || []).filter(function (val) {
+        if (val.mk !== m) return false;
+        if (val.cz && tipoName && !esCalzado(tipoName)) return false;
+        return !valorQuitado("linea", val.id, tipoName);
+      });
+    }
+
     /* =========================================================================
        4. RENDER — RIEL
        ========================================================================= */
@@ -2637,10 +3573,15 @@
     function renderRail() {
       const rail = $("#rail");
       const porGrupo = {};
-      tiposVivos().forEach(function (x) { (porGrupo[x.grupo] = porGrupo[x.grupo] || []).push(x); });
+      const hits = tiposFiltrados();
+      hits.forEach(function (x) { (porGrupo[x.grupo] = porGrupo[x.grupo] || []).push(x); });
 
       let html = '<div class="rail-head"><span class="eyebrow">Tipo de prenda</span>' +
-        '<span class="src-tag">referencias_Subgru2</span></div>';
+        '<span class="src-tag">referencias_Subgru2</span></div>' +
+        cajaBuscar("rail", "Buscar entre " + tiposVivos().length + " tipos…") +
+        (state.buscarTipo && !hits.length
+          ? '<p class="sin-hit">Ningún tipo de prenda coincide con «' + esc(state.buscarTipo) + '».</p>'
+          : "");
       Object.keys(porGrupo).sort(function (a, b) {
         return porGrupo[b].reduce(function (s, x) { return s + x.n; }, 0) -
           porGrupo[a].reduce(function (s, x) { return s + x.n; }, 0);
@@ -2711,6 +3652,14 @@
 
       const vals = activeValues(code, state.cat);
 
+      // la línea de calzado no se puede ofrecer hasta saber la marca
+      if (code === "linea" && esCalzado(state.tipo) && !marcaElegida()) {
+        return '<p class="field-hint" style="margin:0">Elige primero la <b>Marca</b>: en calzado las ' +
+          'familias dependen de ella. El archivo trae ' +
+          ATTRS.linea.values.filter(function (v) { return v.mk; }).length + ' familias de 11 marcas; ' +
+          'si la marca no está entre ellas, se ofrece la lista de siempre.</p>';
+      }
+
       // sin ni un valor utilizable: decirlo, en vez de dejar un hueco mudo
       if (!vals.length) {
         const muertas = code === "linea" ? lineasInservibles(state.tipo) : [];
@@ -2722,18 +3671,44 @@
           : 'No hay valores activos para este campo en este tipo de prenda.') + '</p>';
       }
 
+      // color: se pintan las muestras con su id de referencias_cla
+      if (at.input === "color") {
+        const sel = raw;
+        const conId = vals.filter(function (x) { return x.cid; }).length;
+        const sugs = vals.length - conId;
+        return '<div class="colores">' + vals.map(function (x) {
+          const on = sel === x.id;
+          return '<button type="button" class="color' + (x.sug ? " sug" : "") + '" data-single="' + code +
+            '" data-val="' + x.id + '" aria-pressed="' + on + '" title="' + esc(x.fam + " · " + x.ton +
+            " · " + x.hex + (x.cid ? " · id " + x.cid + " (" + x.cla + ") en referencias_cla"
+              : " · no existe en referencias_cla, es una sugerencia") + (x.nota ? " · " + x.nota : "")) + '">' +
+            '<span class="mancha" style="background:' + esc(x.hex) + '"></span>' +
+            '<span class="ctxt"><span class="cn">' + esc(x.l) + '</span>' +
+            (x.cid
+              ? '<span class="cid mono">id ' + x.cid + ' \u00b7 ' + esc(x.cla) + '</span>'
+              : '<span class="cid nueva">sugerencia</span>') + '</span>' +
+            '</button>';
+        }).join("") + '</div>' +
+        '<p class="field-hint" style="margin:8px 0 0">' + conId + ' con id en ' +
+        '<span class="mono">referencias_cla</span>' + (sugs ? ' \u00b7 <b>' + sugs +
+        ' sin id: son sugerencias para crear</b>' : "") + '.</p>';
+      }
+
       // listas largas de selección única -> buscador tipo combobox
       if (vals.length > 12 && at.input === "single") {
         const open = state.comboOpen === code;
+        const dequien = code === "linea" && vals.length && vals[0].mk ? " familias de " + vals[0].mk : " valores";
         let html = '<div class="combo"><input class="input" type="text" data-combo="' + code + '" autocomplete="off" ' +
-          'placeholder="Buscar entre ' + vals.length + ' valores…" value="' +
+          'placeholder="Buscar entre ' + vals.length + dequien + '…" value="' +
           (open ? esc(state.comboQuery) : (raw ? esc(labelOf(code, raw)) : "")) + '">';
         if (open) {
           const q = state.comboQuery.toLowerCase();
           const hits = vals.filter(function (x) { return x.l.toLowerCase().indexOf(q) !== -1; }).slice(0, 40);
           html += '<div class="combo-list">' + (hits.length
             ? hits.map(function (x) {
-              return '<button type="button" data-pick="' + code + '" data-val="' + x.id + '">' + esc(x.l) + '</button>';
+              return '<button type="button" data-pick="' + code + '" data-val="' + x.id + '">' + esc(x.l) +
+                (x.fid ? ' <span class="cd mono">id ' + x.fid + '</span>' : "") +
+                '</button>';
             }).join("")
             : '<div class="combo-empty">Sin coincidencias. El valor se agrega al catálogo del atributo, sin tocar código.</div>') + '</div>';
         }
@@ -2802,7 +3777,12 @@
         'cada prenda tiene una sola.<br>' +
         'Las demás columnas guardan un valor único, y se las queda —entre las características que hoy ' +
         'viven ahí— la que piden más fichas; el resto pasa a Apariencia, que sí admite varias etiquetas ' +
-        '—<span class="mono">AFamilia</span> es una de ellas—. El cruce sale de las «X» de ' +
+        '—<span class="mono">AFamilia</span> es una de ellas—.<br>' +
+        '<b>Línea / modelo es el caso aparte:</b> se guardaba en <span class="mono">tipo_6</span> y en ' +
+        'algún momento se empezó a crear también en <span class="mono">AFamilia</span>, así que hoy se ' +
+        'escribe en los dos. Por eso su campo aparece como ' +
+        '<span class="mono">tipo_6 + AFamilia</span> y no como uno solo; AFamilia es la que quedó más ' +
+        'completa. El cruce sale de las «X» de ' +
         '<span class="mono">PlantillaTipos</span> (columna <i>Asociado a…</i>) contra ' +
         '<span class="mono">Tipos.xlsx</span>.</p>' +
 
@@ -2819,7 +3799,10 @@
                   (campoCambiado(x[0]) ? ' <span class="pill thr">movido</span>' : "");
               }).join('<br>') + '</td>' +
               '<td class="c">' + d[1].map(function (x) { return x[1] || "—"; }).join('<br>') + '</td>'
-              : '<td colspan="2"><span class="cd">Queda libre</span></td>') +
+              : '<td colspan="2"><span class="cd">' + (d[0] === "tipo_6"
+                ? 'Sigue recibiendo <b>Línea / modelo</b>, que desde hace un tiempo se escribe ' +
+                  'aquí <b>y</b> en la etiqueta AFamilia de Apariencia'
+                : 'Queda libre') + '</span></td>') +
             '</tr>';
         }).join("") +
         '</tbody></table></div>' +
@@ -2870,7 +3853,8 @@
       if (!state.tipo) {
         // el selector son los tipos de prenda del extracto, agrupados como vienen en él
         const porGrupo = {};
-        tiposVivos().forEach(function (x) { (porGrupo[x.grupo] = porGrupo[x.grupo] || []).push(x); });
+        const hits = tiposFiltrados();
+        hits.forEach(function (x) { (porGrupo[x.grupo] = porGrupo[x.grupo] || []).push(x); });
         const grupos = Object.keys(porGrupo).sort(function (a, b) {
           return porGrupo[b].reduce(function (s, x) { return s + x.n; }, 0) -
             porGrupo[a].reduce(function (s, x) { return s + x.n; }, 0);
@@ -2884,7 +3868,13 @@
           '<p class="field-hint" style="margin:6px 0 0">El tipo de prenda se ubica en ' +
           '<span class="mono">referencias_Subgru2</span>. Del mismo bloque de tablas salen la marca ' +
           '(<span class="mono">referencias_gru</span>), el género (<span class="mono">referencias_Subgru</span>) ' +
-          'y el material (<span class="mono">referencias_Subgru3</span>).</p>' +
+          'el material (<span class="mono">referencias_Subgru3</span>) y el color ' +
+          '(<span class="mono">referencias_cla</span>).</p>' +
+          cajaBuscar("paso1", "Buscar tipo de prenda: jean, tenis, calzado…") +
+          (state.buscarTipo
+            ? '<p class="field-hint" style="margin:8px 0 0">' + hits.length + ' de ' +
+              tiposVivos().length + ' coinciden con «' + esc(state.buscarTipo) + '».</p>'
+            : "") +
           '</div></div>' +
           // los que se dieron de baja: se pueden devolver al catálogo
           (edicionDe(GEN).tipos.length
@@ -3307,6 +4297,7 @@
       if (d.single) {
         state.values[d.single] = state.values[d.single] === d.val ? undefined : d.val;
         if (state.values[d.single] === undefined) delete state.values[d.single];
+        if (d.single === "marca") delete state.values.linea;   // las familias cambian con la marca
         pruneHidden(); render(); return;
       }
 
@@ -3320,10 +4311,12 @@
 
       if (d.pick) {
         state.values[d.pick] = d.val;
+        if (d.pick === "marca") delete state.values.linea;   // las familias cambian con la marca
         state.comboOpen = null; state.comboQuery = "";
         pruneHidden(); render(); return;
       }
 
+      if (d.limpiarbusca) { state.buscarTipo = ""; render(); return; }
       if (d.reset) { state.values = {}; applyDefaults(); render(); return; }
 
       /* --- depuración de campos, valores y tipos de prenda --- */
@@ -3363,6 +4356,14 @@
       if (d.text) {
         if (el.value === "") delete state.values[d.text]; else state.values[d.text] = el.value;
         renderInspector(); renderRail(); return;
+      }
+      if (d.buscartipo) {
+        state.buscarTipo = el.value;
+        const pos = el.selectionStart, cual = d.buscartipo;
+        render();
+        const otra = document.querySelector('[data-buscartipo="' + cual + '"]');
+        if (otra) { otra.focus(); try { otra.setSelectionRange(pos, pos); } catch (e) { } }
+        return;
       }
       if (d.combo) {
         state.comboOpen = d.combo; state.comboQuery = el.value;
